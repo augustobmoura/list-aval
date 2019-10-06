@@ -1,0 +1,27 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "List Aval",
+    "description": "Projeto para avaliaçao de listas de perguntas",
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Especifiaçao do projeto",
+    "url": "https://docs.google.com/document/d/1N1HxMVKpUQGlY1bEwH6pyDQCz_AT2t3LdqIROE-VdX8"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "tags": [
+  ],
+  "paths": {
+  },
+  "components": {
+    "schemas": {
+    },
+    "securitySchemes": {
+    }
+  }
+}
