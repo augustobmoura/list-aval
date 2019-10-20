@@ -1,0 +1,25 @@
+<div class="main" >
+  <div class="menu-mobile" *ngIf="isMobile">
+    <i class="material-icons" (click)="toggleMenu()">menu</i>
+  </div>
+
+  <nav class="header-main" [@slideInOut]="menuState">
+    <div class="close-menu" class="close"  *ngIf="isMobile">
+      <i class="material-icons" (click)="toggleMenu()">close</i>
+    </div>
+    <div class="logo-wrap">
+      <img src="assets/logo.png" alt="ListAval">
+    </div>
+    <ul class="nav-main" >
+      <li fxLayout fxLayoutGap="8px" (click)="toggleMenu()" routerLink="{{item.link}}" routerLinkActive="active" *ngFor="let item of navItens">
+          <i class="material-icons">{{item.icon}}</i>
+          <p>{{item.name}}</p>
+      </li>
+    </ul>
+  </nav>
+  <section class="content-section">
+    <div class="container">
+      <ng-content></ng-content>
+    </div>
+  </section>
+</div>

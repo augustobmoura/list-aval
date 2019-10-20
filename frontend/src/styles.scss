@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import './reset';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import './variables';
+@import './assets/fonts/material-icons/material-icons.css';
+
+body{
+  font-size: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $dark_gray;
+}
