@@ -8,4 +8,60 @@ body{
   font-size: 16px;
   font-family: 'Source Sans Pro', sans-serif;
   color: $dark_gray;
+  background: #EFEFEF;
+}
+
+//Header of Pages
+.header-section{
+  width: 100%;
+  margin: 35px 0;
+
+  @media screen and (min-width: 768px){
+    align-items: center;
+  }
+
+  h1{
+    font-size: 1.75em;
+    display: block;
+  }
+
+  .search{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 2px;
+    background: #fff;
+
+    i.material-icons{
+      color: #BCBCCB;
+      padding-right: 15px;
+    }
+
+    input{
+      border: none;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      flex: 1;
+    }
+  }
+}
+
+//Pagination Styles
+.ngx-pagination{
+  margin: 25px;
+}
+.ngx-pagination .current{
+    border-radius: 5px;
+    padding: 8px 12px !important;
+}
+
+.ngx-pagination a, .ngx-pagination button{
+  font-family: inherit !important;
+  color: #4D4F5C !important;
+}
+
+.controls-list{
+  display: flex;
+  justify-content: flex-end
 }

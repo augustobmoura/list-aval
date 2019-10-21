@@ -1,0 +1,34 @@
+.card{
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
+  margin-bottom: 10px;
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+
+  h2{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .card-class{
+    opacity: 0.5;
+    padding: 0.2em 0;
+  }
+}
+
+.content{
+  flex-grow: 1;
+  padding: 2em 1.8em;
+}
+
+.icon-card{
+  padding: 1em;
+  i.material-icons{
+    color: #918E8E;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}

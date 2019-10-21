@@ -10,10 +10,6 @@
   }
 }
 
-.container{
-  width: 90%;
-  margin: 2em auto;
-}
 
 .close{
   position: absolute;
@@ -41,28 +37,37 @@
 }
 
 .header-main{
-  max-width: 20%;
-  flex: 1 1 20%;
+  max-width: 260px;
+  width: 260px;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
 
   @media screen and (max-width: 768px){
     min-width: 100%;
     max-width: 100%;
-    position: fixed;
-    z-index: 999;
-    top: 0;
     right: 0;
   }
 }
 
 .content-section{
-  max-width: 70%;
-  flex: 1 1 70%;
+  @media screen and (min-width: 768px){
+    margin-left: 260px;
+    width: 100%;
+  }
+}
+
+.container{
+  width: 90%;
+  margin: 3.438em auto;
 }
 
 .header-main{
   min-height: 100vh;
   width: 100%;
   background-color: $gray;
+  height: 100%;
 }
 
 .logo-wrap{
@@ -78,13 +83,18 @@
 
 .nav-main{
   margin-top: 0.938em;
+  flex-grow: 1;
   li{
     align-items: center;
     padding: 1em 0.938em;
     transition: background-color .8s ease;
     cursor: pointer;
+    outline: none;
+    ::selection{
+      background-color: none;
+    }
 
-    &.active, &:hover{
+    &.active{
       background-color: $dark_gray;
     }
 
@@ -94,5 +104,25 @@
     i.material-icons{
       color: $light-gray;
     }
+  }
+}
+
+.logout{
+  padding: 2em 0.938em;
+  justify-self: flex-end;
+  border-top: 1px solid $dark_gray;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  .svg-inline--fa{
+    fill: $light-gray;
+    color: $light-gray;
+    height: 20px;
+  }
+  p{
+    color: #fff;
+    margin-left: 5px;
   }
 }
