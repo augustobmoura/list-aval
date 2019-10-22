@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import { MediaObserver, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/core/pages/login-page/login.service';
 
 export interface NavItensModel{
   name: string,
@@ -34,7 +35,8 @@ export class HeaderComponent implements OnInit {
   watcher: Subscription;
   activeMediaQuery = '';
 
-  constructor(mediaObserver: MediaObserver) {
+  constructor(mediaObserver: MediaObserver,
+              private loginService: LoginService) {
     this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
       this.isMobile = change.mqAlias == 'xs' || change.mqAlias == 'sm'
@@ -43,22 +45,22 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  ngOnInit() {
+  }
+
   toggleMenu() {
       if(this.isMobile){
         this.menuState = this.menuState === 'out' ? 'in' : 'out';
       }
   }
 
-
-  ngOnInit() {
-  }
-
   ngOnDestroy() {
     this.watcher.unsubscribe();
   }
 
-
-
+  logOut(){
+    this.loginService.logOut()
+  }
 
 
 }

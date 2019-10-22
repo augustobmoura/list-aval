@@ -32,3 +32,20 @@
     cursor: pointer;
   }
 }
+
+.content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag{
+  padding: 0.5em 1em;
+  background-color: #E8E821;
+  color: #fff;
+  font-size: 12px;
+
+  &.active{
+    background-color: #21E84F;
+  }
+}

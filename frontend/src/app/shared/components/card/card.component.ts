@@ -10,10 +10,16 @@ export class CardComponent implements OnInit {
   @Input() title: string
   @Input() class: string
   @Input() date: string
+  @Input() hasStatus: boolean = false
+  @Input() status: boolean
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(){
+
   }
 
 }

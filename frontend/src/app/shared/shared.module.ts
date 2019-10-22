@@ -4,14 +4,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './components/card/card.component';
+import { PanelHeaderComponent } from './components/accordion-component/panel/panel-header/panel-header.component';
+import { AccordionComponent } from './components/accordion-component/accordion-component.component';
+import { AccordionGroupComponent } from './components/accordion-component/panel/panel.component';
+import { AccordionOptionsDirective } from './components/accordion-component/accordion-directives';
+import { NavBackComponent } from './components/nav-back/nav-back.component';
 
 @NgModule({
-  declarations: [HeaderComponent, CardComponent],
+  declarations: [HeaderComponent, AccordionOptionsDirective, CardComponent, AccordionComponent, AccordionGroupComponent, PanelHeaderComponent, NavBackComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
     RouterModule
   ],
-  exports: [HeaderComponent, CardComponent]
+  exports: [HeaderComponent, NavBackComponent, AccordionOptionsDirective, CardComponent, AccordionComponent, AccordionGroupComponent, PanelHeaderComponent]
 })
 export class SharedModule { }

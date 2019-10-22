@@ -4,6 +4,7 @@ export interface listModel{
   title: string
   class: string
   date: string
+  id: number
 }
 
 @Component({
@@ -23,7 +24,8 @@ export class MyListComponent implements OnInit {
       this.lists.push({
         title: `Engenharia de Software ${i}`,
         class: `Turma ${i}`,
-        date: '15/10/2019'
+        date: '15/10/2019',
+        id: i
       })
     }
 

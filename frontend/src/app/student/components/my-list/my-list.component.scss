@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 15px;
+  outline: none;
+  outline-width: 0;
 
   @media screen and (min-width: 768px){
     grid-template-columns: 1fr 1fr;
