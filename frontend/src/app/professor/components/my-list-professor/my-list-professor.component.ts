@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface listModel{
-  title: string
-  class: string
-  date: string
-  id: number
-  publicado?: boolean
-}
-
+import { listModel } from 'src/app/student/components/my-list/my-list.component';
 
 @Component({
-  selector: 'app-my-list',
-  templateUrl: './my-list.component.html',
-  styleUrls: ['./my-list.component.scss']
+  selector: 'app-my-list-professor',
+  templateUrl: './my-list-professor.component.html',
+  styleUrls: ['./my-list-professor.component.scss']
 })
-export class MyListComponent implements OnInit {
+export class MyListProfessorComponent implements OnInit {
 
   lists: listModel[] = []
   p: number = 1
@@ -27,9 +19,11 @@ export class MyListComponent implements OnInit {
         title: `Engenharia de Software ${i}`,
         class: `Turma ${i}`,
         date: '15/10/2019',
-        id: i
+        id: i,
+        publicado: i % 2 === 0 ? true : false
       })
     }
+
   }
 
   pageChanged($event){

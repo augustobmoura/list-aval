@@ -8,6 +8,10 @@
     <div class="tag" *ngIf="hasStatus" [class.active]="status">
       {{!status ? 'Em análise' : 'Aprovado'}}
     </div>
+
+    <div class="tag" *ngIf="hasTagProfessor"  [class.blue]="statusProfessor === true" [class.gray]="statusProfessor === false">
+        {{statusProfessor ? 'Publicado' : 'Salvo'}}
+      </div>
   </div>
   <div class="icon-card">
     <i class="material-icons">

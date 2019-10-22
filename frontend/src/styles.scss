@@ -196,10 +196,17 @@ button.default{
   border: none;
   cursor: pointer;
   margin: 12px 0;
-  transition: all ease .8s;
+  transition: background ease .8s;
 
   &:hover{
     background: #1E1D30;
+  }
+
+  &.light{
+    background: #17CBDF;
+    &:hover{
+      background: #0BB0C2
+    }
   }
 }
 
@@ -207,4 +214,10 @@ button.default{
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+hr{
+  border-color: 1px solid #707070;
+  margin: 25px 0 0;
+  opacity: .8;
 }
