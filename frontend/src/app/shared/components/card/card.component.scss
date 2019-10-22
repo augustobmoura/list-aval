@@ -37,6 +37,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 599px){
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .tag{
+      margin: 15px 0;
+    }
+  }
 }
 
 .tag{
