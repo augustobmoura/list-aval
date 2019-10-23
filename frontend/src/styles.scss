@@ -1,1 +1,223 @@
 /* You can add global styles to this file, and also import other style files */
+@import './reset';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import './variables';
+@import './assets/fonts/material-icons/material-icons.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body{
+  font-size: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $dark_gray;
+  background: #EFEFEF;
+}
+
+.full-width{
+  width: 100%;
+}
+
+//Accordion
+.question-panel{
+  display: flex;
+  .title-panel + .title-panel{
+    margin-left: 15px;
+  }
+  .title-panel{
+    font-weight: bold;
+    span{
+      font-weight: normal
+    }
+  }
+}
+
+//Header of Pages
+.header-section{
+  width: 100%;
+  margin: 35px 0;
+
+  @media screen and (min-width: 768px){
+    align-items: center;
+  }
+
+  h1{
+    font-size: 1.75em;
+    display: block;
+  }
+
+  .search{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 2px;
+    background: #fff;
+
+    i.material-icons{
+      color: #BCBCCB;
+      padding-right: 15px;
+    }
+
+    input{
+      border: none;
+      background-color: transparent;
+      outline: none;
+      border: none;
+      flex: 1;
+    }
+  }
+}
+
+//Pagination Styles
+.ngx-pagination{
+  margin: 25px;
+}
+.ngx-pagination .current{
+    border-radius: 5px;
+    padding: 8px 12px !important;
+}
+
+.ngx-pagination a, .ngx-pagination button{
+  font-family: inherit !important;
+  color: #4D4F5C !important;
+}
+
+.controls-list{
+  display: flex;
+  justify-content: flex-end
+}
+
+
+//Forms
+
+.main{
+
+  .mat-form-field-appearance-legacy{
+    margin: 0px 0;
+  }
+
+  .mat-form-field-wrapper{
+    padding-bottom: 0;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-infix{
+    padding: 8px 0 12px;
+
+  }
+
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex .mat-form-field-outline-thick{
+    opacity: 0.10 !important;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float
+  .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label,
+  .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label{
+    font-family: inherit;
+    font-weight: bold;
+  }
+
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline-thick{
+    opacity: 0.40 !important;
+  }
+
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled).mat-form-field-invalid.mat-focused   .mat-form-field-flex:hover .mat-form-field-outline-thick,
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+    color: #f44336 !important;
+    opacity: 1 !important;
+  }
+
+  .mat-form-field.mat-form-field-invalid .mat-form-field-label,
+  .mat-form-field.mat-form-field-invalid.mat-focused.mat-primary .mat-select-arrow{
+    color: #f44336 !important;
+  }
+
+  .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline-thick{
+    color: #525f7f;
+    opacity: .2;
+  }
+
+  .mat-form-field.mat-focused .mat-form-field-label,
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
+  .mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+    color: #6B3FA5;
+  }
+
+  .mat-hint{
+    font-family: inherit;
+  }
+
+  .mat-input-element{
+    caret-color: #304ffe;
+  }
+
+  .mat-form-field-hide-placeholder .mat-input-element::-webkit-input-placeholder{
+    color: #525f7f !important;
+    -webkit-text-fill-color:#525f7f !important;
+
+    div{
+      color:#525f7f !important;
+    }
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-underline, .mat-form-field-ripple{
+    background-color: transparent !important;
+  }
+
+  .mat-form-field-infix{
+    font-size: 15px !important;
+  }
+
+  .mat-select-value-text, .mat-option-text, .mat-option{
+    font-family: inherit;
+    font-size: 15px !important;
+    color: #525f7f !important;
+  }
+
+}
+
+.mat-option{
+    font-family: inherit;
+    font-size: 15px !important;
+    color: #525f7f !important;
+}
+
+.space{
+  height: 18px;
+  width: 100%;
+}
+
+button.default{
+  display: inline-block;
+  width: auto;
+  background: #43425D;
+  border-radius: 4px;
+  padding: 12px 60px;
+  color: #fff;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  margin: 12px 0;
+  transition: background ease .8s;
+
+  &:hover{
+    background: #1E1D30;
+  }
+
+  &.light{
+    background: #17CBDF;
+    &:hover{
+      background: #0BB0C2
+    }
+  }
+}
+
+.btn-wrap-center{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+hr{
+  border-color: 1px solid #707070;
+  margin: 25px 0 0;
+  opacity: .8;
+}

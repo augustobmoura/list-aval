@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="content">
+    <div class="content-info">
+        <h2 class="card-titlte">{{title}}</h2>
+        <p class="card-class">{{class}}</p>
+        <p class="card-date">{{date}}</p>
+    </div>
+    <div class="tag" *ngIf="hasStatus" [class.active]="status">
+      {{!status ? 'Em análise' : 'Aprovado'}}
+    </div>
+
+    <div class="tag" *ngIf="hasTagProfessor"  [class.blue]="statusProfessor === true" [class.gray]="statusProfessor === false">
+        {{statusProfessor ? 'Publicado' : 'Salvo'}}
+      </div>
+  </div>
+  <div class="icon-card">
+    <i class="material-icons">
+      remove_red_eye
+    </i>
+  </div>
+</div>
+
+

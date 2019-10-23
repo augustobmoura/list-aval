@@ -1,0 +1,20 @@
+<div fxLayout fxLayout.xs="column" class="login-page">
+  <div fxFlex="50" fxFlex.xs="20" class="bg-login"></div>
+  <div fxFlex="50" fxFlex.xs="70" class="login-wrap">
+      <div class="login-container">
+          <img src="assets/logo-dark.png" alt="Logo Aval">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div>
+                  <input type="text" formControlName="email" placeholder="Seu Email">
+              </div>
+              <div>
+                  <input type="password" formControlName="password" placeholder="Sua Senha">
+              </div>
+              <p class="password-btn">Esquecia minha senha</p>
+              <div class="btn-wrap-center">
+                <button type="submit" class="btn default gray">Entrar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
