@@ -32,11 +32,6 @@ public class AplicacaoLista {
 	@JoinColumn
 	private Turma turma;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn
-	private Usuario avaliador;
-
 	@OneToMany(mappedBy = "aplicacaoLista", cascade = CascadeType.ALL)
 	private List<ResolucaoLista> resolucoes;
 
