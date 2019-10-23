@@ -23,4 +23,8 @@ public abstract class Usuario {
 	@NotNull
 	private String senha;
 
+	public Usuario(@NotNull String nome, @NotNull String email) {
+		this.nome = nome;
+		this.email = email;
+	}
 }

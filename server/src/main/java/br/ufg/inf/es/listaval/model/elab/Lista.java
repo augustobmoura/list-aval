@@ -2,7 +2,9 @@ package br.ufg.inf.es.listaval.model.elab;
 
 import br.ufg.inf.es.listaval.model.Usuario;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Data
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 public class Lista {
 
