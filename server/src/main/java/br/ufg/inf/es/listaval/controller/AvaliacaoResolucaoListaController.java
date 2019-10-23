@@ -36,7 +36,7 @@ public class AvaliacaoResolucaoListaController {
 		return avaliacaoResolucaoListaService.save(avaliacaoResolucaoLista);
 	}
 
-	@GetMapping("/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<AvaliacaoResolucaoLista> update(@PathVariable("id") Long id, @Valid @RequestBody AvaliacaoResolucaoLista avaliacaoResolucaoLista) {
 		return avaliacaoResolucaoListaService.update(id, avaliacaoResolucaoLista)
 				.map(record -> ResponseEntity.ok().body(record))

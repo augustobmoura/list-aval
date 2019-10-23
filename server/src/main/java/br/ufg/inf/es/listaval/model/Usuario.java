@@ -1,6 +1,7 @@
 package br.ufg.inf.es.listaval.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Entity
 @Inheritance
+@NoArgsConstructor
 public abstract class Usuario {
 
 	@Id
@@ -20,7 +22,6 @@ public abstract class Usuario {
 	@NotNull
 	private String email;
 
-	@NotNull
 	private String senha;
 
 	public Usuario(@NotNull String nome, @NotNull String email) {

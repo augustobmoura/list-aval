@@ -38,4 +38,8 @@ public class Disciplina {
 	@JoinColumn
 	@LastModifiedBy
 	private Usuario usuarioAlteracao;
+
+	public Disciplina(@NotNull String nome) {
+		this.nome = nome;
+	}
 }

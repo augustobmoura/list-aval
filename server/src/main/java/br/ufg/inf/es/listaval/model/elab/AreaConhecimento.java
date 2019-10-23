@@ -22,6 +22,9 @@ public class AreaConhecimento {
 	private Long id;
 
 	@NotNull
+	private String codigo;
+
+	@NotNull
 	private String area;
 
 	@NotNull
@@ -42,4 +45,9 @@ public class AreaConhecimento {
 	@JoinColumn
 	@LastModifiedBy
 	private Usuario usuarioAlteracao;
+
+	public AreaConhecimento(@NotNull String codigo, @NotNull String area, @NotNull String nome) {
+		this.area = area;
+		this.nome = nome;
+	}
 }

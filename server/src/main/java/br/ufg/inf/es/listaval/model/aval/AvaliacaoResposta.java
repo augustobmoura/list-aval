@@ -30,7 +30,7 @@ public class AvaliacaoResposta {
 	@JoinColumn
 	private Usuario avaliador;
 
-	private String observacao;
+	private String comentario;
 
 	private Float nota;
 

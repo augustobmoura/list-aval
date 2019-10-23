@@ -3,6 +3,7 @@ package br.ufg.inf.es.listaval.model;
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Discente extends Usuario {
 

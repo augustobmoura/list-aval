@@ -43,4 +43,8 @@ public class AplicacaoLista {
 	@CreatedBy
 	private Usuario usuarioCadastro;
 
+	public AplicacaoLista(@NotNull Lista lista, @NotNull Turma turma) {
+		this.lista = lista;
+		this.turma = turma;
+	}
 }

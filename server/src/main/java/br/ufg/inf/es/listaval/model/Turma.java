@@ -35,4 +35,9 @@ public class Turma {
 	@JoinTable()
 	private Set<Discente> discentes;
 
+	public Turma(@NotNull Disciplina disciplina, @NotNull String semestre, @NotNull Docente docente) {
+		this.disciplina = disciplina;
+		this.semestre = semestre;
+		this.docente = docente;
+	}
 }

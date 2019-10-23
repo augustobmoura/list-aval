@@ -32,12 +32,15 @@ public class Resposta {
 	@NotNull
 	private String conteudo;
 
-	private Float nota;
-
 	@CreatedDate
 	private LocalDate dataCadastro;
 
 	@LastModifiedDate
 	private LocalDate dataAlteracao;
 
+	public Resposta(@NotNull ResolucaoLista resolucaoLista, @NotNull Questao questao, @NotNull String conteudo) {
+		this.resolucaoLista = resolucaoLista;
+		this.questao = questao;
+		this.conteudo = conteudo;
+	}
 }

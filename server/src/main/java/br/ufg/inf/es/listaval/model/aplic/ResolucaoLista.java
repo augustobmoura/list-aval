@@ -39,4 +39,8 @@ public class ResolucaoLista {
 	@LastModifiedDate
 	private LocalDate dataAlteracao;
 
+	public ResolucaoLista(@NotNull AplicacaoLista aplicacaoLista, @NotNull Discente discente) {
+		this.aplicacaoLista = aplicacaoLista;
+		this.discente = discente;
+	}
 }
