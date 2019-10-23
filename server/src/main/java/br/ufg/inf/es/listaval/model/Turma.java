@@ -21,6 +21,14 @@ public class Turma {
 	@NotNull
 	@ManyToOne
 	@JoinColumn
+	private Disciplina disciplina;
+
+	@NotNull
+	private String semestre;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn
 	private Docente docente;
 
 	@ManyToMany(cascade = CascadeType.ALL)
