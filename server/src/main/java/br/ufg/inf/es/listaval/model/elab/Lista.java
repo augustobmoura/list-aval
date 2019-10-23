@@ -2,23 +2,21 @@ package br.ufg.inf.es.listaval.model.elab;
 
 import br.ufg.inf.es.listaval.model.Usuario;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Lista {
 
 	@Id
@@ -30,7 +28,7 @@ public class Lista {
 	private List<Questao> questoes;
 
 	@CreatedDate
-	private LocalDate dataCadastro;
+	private LocalDateTime dataCadastro;
 
 	@ManyToOne
 	@JoinColumn
@@ -38,7 +36,7 @@ public class Lista {
 	private Usuario usuarioCadastro;
 
 	@LastModifiedDate
-	private LocalDate dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 	@ManyToOne
 	@JoinColumn

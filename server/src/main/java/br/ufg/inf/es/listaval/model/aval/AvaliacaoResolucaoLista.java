@@ -8,14 +8,16 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class AvaliacaoResolucaoLista {
 
 	@Id
@@ -37,7 +39,7 @@ public class AvaliacaoResolucaoLista {
 	private Float nota;
 
 	@CreatedDate
-	private LocalDate dataCadastro;
+	private LocalDateTime dataCadastro;
 
 	@ManyToOne
 	@JoinColumn
@@ -45,7 +47,7 @@ public class AvaliacaoResolucaoLista {
 	private Usuario usuarioCadastro;
 
 	@LastModifiedDate
-	private LocalDate dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 	@ManyToOne
 	@JoinColumn

@@ -5,14 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Resposta {
 
 	@Id
@@ -33,10 +35,10 @@ public class Resposta {
 	private String conteudo;
 
 	@CreatedDate
-	private LocalDate dataCadastro;
+	private LocalDateTime dataCadastro;
 
 	@LastModifiedDate
-	private LocalDate dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 	public Resposta(@NotNull ResolucaoLista resolucaoLista, @NotNull Questao questao, @NotNull String conteudo) {
 		this.resolucaoLista = resolucaoLista;

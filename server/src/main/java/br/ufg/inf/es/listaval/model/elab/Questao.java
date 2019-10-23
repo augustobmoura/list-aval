@@ -11,10 +11,11 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @TypeDefs({
 		@TypeDef(
@@ -25,6 +26,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Questao {
 
 	@Id
@@ -40,14 +42,11 @@ public class Questao {
 	private AreaConhecimento areaConhecimento;
 
 	@Type(type = "string-array")
-	@Column(
-			name = "palavras_chave",
-			columnDefinition = "text[]"
-	)
+	@Column(columnDefinition = "text[]")
 	private String[] palavrasChave;
 
 	@CreatedDate
-	private LocalDate dataCadastro;
+	private LocalDateTime dataCadastro;
 
 	@ManyToOne
 	@JoinColumn
@@ -55,7 +54,7 @@ public class Questao {
 	private Usuario usuarioCadastro;
 
 	@LastModifiedDate
-	private LocalDate dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 	@ManyToOne
 	@JoinColumn

@@ -20,7 +20,6 @@ public class Discente extends Usuario {
 	@OneToMany(mappedBy = "discente", cascade = CascadeType.ALL)
 	List<ResolucaoLista> resolucoes;
 
-
 	public Discente(@NotNull String nome, @NotNull String email) {
 		super(nome, email);
 	}

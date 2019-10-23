@@ -6,14 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class AvaliacaoResposta {
 
 	@Id
@@ -38,9 +40,9 @@ public class AvaliacaoResposta {
 	private Boolean publicada;
 
 	@CreatedDate
-	private LocalDate dataCadastro;
+	private LocalDateTime dataCadastro;
 
 	@LastModifiedDate
-	private LocalDate dataAlteracao;
+	private LocalDateTime dataAlteracao;
 
 }
