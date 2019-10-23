@@ -1,0 +1,50 @@
+<div class="container">
+    <app-nav-back [title]="'Listas Revisão'"></app-nav-back>
+    <div class="content-student">
+      <div
+        class="title-professor"
+        fxLayout
+        fxLayout.xs="column"
+        fxLayoutGap="25px"
+      >
+        <div><h2>Lista Turma 1</h2></div>
+        <div><h2>25/10/2019</h2></div>
+        <div><h2>1º Semestre</h2></div>
+      </div>
+
+      <div class="space"></div>
+      <div class="space"></div>
+
+      <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+          <mat-label>Motivo da Revisão</mat-label>
+          <textarea rows="4" cols="50" matInput value="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus incidunt necessitatibus ratione asperiores delectus nesciunt perferendis eligendi neque. Mollitia inventore fugit nostrum tempore quibusdam! Quos iusto at animi tempore ab."></textarea>
+        </mat-form-field>
+
+      <div class="space"></div>
+      <accordion>
+        <expansion-panel
+          *ngFor="let panel of panels"
+          [position]="'right'"
+          [iconColor]="'#17CBDF'"
+          [height]="70"
+        >
+          <panel-header>
+            <div class="question-panel">
+              <h2 class="title-panel">{{ panel.name }}</h2>
+              <h2 class="title-panel">
+                Pergunta: <span class="title-panel-ask">{{ panel.desc }}</span>
+              </h2>
+            </div>
+          </panel-header>
+          <div class="content">
+              <app-student-answer [isRevision]="true"></app-student-answer>
+          </div>
+        </expansion-panel>
+      </accordion>
+    </div>
+  </div>
+
+  <div class="buttons" fxLayout fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="end">
+    <button class="default" [routerLink]="['/professor/revisoes']">Salvar</button>
+    <button class="default light" [routerLink]="['/professor/revisoes']">Publicar</button>
+  </div>

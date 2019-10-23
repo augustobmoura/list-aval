@@ -1,0 +1,23 @@
+<div class="accordion-panel" [class.opened]="opened">
+  <div
+    class="title-section"
+    (click)="toggle.emit()"
+    accordion
+    heightPanel="{{height}}"
+    position="{{position}}"
+    iconColor="{{iconColor}}"
+  >
+    <div class="title-wrap">
+      <ng-content select="panel-header"></ng-content>
+    </div>
+    <div
+      class="icon"
+      [class.minus]="opened"
+    ></div>
+  </div>
+  <div class="expansion-panel" #panelContainer [class.closed]="!opened">
+    <div class="body" #panel>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
