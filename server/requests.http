@@ -1,5 +1,5 @@
 ### Cria avaliaçao para uma resoluçao
-POST http://localhost:8080/api/avaliacoes
+POST http://localhost:8080/api/avaliacoesResolucao
 Content-Type: application/json
 
 {
@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ### Atribui nota para uma avaliaçao
-PUT http://localhost:8080/api/avaliacoes/49
+PUT http://localhost:8080/api/avaliacoesResolucao/49
 Content-Type: application/json
 
 {

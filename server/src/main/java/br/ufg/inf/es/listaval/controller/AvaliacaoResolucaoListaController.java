@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/avaliacoes")
+@RequestMapping("/api/avaliacoesResolucao")
 public class AvaliacaoResolucaoListaController {
 
 	private final AvaliacaoResolucaoListaService avaliacaoResolucaoListaService;

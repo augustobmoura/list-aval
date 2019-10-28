@@ -1,7 +1,7 @@
 package br.ufg.inf.es.listaval.repository.aplic;
 
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface ResolucaoListaRepository extends CrudRepository<ResolucaoLista, Long> {
+public interface ResolucaoListaRepository extends PagingAndSortingRepository<ResolucaoLista, Long> {
 }
