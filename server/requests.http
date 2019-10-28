@@ -1,3 +1,30 @@
-GET http://localhost:8080/api/notificacoes
+### Cria avaliaçao para uma resoluçao
+POST http://localhost:8080/api/avaliacoes
+Content-Type: application/json
+
+{
+  "resolucaoLista": {
+    "id": 33
+  },
+  "avaliador": {
+    "dtype": "Discente",
+    "id": 3
+  }
+}
+
+### Atribui nota para uma avaliaçao
+PUT http://localhost:8080/api/avaliacoes/49
+Content-Type: application/json
+
+{
+  "resolucaoLista": {
+    "id": 33
+  },
+  "avaliador": {
+    "dtype": "Discente",
+    "id": 3
+  },
+  "nota": 5.0
+}
 
 ###

@@ -1,9 +1,9 @@
 package br.ufg.inf.es.listaval.model.elab;
 
-import br.ufg.inf.es.listaval.model.Usuario;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
@@ -23,7 +23,8 @@ import java.time.LocalDateTime;
 				typeClass = StringArrayType.class
 		)
 })
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
@@ -48,18 +49,14 @@ public class Questao {
 	@CreatedDate
 	private LocalDateTime dataCadastro;
 
-	@ManyToOne
-	@JoinColumn
 	@CreatedBy
-	private Usuario usuarioCadastro;
+	private String usuarioCadastro;
 
 	@LastModifiedDate
 	private LocalDateTime dataAlteracao;
 
-	@ManyToOne
-	@JoinColumn
 	@LastModifiedBy
-	private Usuario usuarioAlteracao;
+	private String usuarioAlteracao;
 
 	public Questao(@NotNull String enunciado, @NotNull AreaConhecimento areaConhecimento) {
 		this.enunciado = enunciado;
