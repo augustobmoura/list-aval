@@ -1,6 +1,5 @@
 package br.ufg.inf.es.listaval.model.elab;
 
-import br.ufg.inf.es.listaval.model.Usuario;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
@@ -35,18 +34,14 @@ public class AreaConhecimento {
 	@CreatedDate
 	private LocalDateTime dataCadastro;
 
-	@ManyToOne
-	@JoinColumn
 	@CreatedBy
-	private Usuario usuarioCadastro;
+	private String usuarioCadastro;
 
 	@LastModifiedDate
 	private LocalDateTime dataAlteracao;
 
-	@ManyToOne
-	@JoinColumn
 	@LastModifiedBy
-	private Usuario usuarioAlteracao;
+	private String usuarioAlteracao;
 
 	public AreaConhecimento(@NotNull String codigo, @NotNull String area, @NotNull String nome) {
 		this.codigo = codigo;

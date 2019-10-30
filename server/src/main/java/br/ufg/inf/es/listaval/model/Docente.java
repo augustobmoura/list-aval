@@ -1,13 +1,15 @@
 package br.ufg.inf.es.listaval.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)

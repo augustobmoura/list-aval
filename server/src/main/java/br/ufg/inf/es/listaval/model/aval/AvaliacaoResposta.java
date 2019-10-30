@@ -25,6 +25,11 @@ public class AvaliacaoResposta {
 	@NotNull
 	@ManyToOne
 	@JoinColumn
+	private AvaliacaoResolucaoLista avaliacaoResolucaoLista;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn
 	private Resposta resposta;
 
 	@NotNull

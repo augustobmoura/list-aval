@@ -2,8 +2,9 @@ package br.ufg.inf.es.listaval.model.aval;
 
 import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aplic.AplicacaoLista;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -15,7 +16,8 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
@@ -41,17 +43,13 @@ public class AvaliacaoLista {
 	@CreatedDate
 	private LocalDateTime dataCadastro;
 
-	@ManyToOne
-	@JoinColumn
 	@CreatedBy
-	private Usuario usuarioCadastro;
+	private String usuarioCadastro;
 
 	@LastModifiedDate
 	private LocalDateTime dataAlteracao;
 
-	@ManyToOne
-	@JoinColumn
 	@LastModifiedBy
-	private Usuario usuarioAlteracao;
+	private String usuarioAlteracao;
 
 }

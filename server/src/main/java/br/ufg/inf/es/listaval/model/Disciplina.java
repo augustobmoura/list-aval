@@ -1,7 +1,8 @@
 package br.ufg.inf.es.listaval.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -12,7 +13,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
@@ -28,18 +30,14 @@ public class Disciplina {
 	@CreatedDate
 	private LocalDateTime dataCadastro;
 
-	@ManyToOne
-	@JoinColumn
 	@CreatedBy
-	private Usuario usuarioCadastro;
+	private String usuarioCadastro;
 
 	@LastModifiedDate
 	private LocalDateTime dataAlteracao;
 
-	@ManyToOne
-	@JoinColumn
 	@LastModifiedBy
-	private Usuario usuarioAlteracao;
+	private String usuarioAlteracao;
 
 	public Disciplina(@NotNull String nome) {
 		this.nome = nome;

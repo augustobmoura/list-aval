@@ -1,5 +1,6 @@
 package br.ufg.inf.es.listaval;
 
+import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
 import br.ufg.inf.es.listaval.repository.aval.AvaliacaoResolucaoListaRepository;
 import org.springframework.data.domain.Page;
@@ -32,7 +33,10 @@ public class AvaliacaoResolucaoListaService {
 
 	public Optional<AvaliacaoResolucaoLista> update(Long id, AvaliacaoResolucaoLista avaliacaoResolucaoLista) {
 		return avaliacaoResolucaoListaRepository.findById(id).map(record -> {
-			record.setAvaliador(avaliacaoResolucaoLista.getAvaliador());
+			Usuario avaliador = avaliacaoResolucaoLista.getAvaliador();
+			if (avaliador != null) {
+				record.setAvaliador(avaliador);
+			}
 			record.setPublicada(avaliacaoResolucaoLista.getPublicada());
 			record.setNota(avaliacaoResolucaoLista.getNota());
 			return avaliacaoResolucaoListaRepository.save(record);
