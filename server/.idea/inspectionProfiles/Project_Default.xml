@@ -136,6 +136,11 @@
     <inspection_tool class="ReturnNullFromCatchBlock" enabled="true" level="INFO" enabled_by_default="true" />
     <inspection_tool class="ReturnsNullInsteadOfEmptyArray" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="ReturnsNullInsteadOfEmptyCollection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
+      <option name="processCode" value="true" />
+      <option name="processLiterals" value="true" />
+      <option name="processComments" value="true" />
+    </inspection_tool>
     <inspection_tool class="StatelessSingleton" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="StaticCalendarField" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="StaticConnection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />

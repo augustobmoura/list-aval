@@ -30,7 +30,10 @@ public class AvaliacaoRespostaController {
 	}
 
 	@GetMapping("/avaliacoes/{avaliacaoResolucaoListaId}/{respostaId}")
-	public ResponseEntity<AvaliacaoResposta> findByAvaliacaoResolucaoListaAndResposta(@PathVariable("avaliacaoResolucaoListaId") Long avaliacaoResolucaoListaId, @PathVariable("avaliacaoResolucaoListaId") Long respostaId) {
+	public ResponseEntity<AvaliacaoResposta> findByAvaliacaoResolucaoListaAndResposta(
+		@PathVariable("avaliacaoResolucaoListaId") Long avaliacaoResolucaoListaId,
+		@PathVariable("respostaId") Long respostaId
+	) {
 		return avaliacaoRespostaService.findByAvaliacaoResolucaoListaIdAndRespostaId(avaliacaoResolucaoListaId, respostaId)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());

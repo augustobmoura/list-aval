@@ -1,5 +1,17 @@
 {
 	"compilerOptions": {
-		"strict": true
-	}
+		"outDir": "dist",
+		"declaration": true,
+		"downlevelIteration": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"lib": ["ES2018", "dom"],
+		"target": "ES2015",
+		"moduleResolution": "Node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"module": "ES2015"
+	},
+	"exclude": ["node_modules/**/*"],
+	"include": ["generated-src/**/*"]
 }
