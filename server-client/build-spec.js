@@ -1,9 +1,11 @@
 const { exec } = require('child_process');
 
+const specFileLocation = 'http://localhost:8080/v3/api-docs'
+
 const proc = exec('java ' + [
 	'-jar', 'openapi-generator-cli.jar',
 	'generate',
-	'-i', 'http://localhost:8080/v3/api-docs',
+	'-i', specFileLocation,
 	'-g', 'typescript-angular',
 	'-o', 'generated-src',
 ].join(' '))
