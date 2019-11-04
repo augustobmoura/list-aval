@@ -27,17 +27,17 @@ public class ListavalApplication {
 
 	@Bean
 	CommandLineRunner init(
-			PlatformTransactionManager platformTransactionManager,
-			DocenteRepository docenteRepository,
-			DiscenteRepository discenteRepository,
-			DisciplinaRepository disciplinaRepository,
-			TurmaRepository turmaRepository,
-			AreaConhecimentoRepository areaConhecimentoRepository,
-			QuestaoRepository questaoRepository,
-			ListaRepository listaRepository,
-			AplicacaoListaRepository aplicacaoListaRepository,
-			ResolucaoListaRepository resolucaoListaRepository,
-			RespostaRepository respostaRepository
+		PlatformTransactionManager platformTransactionManager,
+		DocenteRepository docenteRepository,
+		DiscenteRepository discenteRepository,
+		DisciplinaRepository disciplinaRepository,
+		TurmaRepository turmaRepository,
+		AreaConhecimentoRepository areaConhecimentoRepository,
+		QuestaoRepository questaoRepository,
+		ListaRepository listaRepository,
+		AplicacaoListaRepository aplicacaoListaRepository,
+		ResolucaoListaRepository resolucaoListaRepository,
+		RespostaRepository respostaRepository
 	) {
 		return args -> {
 			TransactionTemplate transactionTemplate = new TransactionTemplate(platformTransactionManager);
@@ -50,16 +50,16 @@ public class ListavalApplication {
 
 			transactionTemplate.execute(status -> {
 				new Populador(
-						docenteRepository,
-						discenteRepository,
-						disciplinaRepository,
-						turmaRepository,
-						areaConhecimentoRepository,
-						questaoRepository,
-						listaRepository,
-						aplicacaoListaRepository,
-						resolucaoListaRepository,
-						respostaRepository
+					docenteRepository,
+					discenteRepository,
+					disciplinaRepository,
+					turmaRepository,
+					areaConhecimentoRepository,
+					questaoRepository,
+					listaRepository,
+					aplicacaoListaRepository,
+					resolucaoListaRepository,
+					respostaRepository
 				).cadastraEntidades();
 				status.flush();
 				return null;
