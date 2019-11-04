@@ -54,6 +54,9 @@ public class Populador {
 	}
 
 	public void cadastraEntidades() {
+		if (respostaRepository.count() > 0) {
+			return;
+		}
 		Docente docente = cadastraDocente(docenteRepository);
 
 		Set<Discente> discentes = cadastraDiscentes(discenteRepository);
@@ -79,7 +82,7 @@ public class Populador {
 
 	private void cadastraRespostas(RespostaRepository respostaRepository, List<Questao> questoes, ResolucaoLista resolucaoLista) {
 		questoes.stream().map(q -> new Resposta(resolucaoLista, q, "Resposta"))
-				.forEach(respostaRepository::save);
+			.forEach(respostaRepository::save);
 	}
 
 	private ResolucaoLista cadastraResolucaoDeLista(ResolucaoListaRepository resolucaoListaRepository, AplicacaoLista aplicacaoLista, Discente discente) {
@@ -103,18 +106,18 @@ public class Populador {
 
 	private List<Questao> cadastraQuestoes(QuestaoRepository questaoRepository, AreaConhecimento areaConhecimento) {
 		return IntStream.range(1, 16)
-				.mapToObj(i -> {
-					String[] palavrasChave = new Random()
-							.ints(8, 1, 100)
-							.mapToObj(j -> "palavra " + j)
-							.toArray(String[]::new);
+			.mapToObj(i -> {
+				String[] palavrasChave = new Random()
+					.ints(8, 1, 100)
+					.mapToObj(j -> "palavra " + j)
+					.toArray(String[]::new);
 
-					Questao questao = new Questao("Enunciado da questão " + i, areaConhecimento);
-					questao.setPalavrasChave(palavrasChave);
-					return questao;
-				})
-				.map(questaoRepository::save)
-				.collect(Collectors.toList());
+				Questao questao = new Questao("Enunciado da questão " + i, areaConhecimento);
+				questao.setPalavrasChave(palavrasChave);
+				return questao;
+			})
+			.map(questaoRepository::save)
+			.collect(Collectors.toList());
 	}
 
 	private AreaConhecimento cadastraAreaConhecimento(AreaConhecimentoRepository areaConhecimentoRepository) {
@@ -138,9 +141,9 @@ public class Populador {
 
 	private Set<Discente> cadastraDiscentes(DiscenteRepository discenteRepository) {
 		return IntStream.range(1, 11)
-				.mapToObj(i -> new Discente("Aluno " + i, "aluno" + i + "@discente.ufg.br"))
-				.map(discenteRepository::save)
-				.collect(Collectors.toSet());
+			.mapToObj(i -> new Discente("Aluno " + i, "aluno" + i + "@discente.ufg.br"))
+			.map(discenteRepository::save)
+			.collect(Collectors.toSet());
 	}
 
 	private Docente cadastraDocente(DocenteRepository docenteRepository) {

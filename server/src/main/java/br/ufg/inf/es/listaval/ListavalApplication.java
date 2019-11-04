@@ -11,12 +11,14 @@ import br.ufg.inf.es.listaval.repository.aplic.RespostaRepository;
 import br.ufg.inf.es.listaval.repository.elab.AreaConhecimentoRepository;
 import br.ufg.inf.es.listaval.repository.elab.ListaRepository;
 import br.ufg.inf.es.listaval.repository.elab.QuestaoRepository;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
+import com.fasterxml.jackson.databind.Module;
 
 @SpringBootApplication
 public class ListavalApplication {
@@ -67,4 +69,8 @@ public class ListavalApplication {
 		};
 	}
 
+	@Bean
+	protected Module module() {
+		return new Hibernate5Module();
+	}
 }
