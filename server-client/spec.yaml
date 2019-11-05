@@ -3,10 +3,10 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: http://localhost:8080
+- url: https://evening-harbor-96341.herokuapp.com
   description: Generated server url
 paths:
-  /api/avaliacoes:
+  /api/avaliacoesResposta:
     get:
       operationId: findAll
       parameters:
@@ -21,22 +21,22 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/PageAvaliacaoLista'
+                $ref: '#/components/schemas/PageAvaliacaoResposta'
     post:
       operationId: create
       requestBody:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/AvaliacaoLista'
+              $ref: '#/components/schemas/AvaliacaoResposta'
       responses:
         200:
           description: default response
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/AvaliacaoLista'
-  /api/avaliacoes/{id}:
+                $ref: '#/components/schemas/AvaliacaoResposta'
+  /api/avaliacoesResposta/{id}:
     get:
       operationId: findById
       parameters:
@@ -52,7 +52,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/AvaliacaoLista'
+                $ref: '#/components/schemas/AvaliacaoResposta'
     put:
       operationId: update
       parameters:
@@ -62,104 +62,6 @@ paths:
         schema:
           type: integer
           format: int64
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/AvaliacaoLista'
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AvaliacaoLista'
-  /api/avaliacoesResolucao:
-    get:
-      operationId: findAll_1
-      parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/PageAvaliacaoResolucaoLista'
-    post:
-      operationId: create_1
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/AvaliacaoResolucaoLista'
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AvaliacaoResolucaoLista'
-  /api/avaliacoesResolucao/{id}:
-    get:
-      operationId: findById_1
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AvaliacaoResolucaoLista'
-    put:
-      operationId: update_1
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/AvaliacaoResolucaoLista'
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AvaliacaoResolucaoLista'
-  /api/avaliacoesResposta:
-    get:
-      operationId: findAll_2
-      parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/PageAvaliacaoResposta'
-    post:
-      operationId: create_2
       requestBody:
         content:
           '*/*':
@@ -217,47 +119,9 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/AvaliacaoResposta'
-  /api/avaliacoesResposta/{id}:
-    get:
-      operationId: findById_2
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AvaliacaoResposta'
-    put:
-      operationId: update_2
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/AvaliacaoResposta'
-      responses:
-        200:
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AvaliacaoResposta'
   /api/resolucoes:
     get:
-      operationId: findAll_3
+      operationId: findAll_1
       parameters:
       - name: pageable
         in: query
@@ -273,7 +137,7 @@ paths:
                 $ref: '#/components/schemas/PageResolucaoLista'
   /api/resolucoes/{id}:
     get:
-      operationId: findById_3
+      operationId: findById_1
       parameters:
       - name: id
         in: path
@@ -288,9 +152,77 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ResolucaoLista'
+  /api/avaliacoes:
+    get:
+      operationId: findAll_2
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Pageable'
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageAvaliacaoLista'
+    post:
+      operationId: create_1
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/AvaliacaoLista'
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AvaliacaoLista'
+  /api/avaliacoes/{id}:
+    get:
+      operationId: findById_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AvaliacaoLista'
+    put:
+      operationId: update_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/AvaliacaoLista'
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AvaliacaoLista'
   /api/respostas:
     get:
-      operationId: findAll_4
+      operationId: findAll_3
       parameters:
       - name: pageable
         in: query
@@ -304,6 +236,23 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PageResposta'
+  /api/respostas/{id}:
+    get:
+      operationId: findById_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Resposta'
   /api/resolucoes/{resolucaoId}/respostas:
     get:
       operationId: findAllByResolucaoLista
@@ -326,7 +275,37 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PageResposta'
-  /api/respostas/{id}:
+  /api/avaliacoesResolucao:
+    get:
+      operationId: findAll_4
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/Pageable'
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageAvaliacaoResolucaoLista'
+    post:
+      operationId: create_2
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/AvaliacaoResolucaoLista'
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AvaliacaoResolucaoLista'
+  /api/avaliacoesResolucao/{id}:
     get:
       operationId: findById_4
       parameters:
@@ -342,33 +321,54 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Resposta'
+                $ref: '#/components/schemas/AvaliacaoResolucaoLista'
+    put:
+      operationId: update_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/AvaliacaoResolucaoLista'
+      responses:
+        200:
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AvaliacaoResolucaoLista'
 components:
   schemas:
     Pageable:
       type: object
       properties:
+        sort:
+          $ref: '#/components/schemas/Sort'
         paged:
           type: boolean
         unpaged:
           type: boolean
-        pageNumber:
+        pageSize:
           type: integer
           format: int32
-        pageSize:
+        pageNumber:
           type: integer
           format: int32
         offset:
           type: integer
           format: int64
-        sort:
-          $ref: '#/components/schemas/Sort'
     Sort:
       type: object
       properties:
-        sorted:
-          type: boolean
         unsorted:
+          type: boolean
+        sorted:
           type: boolean
         empty:
           type: boolean
@@ -420,27 +420,28 @@ components:
           format: date-time
         usuarioAlteracao:
           type: string
-    AvaliacaoLista:
+    AvaliacaoResolucaoLista:
       required:
-      - aplicacaoLista
-      - criterioAvaliacao
+      - avaliador
+      - resolucaoLista
       type: object
       properties:
         id:
           type: integer
           format: int64
-        aplicacaoLista:
-          $ref: '#/components/schemas/AplicacaoLista'
-        avaliadores:
+        resolucaoLista:
+          $ref: '#/components/schemas/ResolucaoLista'
+        avaliador:
+          $ref: '#/components/schemas/Usuario'
+        publicada:
+          type: boolean
+        nota:
+          type: number
+          format: float
+        avaliacoesRespostas:
           type: array
           items:
-            $ref: '#/components/schemas/Usuario'
-        criterioAvaliacao:
-          type: string
-          enum:
-          - MESA_REDONDA
-          - FIFO
-          - RANDOMICO
+            $ref: '#/components/schemas/AvaliacaoResposta'
         dataCadastro:
           type: string
           format: date-time
@@ -451,6 +452,36 @@ components:
           format: date-time
         usuarioAlteracao:
           type: string
+    AvaliacaoResposta:
+      required:
+      - avaliacaoResolucaoLista
+      - avaliador
+      - publicada
+      - resposta
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        avaliacaoResolucaoLista:
+          $ref: '#/components/schemas/AvaliacaoResolucaoLista'
+        resposta:
+          $ref: '#/components/schemas/Resposta'
+        avaliador:
+          $ref: '#/components/schemas/Usuario'
+        comentario:
+          type: string
+        nota:
+          type: number
+          format: float
+        publicada:
+          type: boolean
+        dataCadastro:
+          type: string
+          format: date-time
+        dataAlteracao:
+          type: string
+          format: date-time
     Discente:
       required:
       - email
@@ -511,36 +542,36 @@ components:
           format: date-time
         usuarioAlteracao:
           type: string
-    PageAvaliacaoLista:
+    PageAvaliacaoResposta:
       type: object
       properties:
-        totalPages:
-          type: integer
-          format: int32
         totalElements:
           type: integer
           format: int64
-        number:
+        totalPages:
           type: integer
           format: int32
-        size:
+        first:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        number:
           type: integer
           format: int32
         numberOfElements:
           type: integer
           format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/AvaliacaoLista'
-        sort:
-          $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
         last:
           type: boolean
         pageable:
           $ref: '#/components/schemas/Pageable'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvaliacaoResposta'
         empty:
           type: boolean
     Questao:
@@ -656,28 +687,59 @@ components:
           type: string
       discriminator:
         propertyName: dtype
-    AvaliacaoResolucaoLista:
+    PageResolucaoLista:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        first:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        last:
+          type: boolean
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResolucaoLista'
+        empty:
+          type: boolean
+    AvaliacaoLista:
       required:
-      - avaliador
-      - resolucaoLista
+      - aplicacaoLista
+      - criterioAvaliacao
       type: object
       properties:
         id:
           type: integer
           format: int64
-        resolucaoLista:
-          $ref: '#/components/schemas/ResolucaoLista'
-        avaliador:
-          $ref: '#/components/schemas/Usuario'
-        publicada:
-          type: boolean
-        nota:
-          type: number
-          format: float
-        avaliacoesRespostas:
+        aplicacaoLista:
+          $ref: '#/components/schemas/AplicacaoLista'
+        avaliadores:
           type: array
           items:
-            $ref: '#/components/schemas/AvaliacaoResposta'
+            $ref: '#/components/schemas/Usuario'
+        criterioAvaliacao:
+          type: string
+          enum:
+          - MESA_REDONDA
+          - FIFO
+          - RANDOMICO
         dataCadastro:
           type: string
           format: date-time
@@ -688,161 +750,99 @@ components:
           format: date-time
         usuarioAlteracao:
           type: string
-    AvaliacaoResposta:
-      required:
-      - avaliacaoResolucaoLista
-      - avaliador
-      - publicada
-      - resposta
+    PageAvaliacaoLista:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        avaliacaoResolucaoLista:
-          $ref: '#/components/schemas/AvaliacaoResolucaoLista'
-        resposta:
-          $ref: '#/components/schemas/Resposta'
-        avaliador:
-          $ref: '#/components/schemas/Usuario'
-        comentario:
-          type: string
-        nota:
-          type: number
-          format: float
-        publicada:
-          type: boolean
-        dataCadastro:
-          type: string
-          format: date-time
-        dataAlteracao:
-          type: string
-          format: date-time
-    PageAvaliacaoResolucaoLista:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
         totalElements:
           type: integer
           format: int64
-        number:
+        totalPages:
           type: integer
           format: int32
-        size:
+        first:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        number:
           type: integer
           format: int32
         numberOfElements:
           type: integer
           format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/AvaliacaoResolucaoLista'
-        sort:
-          $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
         last:
           type: boolean
         pageable:
           $ref: '#/components/schemas/Pageable'
-        empty:
-          type: boolean
-    PageAvaliacaoResposta:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        number:
-          type: integer
-          format: int32
         size:
           type: integer
           format: int32
-        numberOfElements:
-          type: integer
-          format: int32
         content:
           type: array
           items:
-            $ref: '#/components/schemas/AvaliacaoResposta'
-        sort:
-          $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        pageable:
-          $ref: '#/components/schemas/Pageable'
-        empty:
-          type: boolean
-    PageResolucaoLista:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        number:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        numberOfElements:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResolucaoLista'
-        sort:
-          $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        pageable:
-          $ref: '#/components/schemas/Pageable'
+            $ref: '#/components/schemas/AvaliacaoLista'
         empty:
           type: boolean
     PageResposta:
       type: object
       properties:
-        totalPages:
-          type: integer
-          format: int32
         totalElements:
           type: integer
           format: int64
+        totalPages:
+          type: integer
+          format: int32
+        first:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
         number:
           type: integer
           format: int32
-        size:
+        numberOfElements:
           type: integer
           format: int32
-        numberOfElements:
+        last:
+          type: boolean
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
           type: integer
           format: int32
         content:
           type: array
           items:
             $ref: '#/components/schemas/Resposta'
-        sort:
-          $ref: '#/components/schemas/Sort'
+        empty:
+          type: boolean
+    PageAvaliacaoResolucaoLista:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
         first:
           type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
         last:
           type: boolean
         pageable:
           $ref: '#/components/schemas/Pageable'
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvaliacaoResolucaoLista'
         empty:
           type: boolean

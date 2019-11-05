@@ -4,8 +4,11 @@
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"license": "MIT",
+	"config": {
+		"specUrl": "https://evening-harbor-96341.herokuapp.com/v3/api-docs.yaml"
+	},
 	"scripts": {
-		"refresh-spec": "download http://localhost:8080/v3/api-docs.yaml > spec.yaml",
+		"refresh-spec": "download \"$npm_package_config_specUrl\" > spec.yaml",
 		"build:spec": "java -jar openapi-generator-cli.jar generate -i spec.yaml -g typescript-angular -o generated-src",
 		"build:ts:ng": "ngc",
 		"build:ts:rm": "rimraf dist/node_modules",
