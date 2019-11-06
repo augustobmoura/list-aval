@@ -6,11 +6,11 @@ import { SharedModule } from '../shared/shared.module';
 import { MyListComponent } from './components/my-list/my-list.component';
 import { RevisionComponent } from './components/revision/revision.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MyListDetailComponent } from './components/my-list-detail/my-list-detail.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [StudentComponent, MyListComponent, RevisionComponent, MyListDetailComponent],
@@ -21,10 +21,10 @@ import {MatInputModule} from '@angular/material/input';
     FlexLayoutModule,
     NgxPaginationModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
-    {provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'}}
-  ]
+    { provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: { float: 'always' } },
+  ],
 })
-export class StudentModule { }
+export class StudentModule {}

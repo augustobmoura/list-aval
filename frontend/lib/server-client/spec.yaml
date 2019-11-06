@@ -3,18 +3,18 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: https://evening-harbor-96341.herokuapp.com
-  description: Generated server url
+  - url: https://evening-harbor-96341.herokuapp.com
+    description: Generated server url
 paths:
   /api/avaliacoesResposta:
     get:
       operationId: findAll
       parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: pageable
+          in: query
+          explode: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
         200:
           description: default response
@@ -40,12 +40,12 @@ paths:
     get:
       operationId: findById
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
           description: default response
@@ -56,12 +56,12 @@ paths:
     put:
       operationId: update
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           '*/*':
@@ -78,17 +78,17 @@ paths:
     get:
       operationId: findAllByAvaliacaoResolucaoLista
       parameters:
-      - name: avaliacaoResolucaoListaId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: avaliacaoResolucaoListaId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: pageable
+          explode: true
+          in: query
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
         200:
           description: default response
@@ -100,18 +100,18 @@ paths:
     get:
       operationId: findByAvaliacaoResolucaoListaAndResposta
       parameters:
-      - name: avaliacaoResolucaoListaId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      - name: respostaId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: avaliacaoResolucaoListaId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: respostaId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
           description: default response
@@ -123,11 +123,11 @@ paths:
     get:
       operationId: findAll_1
       parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: pageable
+          explode: true
+          in: query
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
         200:
           description: default response
@@ -139,12 +139,12 @@ paths:
     get:
       operationId: findById_1
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
           description: default response
@@ -156,11 +156,11 @@ paths:
     get:
       operationId: findAll_2
       parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: pageable
+          explode: true
+          in: query
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
         200:
           description: default response
@@ -186,12 +186,12 @@ paths:
     get:
       operationId: findById_2
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
           description: default response
@@ -202,12 +202,12 @@ paths:
     put:
       operationId: update_1
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           '*/*':
@@ -224,11 +224,11 @@ paths:
     get:
       operationId: findAll_3
       parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: pageable
+          explode: true
+          in: query
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
         200:
           description: default response
@@ -240,12 +240,12 @@ paths:
     get:
       operationId: findById_3
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
           description: default response
@@ -257,17 +257,17 @@ paths:
     get:
       operationId: findAllByResolucaoLista
       parameters:
-      - name: resolucaoId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: resolucaoId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: pageable
+          explode: true
+          in: query
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
         200:
           description: default response
@@ -279,11 +279,11 @@ paths:
     get:
       operationId: findAll_4
       parameters:
-      - name: pageable
-        in: query
-        required: true
-        schema:
-          $ref: '#/components/schemas/Pageable'
+        - name: pageable
+          explode: true
+          in: query
+          schema:
+            $ref: '#/components/schemas/Pageable'
       responses:
         200:
           description: default response
@@ -309,12 +309,12 @@ paths:
     get:
       operationId: findById_4
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
           description: default response
@@ -325,12 +325,12 @@ paths:
     put:
       operationId: update_2
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           '*/*':
@@ -374,8 +374,8 @@ components:
           type: boolean
     AplicacaoLista:
       required:
-      - lista
-      - turma
+        - lista
+        - turma
       type: object
       properties:
         id:
@@ -396,9 +396,9 @@ components:
           type: string
     AreaConhecimento:
       required:
-      - area
-      - codigo
-      - nome
+        - area
+        - codigo
+        - nome
       type: object
       properties:
         id:
@@ -422,8 +422,8 @@ components:
           type: string
     AvaliacaoResolucaoLista:
       required:
-      - avaliador
-      - resolucaoLista
+        - avaliador
+        - resolucaoLista
       type: object
       properties:
         id:
@@ -454,10 +454,10 @@ components:
           type: string
     AvaliacaoResposta:
       required:
-      - avaliacaoResolucaoLista
-      - avaliador
-      - publicada
-      - resposta
+        - avaliacaoResolucaoLista
+        - avaliador
+        - publicada
+        - resposta
       type: object
       properties:
         id:
@@ -484,20 +484,20 @@ components:
           format: date-time
     Discente:
       required:
-      - email
-      - nome
+        - email
+        - nome
       type: object
       allOf:
-      - $ref: '#/components/schemas/Usuario'
-      - type: object
-        properties:
-          resolucoes:
-            type: array
-            items:
-              $ref: '#/components/schemas/ResolucaoLista'
+        - $ref: '#/components/schemas/Usuario'
+        - type: object
+          properties:
+            resolucoes:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResolucaoLista'
     Disciplina:
       required:
-      - nome
+        - nome
       type: object
       properties:
         id:
@@ -517,11 +517,11 @@ components:
           type: string
     Docente:
       required:
-      - email
-      - nome
+        - email
+        - nome
       type: object
       allOf:
-      - $ref: '#/components/schemas/Usuario'
+        - $ref: '#/components/schemas/Usuario'
     Lista:
       type: object
       properties:
@@ -576,8 +576,8 @@ components:
           type: boolean
     Questao:
       required:
-      - areaConhecimento
-      - enunciado
+        - areaConhecimento
+        - enunciado
       type: object
       properties:
         id:
@@ -603,8 +603,8 @@ components:
           type: string
     ResolucaoLista:
       required:
-      - aplicacaoLista
-      - discente
+        - aplicacaoLista
+        - discente
       type: object
       properties:
         id:
@@ -626,9 +626,9 @@ components:
           format: date-time
     Resposta:
       required:
-      - conteudo
-      - questao
-      - resolucaoLista
+        - conteudo
+        - questao
+        - resolucaoLista
       type: object
       properties:
         id:
@@ -648,9 +648,9 @@ components:
           format: date-time
     Turma:
       required:
-      - disciplina
-      - docente
-      - semestre
+        - disciplina
+        - docente
+        - semestre
       type: object
       properties:
         id:
@@ -669,9 +669,9 @@ components:
             $ref: '#/components/schemas/Discente'
     Usuario:
       required:
-      - dtype
-      - email
-      - nome
+        - dtype
+        - email
+        - nome
       type: object
       properties:
         id:
@@ -721,8 +721,8 @@ components:
           type: boolean
     AvaliacaoLista:
       required:
-      - aplicacaoLista
-      - criterioAvaliacao
+        - aplicacaoLista
+        - criterioAvaliacao
       type: object
       properties:
         id:
@@ -737,9 +737,9 @@ components:
         criterioAvaliacao:
           type: string
           enum:
-          - MESA_REDONDA
-          - FIFO
-          - RANDOMICO
+            - MESA_REDONDA
+            - FIFO
+            - RANDOMICO
         dataCadastro:
           type: string
           format: date-time

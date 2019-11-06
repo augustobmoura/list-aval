@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxyConfig=proxy.config.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -30,7 +30,6 @@
     "ngx-alerts": "^4.0.0",
     "ngx-pagination": "^4.1.0",
     "rxjs": "~6.5.3",
-    "listaval-client": "file:../server-client/",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },

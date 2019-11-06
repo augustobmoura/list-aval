@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { DefaultService } from '../../../../../lib/server-client/src';
+import { map } from 'rxjs/operators';
 
 export interface listModel {
   title: string
@@ -14,26 +16,15 @@ export interface listModel {
   templateUrl: './my-list.component.html',
   styleUrls: ['./my-list.component.scss'],
 })
-export class MyListComponent implements OnInit {
+export class MyListComponent {
 
-  lists: listModel[] = [];
-  p: number = 1;
+  lists: Promise<unknown[]> = this._defaultService.findAll4({}).pipe(
+    map(it => it.content),
+  ).toPromise();
 
-  constructor() { }
-
-  ngOnInit() {
-    for (let i = 0; i < 25; i++) {
-      this.lists.push({
-        title: `Engenharia de Software ${i}`,
-        class: `Turma ${i}`,
-        date: '15/10/2019',
-        id: i,
-      });
-    }
-  }
-
-  pageChanged($event) {
-    this.p = $event;
+  constructor(
+    private readonly _defaultService: DefaultService,
+  ) {
   }
 
 }

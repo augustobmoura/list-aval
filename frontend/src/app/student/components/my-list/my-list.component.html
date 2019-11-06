@@ -16,6 +16,7 @@
   <app-card
     *ngFor="
       let list of lists
+        | async
         | paginate: { id: 'list', itemsPerPage: 10, currentPage: p }
     "
     [title]="list.title"
@@ -28,7 +29,6 @@
 <div class="controls-list">
   <pagination-controls
     id="list"
-    (pageChange)="pageChanged($event)"
     maxSize="9"
     directionLinks="false"
     autoHide="true"
