@@ -221,3 +221,120 @@ hr{
   margin: 25px 0 0;
   opacity: .8;
 }
+
+
+
+.default{
+  &.mat-table{
+    border-radius: 5px;
+    font-family: inherit !important;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .mat-header-cell{
+    font-size: 14px;
+    font-weight: bold;
+  }
+  td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
+    padding-left: 25px;
+    max-width: 85px;
+    line-height: 56px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    &.mat-table{
+      border-collapse: collapse;
+    }
+    /* Force table to not be like tables anymore */
+    &.mat-table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    tr.mat-header-row{
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr.mat-row{
+      height: 100% !important;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end
+    }
+
+    tr.mat-footer-row{
+      height: 100% !important;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    td.mat-footer-cell{
+      border-bottom: none;
+      position: relative;
+      line-height: 16px;
+      width: 100%;
+      max-width: 100% !important;
+      padding-left: 65% !important;
+      padding-top: 2%;
+      padding-bottom: 2%;
+
+      &:before{
+        content: (attr(data-label));
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        height: 100%;
+        color: #000;
+      }
+    }
+
+    td.mat-footer-cell:first-of-type{
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    td.mat-cell, th.mat-header-cell,
+    td.mat-cell:first-of-type,  th.mat-header-cell:first-of-type{
+      position: relative;
+      line-height: 16px;
+      padding: 5% 5% 5% 50% !important;
+    }
+
+    td.mat-cell,  th.mat-header-cell{
+      border-bottom: 1px solid #fff;
+    }
+
+    td.mat-cell:first-of-type,  th.mat-header-cell:first-of-type{
+      border-top: none !important;
+    }
+
+    td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type{
+      border-bottom-width: 0 !important;
+    }
+
+    td.mat-cell:before{
+      content: (attr(data-label));
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: bold;
+      height: 100%;
+      color: #000;
+    }
+
+  }
+}

@@ -1,0 +1,57 @@
+@import '../../../../../variables';
+
+.card{
+  box-shadow: 8px 10px 20px 0px rgba(46, 61, 73, 0.15);
+  background: #fff;
+  padding: 2em;
+  border-radius: 5px;
+
+  &.card-1{
+    background: url('./../../../../../assets/bg-static.svg') #2980B9;  /* fallback for old browsers */
+    background: url('./../../../../../assets/bg-static.svg')  -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: url('./../../../../../assets/bg-static.svg') linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    h2, .number{
+      color: #fff;
+    }
+
+    .divisor{
+      background-color: #fff;
+    }
+  }
+
+  .divisor{
+    width: 35px;
+    height: 4px;
+    margin: 8px 0;
+  }
+
+  &.card-2{
+    .divisor{
+      background-color: #00e676
+    }
+  }
+
+  &.card-3{
+    .divisor{
+      background-color: #d50000
+    }
+  }
+
+  h2{
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: $light_gray;
+  }
+
+  .number{
+    font-size: 40px;
+  }
+}
+
+
+.card-static{
+  @extend .card;
+  margin: 25px 0;
+}

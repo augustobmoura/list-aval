@@ -103,6 +103,8 @@
     }
     i.material-icons{
       color: $light-gray;
+      max-width: 24px;
+      flex: 1 24px;
     }
   }
 }

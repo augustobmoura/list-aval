@@ -14,6 +14,7 @@ export class CardComponent implements OnInit {
   @Input() status: boolean
   @Input() hasTagProfessor: boolean
   @Input() statusProfessor: boolean
+  @Input() customIcon: string
 
   constructor() { }
 
