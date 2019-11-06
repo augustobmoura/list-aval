@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { listModel } from 'src/app/student/components/my-list/my-list.component';
+import { ResolucoesService } from 'src/app/core/services/resolucoes.service';
+import { Resolucao, ResolucaoItem } from 'src/app/core/models/aplicaoResolucao';
 
 @Component({
   selector: 'app-my-list-professor',
@@ -8,22 +10,21 @@ import { listModel } from 'src/app/student/components/my-list/my-list.component'
 })
 export class MyListProfessorComponent implements OnInit {
 
-  lists: listModel[] = []
+  lists: ResolucaoItem[] = []
   p: number = 1
 
-  constructor() { }
+  constructor(private resolucoesService: ResolucoesService) { }
 
   ngOnInit() {
-    for(let i = 0; i < 25; i++){
-      this.lists.push({
-        title: `Engenharia de Software ${i}`,
-        class: `Turma ${i}`,
-        date: '15/10/2019',
-        id: i,
-        publicado: i % 2 === 0 ? true : false
-      })
-    }
+    this.getResolucoes()
+  }
 
+  getResolucoes(){
+    this.resolucoesService.getResolucoes()
+      .subscribe((data: Resolucao) => {
+        this.lists = data.content
+        console.log(data)
+      })
   }
 
   pageChanged($event){

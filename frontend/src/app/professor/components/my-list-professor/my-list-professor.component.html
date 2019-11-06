@@ -18,9 +18,9 @@
       let list of lists
         | paginate: { id: 'list', itemsPerPage: 10, currentPage: p }
     "
-    [title]="list.title"
-    [class]="list.class"
-    [date]="list.date"
+    [title]="list?.aplicacaoLista.turma.disciplina.nome"
+    [class]="list?.aplicacaoLista.turma.docente.nome"
+    [date]="list?.dataCadastro"
     style="outline-width: 0"
     [routerLink]="['/professor/lista-detalhe', list.id]"
     [hasTagProfessor]="true"

@@ -4,3 +4,43 @@
 }
 
 
+
+.student-name{
+  margin: 15px 0;
+  font-size: 16px;
+
+  span{
+    font-weight: bold;
+  }
+}
+
+.key-words{
+  color: #40CF40;
+  span{
+    font-weight: bold;
+  }
+}
+
+.resposta-aluno{
+  padding: 1.2em;
+  margin: 25px 0;
+  border-radius: 5px;
+  border: 1px solid rgba(112,112,112,0.36);
+  position: relative;
+
+  .label{
+    position: absolute;
+    left: 15px;
+    top: -18px;
+    padding: 12px;
+    font-size: 13px;
+    color: #707070;
+    background-color: #EFEFEF
+  }
+
+  .highline{
+    color: #40CF40;
+    border: 1px dashed #40CF40;
+    line-height: 1.2;
+  }
+}
