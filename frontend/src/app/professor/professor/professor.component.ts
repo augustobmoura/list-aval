@@ -11,6 +11,7 @@ export class ProfessorComponent implements OnInit {
   navItens: NavItensModel[] = [
     {link: '/professor/minhas-listas', name: 'Minhas Listas', icon: 'list'},
     {link: '/professor/revisoes', name: 'Revisões', icon: 'edit'},
+    {link: '/professor/estatisticas', name: 'Estatísticas', icon: 'insert_chart_outlined'},
   ]
 
   constructor() { }

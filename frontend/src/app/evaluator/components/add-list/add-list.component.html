@@ -1,0 +1,64 @@
+<section
+  class="header-section"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutGap="15px"
+>
+  <div class="title" fxFlex="50">
+    <h1>Atribuir avaliador a lista</h1>
+  </div>
+</section>
+<section class="list-container">
+  <app-card
+    *ngFor="
+      let list of lists
+        | paginate: { id: 'list', itemsPerPage: 10, currentPage: p }
+    "
+    [title]="list.title"
+    [class]="list.class"
+    [date]="list.date"
+    style="outline-width: 0"
+    customIcon="add"
+    (click)="openModal(list.id, list.title)"
+  ></app-card>
+</section>
+<div class="controls-list">
+  <pagination-controls
+    id="list"
+    (pageChange)="pageChanged($event)"
+    maxSize="9"
+    directionLinks="false"
+    autoHide="true"
+    responsive="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page"
+  >
+  </pagination-controls>
+</div>
+<modal #modalAddEvaluator>
+   <div class="container-modal">
+     <h2>Selecionar avaliador para lista {{selectListName}}</h2>
+     <div class="divisor"></div>
+
+     <form [formGroup]="evaluatorForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+        <mat-label>Selecionar avaliador</mat-label>
+        <input type="text" matInput formControlName="evaluator" required [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+                {{option.name}}
+              </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div class="buttons" fxLayout fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="end">
+        <button type="submit" class="default">Atribuir a lista</button>
+      </div>
+
+    </form>
+
+   </div>
+</modal>
