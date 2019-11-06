@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { AlertModule } from 'ngx-alerts';
 import { ListavalApiModule } from './listaval-api/listaval-api.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptor/interceptor.module';
 
 @NgModule({
   declarations: [
