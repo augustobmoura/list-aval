@@ -2,8 +2,8 @@
   <div class="content">
     <div class="content-info">
         <h2 class="card-titlte">{{title}}</h2>
-        <p class="card-class">{{class}}</p>
-        <p class="card-date">{{date}}</p>
+        <p class="card-class">Doscente: {{class}}</p>
+        <p class="card-date">{{date | date: 'dd/MM/yyyy'}}</p>
     </div>
     <div class="tag" *ngIf="hasStatus" [class.active]="status">
       {{!status ? 'Em análise' : 'Aprovado'}}

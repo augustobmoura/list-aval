@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { AlertModule } from 'ngx-alerts';
+import { AuthInterceptor } from './core/interceptor/interceptor.module';
 
 @NgModule({
   declarations: [
