@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-export interface listModel{
+export interface listModel {
   title: string
   class: string
   date: string
@@ -12,28 +12,28 @@ export interface listModel{
 @Component({
   selector: 'app-my-list',
   templateUrl: './my-list.component.html',
-  styleUrls: ['./my-list.component.scss']
+  styleUrls: ['./my-list.component.scss'],
 })
 export class MyListComponent implements OnInit {
 
-  lists: listModel[] = []
-  p: number = 1
+  lists: listModel[] = [];
+  p: number = 1;
 
   constructor() { }
 
   ngOnInit() {
-    for(let i = 0; i < 25; i++){
+    for (let i = 0; i < 25; i++) {
       this.lists.push({
         title: `Engenharia de Software ${i}`,
         class: `Turma ${i}`,
         date: '15/10/2019',
-        id: i
-      })
+        id: i,
+      });
     }
   }
 
-  pageChanged($event){
-    this.p = $event
+  pageChanged($event) {
+    this.p = $event;
   }
 
 }
