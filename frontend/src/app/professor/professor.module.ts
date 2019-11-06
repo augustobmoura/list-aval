@@ -15,9 +15,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { StudentAnswerComponent } from './components/student-answer/student-answer.component';
 import { RevisionDetailComponent } from './components/revision-detail/revision-detail.component';
-
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { StatisticsDetailComponent } from './components/statistics/statistics-detail/statistics-detail.component';
+import { ChartsModule } from 'ng2-charts';
+import {MatTableModule} from '@angular/material/table';
+import { StatisticsStudentDetailComponent } from './components/statistics/statistics-student-detail/statistics-student-detail.component';
 @NgModule({
-  declarations: [ProfessorComponent, MyListProfessorComponent, MyListDetailComponent, RevistionsProfessorComponent, StudentAnswerComponent, RevisionDetailComponent],
+  declarations: [ProfessorComponent, MyListProfessorComponent, MyListDetailComponent, RevistionsProfessorComponent, StudentAnswerComponent, RevisionDetailComponent, StatisticsComponent, StatisticsDetailComponent, StatisticsStudentDetailComponent],
   imports: [
     CommonModule,
     ProfessorRoutingModule,
@@ -28,7 +32,9 @@ import { RevisionDetailComponent } from './components/revision-detail/revision-d
     SharedModule,
     NgxPaginationModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ChartsModule,
+    MatTableModule
   ]
 })
 export class ProfessorModule { }

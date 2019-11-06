@@ -1,0 +1,39 @@
+<section
+  class="header-section"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutGap="15px"
+>
+  <div class="title" fxFlex="50">
+    <h1>Estatísticas</h1>
+  </div>
+</section>
+<section class="list-container">
+  <app-card
+    *ngFor="
+      let list of lists
+        | paginate: { id: 'list', itemsPerPage: 10, currentPage: p }
+    "
+    [title]="list.title"
+    [class]="list.class"
+    [date]="list.date"
+    style="outline-width: 0"
+    [routerLink]="['/professor/estatisticas-detalhe', list.id]"
+  ></app-card>
+</section>
+<div class="controls-list">
+  <pagination-controls
+    id="list"
+    (pageChange)="p = $event"
+    maxSize="9"
+    directionLinks="false"
+    autoHide="true"
+    responsive="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page"
+  >
+  </pagination-controls>
+</div>

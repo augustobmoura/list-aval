@@ -1,0 +1,5 @@
+<div class="modal" *ngIf="opened" [@backgroundAnimation]="opened? 'opened' : 'closed'">
+  <div class="modal-content" [@modalAnimation]="opened ? 'opened' : 'closed'">
+    <ng-content></ng-content>
+  </div>
+</div>

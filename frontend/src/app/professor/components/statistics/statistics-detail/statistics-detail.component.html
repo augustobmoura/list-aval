@@ -1,0 +1,89 @@
+<section
+  class="header-section"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutGap="15px"
+>
+  <div class="title" fxFlex="50">
+    <h1>Estatísticas da Turma</h1>
+  </div>
+</section>
+
+<section class="dash" fxLayout fxLayout.xs="column" fxLayoutGap="20px">
+  <div class="card card-1" fxFlex="33.3">
+    <div class="divisor"></div>
+    <h2>Nota Média da Turma</h2>
+    <p class="number">6.9</p>
+  </div>
+  <div class="card card-2" fxFlex="33.3">
+    <div class="divisor"></div>
+    <h2>Total de Acertos</h2>
+    <p class="number">500</p>
+  </div>
+  <div class="card card-3" fxFlex="33.3">
+    <div class="divisor"></div>
+    <h2>Total de Erros</h2>
+    <p class="number">150</p>
+  </div>
+</section>
+
+
+<section class="card-static">
+    <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+      [colors]="chartColors">
+  </canvas>
+</section>
+
+<section
+  class="header-section"
+  fxLayout
+  fxLayout.xs="column"
+  fxLayoutGap="15px"
+>
+  <div class="title" fxFlex="50">
+    <h1>Estatísticas individuais por aluno</h1>
+  </div>
+</section>
+
+<section class="list-aluanos">
+
+  <table mat-table [dataSource]="dataSource" class="default">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="matricula">
+          <th mat-header-cell *matHeaderCellDef>Matrícula</th>
+          <td mat-cell *matCellDef="let element"> {{element.matricula}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef>CPF</th>
+          <td mat-cell *matCellDef="let element"> {{element.cpf}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef> Visualizar </th>
+          <td mat-cell *matCellDef="let element">
+            <i class="material-icons"
+              [routerLink]="['/professor/estatisticas-detalhe/aluno/', element.id]"
+              style="cursor: pointer">
+                remove_red_eye
+            </i>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</section>

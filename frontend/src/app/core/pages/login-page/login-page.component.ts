@@ -44,6 +44,10 @@ export class LoginPageComponent implements OnInit {
       localStorage.setItem('userValid', 'professorVALID')
       this.route.navigate(['/professor'])
     }
+    else if(this.loginForm.value.email === 'admin@email.com'){
+      localStorage.setItem('userValid', 'evaluatorVALID')
+      this.route.navigate(['/avaliador'])
+    }
     else{
       this.alertService.danger('Usuário ou senha inválidos!');
     }
