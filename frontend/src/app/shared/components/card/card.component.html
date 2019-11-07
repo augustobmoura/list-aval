@@ -2,16 +2,16 @@
   <div class="content">
     <div class="content-info">
         <h2 class="card-titlte">{{title}}</h2>
-        <p class="card-class">Doscente: {{class}}</p>
+        <p class="card-class">Docente: {{class}}</p>
         <p class="card-date">{{date | date: 'dd/MM/yyyy'}}</p>
     </div>
     <div class="tag" *ngIf="hasStatus" [class.active]="status">
       {{!status ? 'Em análise' : 'Aprovado'}}
     </div>
 
-    <div class="tag" *ngIf="hasTagProfessor"  [class.blue]="statusProfessor === true" [class.gray]="statusProfessor === false">
-        {{statusProfessor ? 'Publicado' : 'Salvo'}}
-      </div>
+    <div class="tag" *ngIf="hasTagProfessor" [class.blue]="statusProfessor === true" [class.gray]="statusProfessor === false">
+      {{statusProfessor ? 'Publicado' : 'Salvo'}}
+    </div>
   </div>
   <div class="icon-card">
     <i class="material-icons">

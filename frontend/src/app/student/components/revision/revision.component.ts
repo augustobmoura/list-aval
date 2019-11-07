@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { listModel } from '../my-list/my-list.component';
 
-export interface ListRevistionModel extends listModel{
+export interface ListRevistionModel extends listModel {
   checked: boolean
 }
 
@@ -12,25 +12,26 @@ export interface ListRevistionModel extends listModel{
 })
 export class RevisionComponent implements OnInit {
 
-  lists: ListRevistionModel[] = []
-  p: number = 1
+  lists: ListRevistionModel[] = [];
+  p: number = 1;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    for(let i = 0; i < 25; i++){
+    for (let i = 0; i < 25; i++) {
       this.lists.push({
         title: `Engenharia de Software ${i}`,
         class: `Turma ${i}`,
-        date: '15/10/2019',
+        date: new Date(2019, 10, 15),
         id: i,
         checked: i % 2 === 0 ? true : false
-      })
+      });
     }
   }
 
-  pageChanged($event){
-    this.p = $event
+  pageChanged($event) {
+    this.p = $event;
   }
 
 }

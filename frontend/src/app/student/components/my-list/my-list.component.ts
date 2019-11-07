@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { DefaultService } from '../../../../../lib/server-client/src';
 import { map } from 'rxjs/operators';
+import { DefaultService, AvaliacaoResolucaoLista, Turma } from '../../../../../lib/server-client/src';
 
 export interface listModel {
-  title: string
-  class: string
-  date: string
-  id: number
-  publicado?: boolean
+  title: string;
+  class: string;
+  date: Date;
+  id: number;
+  publicado?: boolean;
 }
-
 
 @Component({
   selector: 'app-my-list',
@@ -18,7 +17,7 @@ export interface listModel {
 })
 export class MyListComponent {
 
-  lists: Promise<unknown[]> = this._defaultService.findAll4({}).pipe(
+  minhasAvaliacoes: Promise<AvaliacaoResolucaoLista[]> = this._defaultService.findAll4({}).pipe(
     map(it => it.content),
   ).toPromise();
 
@@ -27,4 +26,7 @@ export class MyListComponent {
   ) {
   }
 
+  buildTitle(turma: Turma) {
+    return `${turma.disciplina.nome} (${turma.semestre})`;
+  }
 }

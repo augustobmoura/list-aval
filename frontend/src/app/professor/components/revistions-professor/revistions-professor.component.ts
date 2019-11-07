@@ -18,7 +18,7 @@ export class RevistionsProfessorComponent implements OnInit {
       this.lists.push({
         title: `Engenharia de Software ${i}`,
         class: `Turma ${i}`,
-        date: '15/10/2019',
+        date: new Date(2019, 10, 15),
         id: i,
         publicado: i % 2 === 0 ? true : false
       })

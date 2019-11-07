@@ -9,21 +9,18 @@
   </div>
   <div class="search" fxFlex="50">
     <i class="material-icons">search</i>
-    <input type="text" placeholder="Procurar Turmas" />
+    <input type="text" placeholder="Procurar Turmas"/>
   </div>
 </section>
 <section class="list-container">
   <app-card
-    *ngFor="
-      let list of lists
-        | async
-        | paginate: { id: 'list', itemsPerPage: 10, currentPage: p }
-    "
-    [title]="list.title"
-    [class]="list.class"
-    [date]="list.date"
+    *ngFor="let avaliacao of minhasAvaliacoes | async"
+    [title]="buildTitle(avaliacao.resolucaoLista.aplicacaoLista.turma)"
+    [class]="avaliacao.resolucaoLista.aplicacaoLista.turma.docente.nome"
+    [date]="avaliacao.dataCadastro"
+    [status]="avaliacao.publicada"
     style="outline-width: 0"
-    [routerLink]="['/aluno/detalhe-listas', list.id]"
+    [routerLink]="['/aluno/detalhe-listas', avaliacao.id]"
   ></app-card>
 </section>
 <div class="controls-list">
