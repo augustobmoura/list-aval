@@ -1,6 +1,7 @@
 package br.ufg.inf.es.listaval.model.elab;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"codigo", "area", "nome"})
 @EntityListeners(AuditingEntityListener.class)
 public class AreaConhecimento {
 

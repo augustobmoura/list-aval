@@ -2,6 +2,7 @@ package br.ufg.inf.es.listaval.model.aplic;
 
 import br.ufg.inf.es.listaval.model.Turma;
 import br.ufg.inf.es.listaval.model.elab.Lista;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"lista", "turma"})
 @EntityListeners(AuditingEntityListener.class)
 public class AplicacaoLista {
 

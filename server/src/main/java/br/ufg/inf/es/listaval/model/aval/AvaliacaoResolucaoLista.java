@@ -56,4 +56,8 @@ public class AvaliacaoResolucaoLista {
 	@LastModifiedBy
 	private String usuarioAlteracao;
 
+	public AvaliacaoResolucaoLista(@NotNull ResolucaoLista resolucaoLista, @NotNull Usuario avaliador) {
+		this.resolucaoLista = resolucaoLista;
+		this.avaliador = avaliador;
+	}
 }

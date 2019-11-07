@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class Discente extends Usuario {
 
 	@OneToMany(mappedBy = "discente", cascade = CascadeType.ALL)

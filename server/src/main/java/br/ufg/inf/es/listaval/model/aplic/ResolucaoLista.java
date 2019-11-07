@@ -1,6 +1,7 @@
 package br.ufg.inf.es.listaval.model.aplic;
 
 import br.ufg.inf.es.listaval.model.Discente;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"aplicacaoLista", "discente"})
 @EntityListeners(AuditingEntityListener.class)
 public class ResolucaoLista {
 

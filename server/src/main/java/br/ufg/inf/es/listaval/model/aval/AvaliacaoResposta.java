@@ -3,6 +3,7 @@ package br.ufg.inf.es.listaval.model.aval;
 import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aplic.Resposta;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"avaliacaoResolucaoLista", "resposta", "avaliador"})
 @EntityListeners(AuditingEntityListener.class)
 public class AvaliacaoResposta {
 

@@ -1,5 +1,6 @@
 package br.ufg.inf.es.listaval.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@EqualsAndHashCode(of = {"disciplina", "semestre", "docente"})
 @NoArgsConstructor
 public class Turma {
 

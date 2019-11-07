@@ -1,5 +1,6 @@
 package br.ufg.inf.es.listaval.model.elab;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"id"})
 @EntityListeners(AuditingEntityListener.class)
 public class Lista {
 

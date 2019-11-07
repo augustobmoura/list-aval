@@ -1,6 +1,7 @@
 package br.ufg.inf.es.listaval.model.elab;
 
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,15 +19,16 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @TypeDefs({
-		@TypeDef(
-				name = "string-array",
-				typeClass = StringArrayType.class
-		)
+	@TypeDef(
+		name = "string-array",
+		typeClass = StringArrayType.class
+	)
 })
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"enunciado", "areaConhecimento"})
 @EntityListeners(AuditingEntityListener.class)
 public class Questao {
 

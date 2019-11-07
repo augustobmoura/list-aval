@@ -7,6 +7,9 @@ import br.ufg.inf.es.listaval.model.Turma;
 import br.ufg.inf.es.listaval.model.aplic.AplicacaoLista;
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import br.ufg.inf.es.listaval.model.aplic.Resposta;
+import br.ufg.inf.es.listaval.model.aval.AvaliacaoLista;
+import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
+import br.ufg.inf.es.listaval.model.aval.CriterioAvaliacao;
 import br.ufg.inf.es.listaval.model.elab.AreaConhecimento;
 import br.ufg.inf.es.listaval.model.elab.Lista;
 import br.ufg.inf.es.listaval.model.elab.Questao;
@@ -17,9 +20,12 @@ import br.ufg.inf.es.listaval.repository.TurmaRepository;
 import br.ufg.inf.es.listaval.repository.aplic.AplicacaoListaRepository;
 import br.ufg.inf.es.listaval.repository.aplic.ResolucaoListaRepository;
 import br.ufg.inf.es.listaval.repository.aplic.RespostaRepository;
+import br.ufg.inf.es.listaval.repository.aval.AvaliacaoListaRepository;
+import br.ufg.inf.es.listaval.repository.aval.AvaliacaoResolucaoListaRepository;
 import br.ufg.inf.es.listaval.repository.elab.AreaConhecimentoRepository;
 import br.ufg.inf.es.listaval.repository.elab.ListaRepository;
 import br.ufg.inf.es.listaval.repository.elab.QuestaoRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Random;
@@ -27,6 +33,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Component
 public class Populador {
 
 	private DocenteRepository docenteRepository;
@@ -39,8 +46,23 @@ public class Populador {
 	private AplicacaoListaRepository aplicacaoListaRepository;
 	private ResolucaoListaRepository resolucaoListaRepository;
 	private RespostaRepository respostaRepository;
+	private AvaliacaoListaRepository avaliacaoListaRepository;
+	private AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository;
 
-	public Populador(DocenteRepository docenteRepository, DiscenteRepository discenteRepository, DisciplinaRepository disciplinaRepository, TurmaRepository turmaRepository, AreaConhecimentoRepository areaConhecimentoRepository, QuestaoRepository questaoRepository, ListaRepository listaRepository, AplicacaoListaRepository aplicacaoListaRepository, ResolucaoListaRepository resolucaoListaRepository, RespostaRepository respostaRepository) {
+	public Populador(
+		DocenteRepository docenteRepository,
+		DiscenteRepository discenteRepository,
+		DisciplinaRepository disciplinaRepository,
+		TurmaRepository turmaRepository,
+		AreaConhecimentoRepository areaConhecimentoRepository,
+		QuestaoRepository questaoRepository,
+		ListaRepository listaRepository,
+		AplicacaoListaRepository aplicacaoListaRepository,
+		ResolucaoListaRepository resolucaoListaRepository,
+		RespostaRepository respostaRepository,
+		AvaliacaoListaRepository avaliacaoListaRepository,
+		AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository
+	) {
 		this.docenteRepository = docenteRepository;
 		this.discenteRepository = discenteRepository;
 		this.disciplinaRepository = disciplinaRepository;
@@ -51,6 +73,8 @@ public class Populador {
 		this.aplicacaoListaRepository = aplicacaoListaRepository;
 		this.resolucaoListaRepository = resolucaoListaRepository;
 		this.respostaRepository = respostaRepository;
+		this.avaliacaoListaRepository = avaliacaoListaRepository;
+		this.avaliacaoResolucaoListaRepository = avaliacaoResolucaoListaRepository;
 	}
 
 	public void cadastraEntidades() {
@@ -73,10 +97,16 @@ public class Populador {
 
 		AplicacaoLista aplicacaoLista = cadastraAplicacaoDeLista(aplicacaoListaRepository, turma, lista);
 
+		AvaliacaoLista avaliacaoLista = new AvaliacaoLista(aplicacaoLista, CriterioAvaliacao.RANDOMICO);
+		avaliacaoListaRepository.save(avaliacaoLista);
+
 		for (Discente discente : discentes) {
 			ResolucaoLista resolucaoLista = cadastraResolucaoDeLista(resolucaoListaRepository, aplicacaoLista, discente);
 
 			cadastraRespostas(respostaRepository, questoes, resolucaoLista);
+
+			AvaliacaoResolucaoLista avaliacaoResolucaoLista = new AvaliacaoResolucaoLista(resolucaoLista, docente);
+			avaliacaoResolucaoListaRepository.save(avaliacaoResolucaoLista);
 		}
 	}
 

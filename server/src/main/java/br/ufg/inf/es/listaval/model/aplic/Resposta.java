@@ -1,6 +1,7 @@
 package br.ufg.inf.es.listaval.model.aplic;
 
 import br.ufg.inf.es.listaval.model.elab.Questao;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"resolucaoLista", "questao", "conteudo"})
 @EntityListeners(AuditingEntityListener.class)
 public class Resposta {
 

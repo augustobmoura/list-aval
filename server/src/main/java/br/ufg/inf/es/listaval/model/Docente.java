@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Entity
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public class Docente extends Usuario {
 
 	public Docente(@NotNull String nome, @NotNull String email) {

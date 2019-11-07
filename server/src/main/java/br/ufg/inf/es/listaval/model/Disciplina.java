@@ -1,5 +1,6 @@
 package br.ufg.inf.es.listaval.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @NoArgsConstructor
+@EqualsAndHashCode(of = {"nome"})
 @EntityListeners(AuditingEntityListener.class)
 public class Disciplina {
 

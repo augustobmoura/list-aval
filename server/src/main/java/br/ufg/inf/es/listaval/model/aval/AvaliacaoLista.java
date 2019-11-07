@@ -52,4 +52,8 @@ public class AvaliacaoLista {
 	@LastModifiedBy
 	private String usuarioAlteracao;
 
+	public AvaliacaoLista(@NotNull AplicacaoLista aplicacaoLista, @NotNull CriterioAvaliacao criterioAvaliacao) {
+		this.aplicacaoLista = aplicacaoLista;
+		this.criterioAvaliacao = criterioAvaliacao;
+	}
 }
