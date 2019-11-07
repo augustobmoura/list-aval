@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url:'https://evening-harbor-96341.herokuapp.com/'
+  url:'/'
 };
 
 /*
