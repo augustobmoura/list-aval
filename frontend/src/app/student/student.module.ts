@@ -11,9 +11,12 @@ import { MyListDetailComponent } from './components/my-list-detail/my-list-detai
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { RateListComponent } from './components/rate-list/rate-list.component';
+import { RateListDetailComponent } from './components/rate-list/rate-list-detail/rate-list-detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [StudentComponent, MyListComponent, RevisionComponent, MyListDetailComponent],
+  declarations: [StudentComponent, MyListComponent, RevisionComponent, MyListDetailComponent, RateListComponent, RateListDetailComponent],
   imports: [
     CommonModule,
     StudentRoutingModule,
@@ -22,6 +25,8 @@ import { MatInputModule } from '@angular/material/input';
     NgxPaginationModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: { float: 'always' } },

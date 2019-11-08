@@ -20,8 +20,14 @@ import { StatisticsDetailComponent } from './components/statistics/statistics-de
 import { ChartsModule } from 'ng2-charts';
 import {MatTableModule} from '@angular/material/table';
 import { StatisticsStudentDetailComponent } from './components/statistics/statistics-student-detail/statistics-student-detail.component';
+import { EvaluatorMainComponent } from './components/evaluator-main/evaluator-main.component';
+import { AddListComponent } from './components/add-list/add-list.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 @NgModule({
-  declarations: [ProfessorComponent, MyListProfessorComponent, MyListDetailComponent, RevistionsProfessorComponent, StudentAnswerComponent, RevisionDetailComponent, StatisticsComponent, StatisticsDetailComponent, StatisticsStudentDetailComponent],
+  declarations: [
+    EvaluatorMainComponent,
+    AddListComponent, ProfessorComponent, MyListProfessorComponent, MyListDetailComponent, RevistionsProfessorComponent, StudentAnswerComponent, RevisionDetailComponent, StatisticsComponent, StatisticsDetailComponent, StatisticsStudentDetailComponent],
   imports: [
     CommonModule,
     ProfessorRoutingModule,
@@ -34,7 +40,8 @@ import { StatisticsStudentDetailComponent } from './components/statistics/statis
     MatFormFieldModule,
     MatInputModule,
     ChartsModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
   ]
 })
 export class ProfessorModule { }

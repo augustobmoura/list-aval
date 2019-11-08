@@ -12,6 +12,7 @@ export class ProfessorComponent implements OnInit {
     {link: '/professor/minhas-listas', name: 'Minhas Listas', icon: 'list'},
     {link: '/professor/revisoes', name: 'Revisões', icon: 'edit'},
     {link: '/professor/estatisticas', name: 'Estatísticas', icon: 'insert_chart_outlined'},
+    {link: '/professor/atribuir-lista', name: 'Atribuir Lista', icon: 'assignment_ind'},
   ]
 
   constructor() { }

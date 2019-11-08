@@ -8,6 +8,8 @@ import { RevisionDetailComponent } from './components/revision-detail/revision-d
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { StatisticsDetailComponent } from './components/statistics/statistics-detail/statistics-detail.component';
 import { StatisticsStudentDetailComponent } from './components/statistics/statistics-student-detail/statistics-student-detail.component';
+import { EvaluatorMainComponent } from './components/evaluator-main/evaluator-main.component';
+import { AddListComponent } from './components/add-list/add-list.component';
 
 const routes: Routes = [
   {path: '', component: ProfessorComponent, children: [
@@ -18,7 +20,8 @@ const routes: Routes = [
     {path: 'revisao-detalhe/:id', component: RevisionDetailComponent},
     {path: 'estatisticas', component: StatisticsComponent},
     {path: 'estatisticas-detalhe/:id', component: StatisticsDetailComponent},
-    {path: 'estatisticas-detalhe/aluno/:id', component: StatisticsStudentDetailComponent}
+    {path: 'estatisticas-detalhe/aluno/:id', component: StatisticsStudentDetailComponent},
+    {path: 'atribuir-lista', component: AddListComponent}
   ]}
 ];
 
