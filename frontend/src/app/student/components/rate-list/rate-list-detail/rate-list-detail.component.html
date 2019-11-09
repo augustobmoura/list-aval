@@ -1,0 +1,99 @@
+<div class="container">
+  <app-nav-back [title]="'Listas'"></app-nav-back>
+  <div class="content-student">
+    <div
+      class="title-professor"
+      fxLayout
+      fxLayout.xs="column"
+      fxLayoutGap="25px"
+    >
+      <div><h2>Lista Turma 1</h2></div>
+      <div><h2>25/10/2019</h2></div>
+      <div><h2>1º Semestre</h2></div>
+    </div>
+
+    <div class="space"></div>
+    <div class="space"></div>
+    <accordion>
+      <expansion-panel
+        *ngFor="let panel of panels"
+        [position]="'right'"
+        [iconColor]="'#17CBDF'"
+        [height]="70"
+      >
+        <panel-header>
+          <div class="question-panel">
+            <h2 class="title-panel">{{ panel.name }}</h2>
+            <h2 class="title-panel">
+              Pergunta: <span class="title-panel-ask">{{ panel.desc }}</span>
+            </h2>
+          </div>
+        </panel-header>
+        <div class="content">
+          <div class="student-name">
+            <h2><span>Aluno:</span> Joe Doe</h2>
+          </div>
+
+          <div class="key-words">
+            <span>Palavras-chave: </span>#simply, #book, #remaing
+          </div>
+
+          <div class="key-words"><span>Percentual de palavras-chave: </span>15%</div>
+
+          <div class="resposta-aluno">
+            <p class="label">Resposta do Aluno</p>
+            <div class="content">
+              <p>
+                Lorem ipsum, dolor sit amet
+                <span class="highline">adipisicing</span> adipisicing elit. Repellendus
+                aut voluptatum quas perspiciatis ratione error harum impedit sunt mollitia
+                natus rem, possimus accusamus sapiente iure rerum assumenda quisquam
+                perferendis dicta!
+              </p>
+              <p>
+                Lorem ipsum, dolor <span class="highline">adipisicing</span> sit amet
+                consectetur adipisicing elit. Repellendus aut voluptatum quas perspiciatis
+                ratione error harum impedit sunt mollitia natus rem, possimus accusamus
+                sapiente iure rerum assumenda quisquam perferendis dicta!
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus
+                <span class="highline">adipisicing</span> aut voluptatum quas perspiciatis
+                ratione error harum impedit sunt mollitia natus rem, possimus accusamus
+                sapiente iure rerum assumenda quisquam perferendis dicta!
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus aut
+                voluptatum quas perspiciatis ratione error harum impedit sunt mollitia
+                natus rem, possimus accusamus sapiente iure rerum assumenda quisquam
+                perferendis dicta!
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus
+                <span class="highline">adipisicing</span> aut voluptatum quas perspiciatis
+                ratione error harum impedit sunt mollitia natus rem, possimus accusamus
+                sapiente iure rerum assumenda quisquam perferendis dicta!
+              </p>
+            </div>
+          </div>
+
+          <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+            <mat-label>Comentário</mat-label>
+            <textarea rows="4" cols="50" matInput></textarea>
+          </mat-form-field>
+          <div class="space"></div>
+          <mat-form-field class="full-width" floatLabel="always" appearance="outline">
+            <mat-label>Nota</mat-label>
+            <input type="text" matInpu matInput />
+          </mat-form-field>
+          <hr>
+        </div>
+      </expansion-panel>
+    </accordion>
+  </div>
+</div>
+
+<div class="buttons" fxLayout fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="end">
+  <button class="default" [routerLink]="['/professor/minhas-listas']">Salvar</button>
+  <button class="default light" [routerLink]="['/professor/minhas-listas']">Publicar</button>
+</div>

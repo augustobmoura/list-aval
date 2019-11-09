@@ -11,6 +11,7 @@ export class StudentComponent implements OnInit {
   navItens: NavItensModel[] = [
     {link: '/aluno/minhas-listas', name: 'Minhas Listas', icon: 'list'},
     {link: '/aluno/revisao', name: 'Revisões', icon: 'edit'},
+    {link: '/aluno/listas-para-avaliar', name: 'Avaliar Listar', icon: 'description'},
   ]
 
   constructor() { }
