@@ -40,6 +40,9 @@ public class AvaliacaoLista {
 	@Enumerated(EnumType.STRING)
 	private CriterioAvaliacao criterioAvaliacao;
 
+	@NotNull
+	private Boolean distribuida = false;
+
 	@CreatedDate
 	private LocalDateTime dataCadastro;
 

@@ -15,16 +15,16 @@ import { Sort } from './sort';
 
 
 export interface PageResposta { 
-    totalElements?: number;
     totalPages?: number;
-    first?: boolean;
-    sort?: Sort;
+    totalElements?: number;
     number?: number;
+    size?: number;
     numberOfElements?: number;
+    content?: Array<Resposta>;
+    sort?: Sort;
+    first?: boolean;
     last?: boolean;
     pageable?: Pageable;
-    size?: number;
-    content?: Array<Resposta>;
     empty?: boolean;
 }
 

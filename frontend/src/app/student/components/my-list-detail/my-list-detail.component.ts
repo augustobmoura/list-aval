@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { mergeMap } from 'rxjs/operators';
+import { DefaultService } from '../../../../../lib/server-client/src';
 
 @Component({
   selector: 'app-my-list-detail',
@@ -7,25 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyListDetailComponent implements OnInit {
 
-  panels: any[] = [
-    {name: 'Questão 01', desc: 'Exemplo de Pergunta'},
-    {name: 'Questão 02', desc: 'Exemplo de Pergunta'},
-    {name: 'Questão 03', desc: 'Exemplo de Pergunta'},
-    {name: 'Questão 04', desc: 'Exemplo de Pergunta'},
-    {name: 'Questão 05', desc: 'Exemplo de Pergunta'},
-  ]
+  avaliacao = this._activedRoute.params.pipe(
+    mergeMap(params => this._defaultService.findById1(+params['id'])),
+  );
 
-  isRevision: boolean = false;
+  avaliacoesRespostas = this._activedRoute.params.pipe(
+    mergeMap(params => this._defaultService.findAllByAvaliacaoResolucaoLista(+params['id'], {})),
+  );
 
-  constructor() { }
+  isRevision = false;
+
+  constructor(
+    private readonly _activedRoute: ActivatedRoute,
+    private readonly _defaultService: DefaultService,
+  ) {
+  }
 
   ngOnInit() {
+    const param = this._activedRoute.snapshot.params['id'];
   }
 
-  toogleRevistion(){
-    this.isRevision = !this.isRevision
+  toogleRevistion() {
+    this.isRevision = !this.isRevision;
   }
-
 
 
 }

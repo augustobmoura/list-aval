@@ -15,16 +15,16 @@ import { ResolucaoLista } from './resolucaoLista';
 
 
 export interface PageResolucaoLista { 
-    totalElements?: number;
     totalPages?: number;
-    first?: boolean;
-    sort?: Sort;
+    totalElements?: number;
     number?: number;
+    size?: number;
     numberOfElements?: number;
+    content?: Array<ResolucaoLista>;
+    sort?: Sort;
+    first?: boolean;
     last?: boolean;
     pageable?: Pageable;
-    size?: number;
-    content?: Array<ResolucaoLista>;
     empty?: boolean;
 }
 

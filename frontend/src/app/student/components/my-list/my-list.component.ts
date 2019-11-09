@@ -17,7 +17,7 @@ export interface listModel {
 })
 export class MyListComponent {
 
-  minhasAvaliacoes: Promise<AvaliacaoResolucaoLista[]> = this._defaultService.findAll4({}).pipe(
+  minhasAvaliacoes: Promise<AvaliacaoResolucaoLista[]> = this._defaultService.findAll1({}).pipe(
     map(it => it.content),
   ).toPromise();
 

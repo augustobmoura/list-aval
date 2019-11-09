@@ -18,6 +18,7 @@ export interface AvaliacaoLista {
     aplicacaoLista: AplicacaoLista;
     avaliadores?: Array<Usuario>;
     criterioAvaliacao: AvaliacaoLista.CriterioAvaliacaoEnum;
+    distribuida: boolean;
     dataCadastro?: Date;
     usuarioCadastro?: string;
     dataAlteracao?: Date;

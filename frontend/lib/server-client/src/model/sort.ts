@@ -12,8 +12,8 @@
 
 
 export interface Sort { 
-    unsorted?: boolean;
     sorted?: boolean;
+    unsorted?: boolean;
     empty?: boolean;
 }
 

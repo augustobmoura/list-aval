@@ -1,14 +1,11 @@
 package br.ufg.inf.es.listaval;
 
-import br.ufg.inf.es.listaval.model.Discente;
-import br.ufg.inf.es.listaval.model.Disciplina;
-import br.ufg.inf.es.listaval.model.Docente;
-import br.ufg.inf.es.listaval.model.Turma;
+import br.ufg.inf.es.listaval.distribuidor.DistribuidorAvaliacoesDecorator;
+import br.ufg.inf.es.listaval.model.*;
 import br.ufg.inf.es.listaval.model.aplic.AplicacaoLista;
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import br.ufg.inf.es.listaval.model.aplic.Resposta;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoLista;
-import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
 import br.ufg.inf.es.listaval.model.aval.CriterioAvaliacao;
 import br.ufg.inf.es.listaval.model.elab.AreaConhecimento;
 import br.ufg.inf.es.listaval.model.elab.Lista;
@@ -21,12 +18,12 @@ import br.ufg.inf.es.listaval.repository.aplic.AplicacaoListaRepository;
 import br.ufg.inf.es.listaval.repository.aplic.ResolucaoListaRepository;
 import br.ufg.inf.es.listaval.repository.aplic.RespostaRepository;
 import br.ufg.inf.es.listaval.repository.aval.AvaliacaoListaRepository;
-import br.ufg.inf.es.listaval.repository.aval.AvaliacaoResolucaoListaRepository;
 import br.ufg.inf.es.listaval.repository.elab.AreaConhecimentoRepository;
 import br.ufg.inf.es.listaval.repository.elab.ListaRepository;
 import br.ufg.inf.es.listaval.repository.elab.QuestaoRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -36,18 +33,18 @@ import java.util.stream.IntStream;
 @Component
 public class Populador {
 
-	private DocenteRepository docenteRepository;
-	private DiscenteRepository discenteRepository;
-	private DisciplinaRepository disciplinaRepository;
-	private TurmaRepository turmaRepository;
-	private AreaConhecimentoRepository areaConhecimentoRepository;
-	private QuestaoRepository questaoRepository;
-	private ListaRepository listaRepository;
-	private AplicacaoListaRepository aplicacaoListaRepository;
-	private ResolucaoListaRepository resolucaoListaRepository;
-	private RespostaRepository respostaRepository;
-	private AvaliacaoListaRepository avaliacaoListaRepository;
-	private AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository;
+	private final DocenteRepository docenteRepository;
+	private final DiscenteRepository discenteRepository;
+	private final DisciplinaRepository disciplinaRepository;
+	private final TurmaRepository turmaRepository;
+	private final AreaConhecimentoRepository areaConhecimentoRepository;
+	private final QuestaoRepository questaoRepository;
+	private final ListaRepository listaRepository;
+	private final AplicacaoListaRepository aplicacaoListaRepository;
+	private final ResolucaoListaRepository resolucaoListaRepository;
+	private final RespostaRepository respostaRepository;
+	private final AvaliacaoListaRepository avaliacaoListaRepository;
+	private final DistribuidorAvaliacoesDecorator distribuidorAvaliacoesDecorator;
 
 	public Populador(
 		DocenteRepository docenteRepository,
@@ -61,7 +58,7 @@ public class Populador {
 		ResolucaoListaRepository resolucaoListaRepository,
 		RespostaRepository respostaRepository,
 		AvaliacaoListaRepository avaliacaoListaRepository,
-		AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository
+		DistribuidorAvaliacoesDecorator distribuidorAvaliacoesDecorator
 	) {
 		this.docenteRepository = docenteRepository;
 		this.discenteRepository = discenteRepository;
@@ -74,7 +71,7 @@ public class Populador {
 		this.resolucaoListaRepository = resolucaoListaRepository;
 		this.respostaRepository = respostaRepository;
 		this.avaliacaoListaRepository = avaliacaoListaRepository;
-		this.avaliacaoResolucaoListaRepository = avaliacaoResolucaoListaRepository;
+		this.distribuidorAvaliacoesDecorator = distribuidorAvaliacoesDecorator;
 	}
 
 	public void cadastraEntidades() {
@@ -97,21 +94,25 @@ public class Populador {
 
 		AplicacaoLista aplicacaoLista = cadastraAplicacaoDeLista(aplicacaoListaRepository, turma, lista);
 
+		List<ResolucaoLista> resolucoes = discentes.stream().map(discente -> {
+			ResolucaoLista resolucaoLista = cadastraResolucaoDeLista(resolucaoListaRepository, aplicacaoLista, discente);
+			cadastraRespostas(respostaRepository, questoes, resolucaoLista);
+			return resolucaoLista;
+		}).collect(Collectors.toList());
+
+		aplicacaoLista.setResolucoes(resolucoes);
+
 		AvaliacaoLista avaliacaoLista = new AvaliacaoLista(aplicacaoLista, CriterioAvaliacao.RANDOMICO);
+		List<Usuario> avaliadores = new ArrayList<>(discentes);
+		avaliadores.add(docente);
+		avaliacaoLista.setAvaliadores(avaliadores);
 		avaliacaoListaRepository.save(avaliacaoLista);
 
-		for (Discente discente : discentes) {
-			ResolucaoLista resolucaoLista = cadastraResolucaoDeLista(resolucaoListaRepository, aplicacaoLista, discente);
-
-			cadastraRespostas(respostaRepository, questoes, resolucaoLista);
-
-			AvaliacaoResolucaoLista avaliacaoResolucaoLista = new AvaliacaoResolucaoLista(resolucaoLista, docente);
-			avaliacaoResolucaoListaRepository.save(avaliacaoResolucaoLista);
-		}
+		distribuidorAvaliacoesDecorator.distribua(avaliacaoLista);
 	}
 
 	private void cadastraRespostas(RespostaRepository respostaRepository, List<Questao> questoes, ResolucaoLista resolucaoLista) {
-		questoes.stream().map(q -> new Resposta(resolucaoLista, q, "Resposta"))
+		questoes.stream().map(q -> new Resposta(resolucaoLista, q, "É claro que a percepção das dificuldades apresenta tendências no sentido de aprovar a manutenção do levantamento das variáveis envolvidas."))
 			.forEach(respostaRepository::save);
 	}
 
