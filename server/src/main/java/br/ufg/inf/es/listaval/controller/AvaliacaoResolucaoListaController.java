@@ -24,11 +24,21 @@ public class AvaliacaoResolucaoListaController {
 		return avaliacaoResolucaoListaService.findAll(pageable);
 	}
 
+	@GetMapping("/minhas")
+	public Page<AvaliacaoResolucaoLista> listMinhasListas(Pageable pageable) {
+		return avaliacaoResolucaoListaService.findAllMinhasListas(pageable);
+	}
+
+	@GetMapping("/paraAvaliar")
+	public Page<AvaliacaoResolucaoLista> listListasParaAvaliar(Pageable pageable) {
+		return avaliacaoResolucaoListaService.findAllListasParaAvaliar(pageable);
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<AvaliacaoResolucaoLista> findById(@PathVariable("id") Long id) {
 		return avaliacaoResolucaoListaService.findById(id)
-				.map(record -> ResponseEntity.ok().body(record))
-				.orElse(ResponseEntity.notFound().build());
+			.map(record -> ResponseEntity.ok().body(record))
+			.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping
@@ -39,7 +49,7 @@ public class AvaliacaoResolucaoListaController {
 	@PutMapping("/{id}")
 	public ResponseEntity<AvaliacaoResolucaoLista> update(@PathVariable("id") Long id, @Valid @RequestBody AvaliacaoResolucaoLista avaliacaoResolucaoLista) {
 		return avaliacaoResolucaoListaService.update(id, avaliacaoResolucaoLista)
-				.map(record -> ResponseEntity.ok().body(record))
-				.orElse(ResponseEntity.notFound().build());
+			.map(record -> ResponseEntity.ok().body(record))
+			.orElse(ResponseEntity.notFound().build());
 	}
 }
