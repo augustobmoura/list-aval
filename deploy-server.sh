@@ -1,1 +1,1 @@
-git subtree push --prefix server heroku master
+git subtree push --prefix server heroku master "$@"
