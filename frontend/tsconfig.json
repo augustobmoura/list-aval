@@ -20,5 +20,5 @@
       "dom"
     ]
   },
-  "excludes": ["lib/server-client/node_modules"]
+  "exclude": ["lib/server-client/node_modules"]
 }

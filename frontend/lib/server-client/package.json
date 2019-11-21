@@ -10,10 +10,10 @@
     "spec:download": "download \"$npm_package_config_specUrl\" > spec.json",
     "spec:transform": "node transform-spec.js > transformed-spec.json",
     "spec": "npm-run-all spec:download spec:transform",
-    "build:spec": "java -jar openapi-generator-cli.jar generate -i spec.json -g typescript-angular -o src",
+    "build:spec": "java -jar openapi-generator-cli.jar generate -i transformed-spec.json -g typescript-angular -o src",
     "build": "npm-run-all build:spec",
     "clean": "rimraf src",
-    "sync-build": "npm-run-all --parallel 'spec clean' build",
+    "sync-build": "npm-run-all spec clean build",
     "prepack": "npm-run-all clean build"
   },
   "devDependencies": {

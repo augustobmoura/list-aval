@@ -3,14 +3,32 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
-import { DefaultService } from './api/default.service';
+import { AvaliacoesService } from './api/avaliacoes.service';
+import { AvaliacoesResolucaoService } from './api/avaliacoesResolucao.service';
+import { AvaliacoesRespostaService } from './api/avaliacoesResposta.service';
+import { DistribuaService } from './api/distribua.service';
+import { IdService } from './api/id.service';
+import { MinhasService } from './api/minhas.service';
+import { ParaAvaliarService } from './api/paraAvaliar.service';
+import { ResolucoesService } from './api/resolucoes.service';
+import { RespostaIdService } from './api/respostaId.service';
+import { RespostasService } from './api/respostas.service';
 
 @NgModule({
   imports:      [],
   declarations: [],
   exports:      [],
   providers: [
-    DefaultService ]
+    AvaliacoesService,
+    AvaliacoesResolucaoService,
+    AvaliacoesRespostaService,
+    DistribuaService,
+    IdService,
+    MinhasService,
+    ParaAvaliarService,
+    ResolucoesService,
+    RespostaIdService,
+    RespostasService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {
