@@ -4,15 +4,17 @@
   "module": "dist/index.js",
   "license": "MIT",
   "config": {
-    "specUrl": "https://evening-harbor-96341.herokuapp.com/v3/api-docs.yaml"
+    "specUrl": "https://evening-harbor-96341.herokuapp.com/v3/api-docs"
   },
   "scripts": {
-    "refresh-spec": "download \"$npm_package_config_specUrl\" > spec.yaml",
-    "build:spec": "java -jar openapi-generator-cli.jar generate -i spec.yaml -g typescript-angular -o src",
-    "build:all": "npm-run-all build:spec",
-    "build": "npm-run-all clean build:all",
+    "spec:download": "download \"$npm_package_config_specUrl\" > spec.json",
+    "spec:transform": "node transform-spec.js > transformed-spec.json",
+    "spec": "npm-run-all spec:download spec:transform",
+    "build:spec": "java -jar openapi-generator-cli.jar generate -i spec.json -g typescript-angular -o src",
+    "build": "npm-run-all build:spec",
     "clean": "rimraf src",
-    "prepack": "npm-run-all build"
+    "sync-build": "npm-run-all --parallel 'spec clean' build",
+    "prepack": "npm-run-all clean build"
   },
   "devDependencies": {
     "@angular/common": "^8.2.12",

@@ -17,14 +17,14 @@ import { AvaliacaoResolucaoLista } from './avaliacaoResolucaoLista';
 export interface PageAvaliacaoResolucaoLista { 
     totalPages?: number;
     totalElements?: number;
-    number?: number;
-    size?: number;
-    numberOfElements?: number;
-    content?: Array<AvaliacaoResolucaoLista>;
-    sort?: Sort;
     first?: boolean;
+    sort?: Sort;
+    number?: number;
+    numberOfElements?: number;
     last?: boolean;
     pageable?: Pageable;
+    size?: number;
+    content?: Array<AvaliacaoResolucaoLista>;
     empty?: boolean;
 }
 
