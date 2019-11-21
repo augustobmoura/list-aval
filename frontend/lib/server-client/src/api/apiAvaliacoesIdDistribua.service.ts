@@ -17,8 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { PageAvaliacaoResolucaoLista } from '../model/pageAvaliacaoResolucaoLista';
-import { Pageable } from '../model/pageable';
+import { AvaliacaoResolucaoLista } from '../model/avaliacaoResolucaoLista';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class MinhasService {
+export class ApiAvaliacoesIdDistribuaService {
 
     protected basePath = 'https://evening-harbor-96341.herokuapp.com';
     public defaultHeaders = new HttpHeaders();
@@ -50,18 +49,16 @@ export class MinhasService {
 
 
     /**
-     * @param pageable 
+     * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listMinhasListas(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAvaliacaoResolucaoLista>;
-    public listMinhasListas(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAvaliacaoResolucaoLista>>;
-    public listMinhasListas(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAvaliacaoResolucaoLista>>;
-    public listMinhasListas(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let queryParameters = new HttpParams({encoder: this.encoder});
-        if (pageable !== undefined && pageable !== null) {
-            queryParameters = queryParameters.set('pageable', <any>pageable);
+    public distribuaListas(id: number, observe?: 'body', reportProgress?: boolean): Observable<Array<AvaliacaoResolucaoLista>>;
+    public distribuaListas(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<AvaliacaoResolucaoLista>>>;
+    public distribuaListas(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<AvaliacaoResolucaoLista>>>;
+    public distribuaListas(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling distribuaListas.');
         }
 
         let headers = this.defaultHeaders;
@@ -76,9 +73,9 @@ export class MinhasService {
         }
 
 
-        return this.httpClient.get<PageAvaliacaoResolucaoLista>(`${this.configuration.basePath}/api/avaliacoesResolucao/minhas`,
+        return this.httpClient.put<Array<AvaliacaoResolucaoLista>>(`${this.configuration.basePath}/api/avaliacoes/${encodeURIComponent(String(id))}/distribua`,
+            null,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

@@ -17,7 +17,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { AvaliacaoResposta } from '../model/avaliacaoResposta';
+import { PageResolucaoLista } from '../model/pageResolucaoLista';
+import { Pageable } from '../model/pageable';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -26,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class RespostaIdService {
+export class ApiResolucoesService {
 
     protected basePath = 'https://evening-harbor-96341.herokuapp.com';
     public defaultHeaders = new HttpHeaders();
@@ -49,20 +50,18 @@ export class RespostaIdService {
 
 
     /**
-     * @param avaliacaoResolucaoListaId 
-     * @param respostaId 
+     * @param pageable 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public findByAvaliacaoResolucaoListaAndResposta(avaliacaoResolucaoListaId: number, respostaId: number, observe?: 'body', reportProgress?: boolean): Observable<AvaliacaoResposta>;
-    public findByAvaliacaoResolucaoListaAndResposta(avaliacaoResolucaoListaId: number, respostaId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AvaliacaoResposta>>;
-    public findByAvaliacaoResolucaoListaAndResposta(avaliacaoResolucaoListaId: number, respostaId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AvaliacaoResposta>>;
-    public findByAvaliacaoResolucaoListaAndResposta(avaliacaoResolucaoListaId: number, respostaId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (avaliacaoResolucaoListaId === null || avaliacaoResolucaoListaId === undefined) {
-            throw new Error('Required parameter avaliacaoResolucaoListaId was null or undefined when calling findByAvaliacaoResolucaoListaAndResposta.');
-        }
-        if (respostaId === null || respostaId === undefined) {
-            throw new Error('Required parameter respostaId was null or undefined when calling findByAvaliacaoResolucaoListaAndResposta.');
+    public findAll2(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageResolucaoLista>;
+    public findAll2(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageResolucaoLista>>;
+    public findAll2(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageResolucaoLista>>;
+    public findAll2(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (pageable !== undefined && pageable !== null) {
+            queryParameters = queryParameters.set('pageable', <any>pageable);
         }
 
         let headers = this.defaultHeaders;
@@ -77,8 +76,9 @@ export class RespostaIdService {
         }
 
 
-        return this.httpClient.get<AvaliacaoResposta>(`${this.configuration.basePath}/api/avaliacoesResolucao/${encodeURIComponent(String(avaliacaoResolucaoListaId))}/${encodeURIComponent(String(respostaId))}`,
+        return this.httpClient.get<PageResolucaoLista>(`${this.configuration.basePath}/api/resolucoes`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

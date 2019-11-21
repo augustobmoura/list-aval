@@ -1,22 +1,36 @@
 <div class="container">
   <app-nav-back [title]="'Listas'"></app-nav-back>
   <div class="content-student" *ngIf="!isRevision; else revisionForm">
-    <div class="student-static" fxLayout fxLayout.xs="column" fxLayoutGap="25px">
+    <div
+      class="student-static"
+      fxLayout
+      fxLayout.xs="column"
+      fxLayoutGap="25px"
+      *ngIf="avaliacao | async as aval"
+    >
       <div class="student-result" fxFlex="20">
         <h3>Sua média</h3>
-        <p>{{(avaliacao | async).nota}}</p>
+        <p>{{ aval.nota }}</p>
       </div>
+
       <div class="student-result-info" fxFlex="70">
-        <h3>{{(avaliacao | async).resolucaoLista.aplicacaoLista.turma.disciplina.nome}}</h3>
-        <p>{{(avaliacao | async).dataCadastro | date: 'dd/MM/yyyy'}}</p>
-        <p>{{(avaliacao | async).resolucaoLista.aplicacaoLista.turma.semestre}}</p>
+        <h3>{{ aval.resolucaoLista.aplicacaoLista.turma.disciplina.nome }}</h3>
+
+        <p>{{ aval.dataCadastro | date: "dd/MM/yyyy" }}</p>
+        <p>{{ aval.resolucaoLista.aplicacaoLista.turma.semestre }}</p>
+
         <div class="btn-wrap">
-          <button class="default gray" (click)="toogleRevistion()">Soliciar Revisão</button>
+          <button class="default gray" (click)="toogleRevistion()">
+            Soliciar Revisão
+          </button>
         </div>
       </div>
     </div>
+
     <div class="space"></div>
+
     <div class="space"></div>
+
     <accordion>
       <expansion-panel
         *ngFor="let avaliacao of (avaliacoesRespostas | async).content"
@@ -26,9 +40,14 @@
       >
         <panel-header>
           <div class="question-panel">
-            <h2 class="title-panel">Questão {{ avaliacao.resposta.questao.id }}</h2>
             <h2 class="title-panel">
-              Pergunta: <span class="title-panel-ask">{{ avaliacao.resposta.questao.enunciado }}</span>
+              Questão {{ avaliacao.resposta.questao.id }}
+            </h2>
+            <h2 class="title-panel">
+              Pergunta:
+              <span class="title-panel-ask">
+                {{ avaliacao.resposta.questao.enunciado }}
+              </span>
             </h2>
           </div>
         </panel-header>
@@ -66,18 +85,14 @@
             appearance="outline"
           >
             <mat-label>Nota</mat-label>
-            <input type="text" matInpu [value]="avaliacao.nota" matInput/>
+            <input type="text" matInpu [value]="avaliacao.nota" matInput />
           </mat-form-field>
         </div>
       </expansion-panel>
     </accordion>
   </div>
   <ng-template #revisionForm>
-    <mat-form-field
-      class="full-width"
-      floatLabel="always"
-      appearance="outline"
-    >
+    <mat-form-field class="full-width" floatLabel="always" appearance="outline">
       <mat-label>Motivo da Revisão</mat-label>
       <textarea
         rows="4"
@@ -87,7 +102,9 @@
       ></textarea>
     </mat-form-field>
     <div class="btn-wrap">
-      <button class="default gray" [routerLink]="['/aluno/revisao']">Enviar Solicitação de Revisão</button>
+      <button class="default gray" [routerLink]="['/aluno/revisao']">
+        Enviar Solicitação de Revisão
+      </button>
     </div>
   </ng-template>
 </div>

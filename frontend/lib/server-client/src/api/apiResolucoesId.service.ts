@@ -17,8 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { PageResolucaoLista } from '../model/pageResolucaoLista';
-import { Pageable } from '../model/pageable';
+import { ResolucaoLista } from '../model/resolucaoLista';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class ResolucoesService {
+export class ApiResolucoesIdService {
 
     protected basePath = 'https://evening-harbor-96341.herokuapp.com';
     public defaultHeaders = new HttpHeaders();
@@ -50,18 +49,16 @@ export class ResolucoesService {
 
 
     /**
-     * @param pageable 
+     * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public findAll2(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageResolucaoLista>;
-    public findAll2(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageResolucaoLista>>;
-    public findAll2(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageResolucaoLista>>;
-    public findAll2(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let queryParameters = new HttpParams({encoder: this.encoder});
-        if (pageable !== undefined && pageable !== null) {
-            queryParameters = queryParameters.set('pageable', <any>pageable);
+    public findById2(id: number, observe?: 'body', reportProgress?: boolean): Observable<ResolucaoLista>;
+    public findById2(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ResolucaoLista>>;
+    public findById2(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ResolucaoLista>>;
+    public findById2(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling findById2.');
         }
 
         let headers = this.defaultHeaders;
@@ -76,9 +73,8 @@ export class ResolucoesService {
         }
 
 
-        return this.httpClient.get<PageResolucaoLista>(`${this.configuration.basePath}/api/resolucoes`,
+        return this.httpClient.get<ResolucaoLista>(`${this.configuration.basePath}/api/resolucoes/${encodeURIComponent(String(id))}`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

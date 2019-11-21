@@ -17,8 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { AvaliacaoLista } from '../model/avaliacaoLista';
-import { PageAvaliacaoLista } from '../model/pageAvaliacaoLista';
+import { PageAvaliacaoResolucaoLista } from '../model/pageAvaliacaoResolucaoLista';
 import { Pageable } from '../model/pageable';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -28,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class AvaliacoesService {
+export class ApiAvaliacoesResolucaoMinhasService {
 
     protected basePath = 'https://evening-harbor-96341.herokuapp.com';
     public defaultHeaders = new HttpHeaders();
@@ -51,55 +50,14 @@ export class AvaliacoesService {
 
 
     /**
-     * @param avaliacaoLista 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public create2(avaliacaoLista?: AvaliacaoLista, observe?: 'body', reportProgress?: boolean): Observable<AvaliacaoLista>;
-    public create2(avaliacaoLista?: AvaliacaoLista, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AvaliacaoLista>>;
-    public create2(avaliacaoLista?: AvaliacaoLista, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AvaliacaoLista>>;
-    public create2(avaliacaoLista?: AvaliacaoLista, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        return this.httpClient.post<AvaliacaoLista>(`${this.configuration.basePath}/api/avaliacoes`,
-            avaliacaoLista,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * @param pageable 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public findAll4(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAvaliacaoLista>;
-    public findAll4(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAvaliacaoLista>>;
-    public findAll4(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAvaliacaoLista>>;
-    public findAll4(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public listMinhasListas(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAvaliacaoResolucaoLista>;
+    public listMinhasListas(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAvaliacaoResolucaoLista>>;
+    public listMinhasListas(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAvaliacaoResolucaoLista>>;
+    public listMinhasListas(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (pageable !== undefined && pageable !== null) {
@@ -118,7 +76,7 @@ export class AvaliacoesService {
         }
 
 
-        return this.httpClient.get<PageAvaliacaoLista>(`${this.configuration.basePath}/api/avaliacoes`,
+        return this.httpClient.get<PageAvaliacaoResolucaoLista>(`${this.configuration.basePath}/api/avaliacoesResolucao/minhas`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

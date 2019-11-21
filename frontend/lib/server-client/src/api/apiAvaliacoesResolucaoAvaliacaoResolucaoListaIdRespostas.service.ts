@@ -18,7 +18,6 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { PageAvaliacaoResposta } from '../model/pageAvaliacaoResposta';
-import { PageResposta } from '../model/pageResposta';
 import { Pageable } from '../model/pageable';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -28,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class RespostasService {
+export class ApiAvaliacoesResolucaoAvaliacaoResolucaoListaIdRespostasService {
 
     protected basePath = 'https://evening-harbor-96341.herokuapp.com';
     public defaultHeaders = new HttpHeaders();
@@ -49,44 +48,6 @@ export class RespostasService {
     }
 
 
-
-    /**
-     * @param pageable 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public findAll1(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageResposta>;
-    public findAll1(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageResposta>>;
-    public findAll1(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageResposta>>;
-    public findAll1(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let queryParameters = new HttpParams({encoder: this.encoder});
-        if (pageable !== undefined && pageable !== null) {
-            queryParameters = queryParameters.set('pageable', <any>pageable);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        return this.httpClient.get<PageResposta>(`${this.configuration.basePath}/api/respostas`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
 
     /**
      * @param avaliacaoResolucaoListaId 
@@ -120,48 +81,6 @@ export class RespostasService {
 
 
         return this.httpClient.get<PageAvaliacaoResposta>(`${this.configuration.basePath}/api/avaliacoesResolucao/${encodeURIComponent(String(avaliacaoResolucaoListaId))}/respostas`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * @param resolucaoId 
-     * @param pageable 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public findAllByResolucaoLista(resolucaoId: number, pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageResposta>;
-    public findAllByResolucaoLista(resolucaoId: number, pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageResposta>>;
-    public findAllByResolucaoLista(resolucaoId: number, pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageResposta>>;
-    public findAllByResolucaoLista(resolucaoId: number, pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (resolucaoId === null || resolucaoId === undefined) {
-            throw new Error('Required parameter resolucaoId was null or undefined when calling findAllByResolucaoLista.');
-        }
-
-        let queryParameters = new HttpParams({encoder: this.encoder});
-        if (pageable !== undefined && pageable !== null) {
-            queryParameters = queryParameters.set('pageable', <any>pageable);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        const httpHeaderAccepts: string[] = [
-            '*/*'
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        return this.httpClient.get<PageResposta>(`${this.configuration.basePath}/api/resolucoes/${encodeURIComponent(String(resolucaoId))}/respostas`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

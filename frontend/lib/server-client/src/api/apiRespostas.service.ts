@@ -17,7 +17,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { AvaliacaoResolucaoLista } from '../model/avaliacaoResolucaoLista';
+import { PageResposta } from '../model/pageResposta';
+import { Pageable } from '../model/pageable';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -26,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class DistribuaService {
+export class ApiRespostasService {
 
     protected basePath = 'https://evening-harbor-96341.herokuapp.com';
     public defaultHeaders = new HttpHeaders();
@@ -49,16 +50,18 @@ export class DistribuaService {
 
 
     /**
-     * @param id 
+     * @param pageable 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public distribuaListas(id: number, observe?: 'body', reportProgress?: boolean): Observable<Array<AvaliacaoResolucaoLista>>;
-    public distribuaListas(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<AvaliacaoResolucaoLista>>>;
-    public distribuaListas(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<AvaliacaoResolucaoLista>>>;
-    public distribuaListas(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling distribuaListas.');
+    public findAll1(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageResposta>;
+    public findAll1(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageResposta>>;
+    public findAll1(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageResposta>>;
+    public findAll1(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (pageable !== undefined && pageable !== null) {
+            queryParameters = queryParameters.set('pageable', <any>pageable);
         }
 
         let headers = this.defaultHeaders;
@@ -73,9 +76,9 @@ export class DistribuaService {
         }
 
 
-        return this.httpClient.put<Array<AvaliacaoResolucaoLista>>(`${this.configuration.basePath}/api/avaliacoes/${encodeURIComponent(String(id))}/distribua`,
-            null,
+        return this.httpClient.get<PageResposta>(`${this.configuration.basePath}/api/respostas`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

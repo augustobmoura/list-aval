@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
-import { DefaultService } from '../../../../../lib/server-client/src';
+import { DefaultService, AvaliacoesResolucaoService, RespostasService, AvaliacaoLista } from '../../../../../lib/server-client/src';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-my-list-detail',
@@ -10,8 +11,8 @@ import { DefaultService } from '../../../../../lib/server-client/src';
 })
 export class MyListDetailComponent implements OnInit {
 
-  avaliacao = this._activedRoute.params.pipe(
-    mergeMap(params => this._defaultService.findById1(+params['id'])),
+  avaliacao: Observable<AvaliacaoLista> = this._activedRoute.params.pipe(
+    mergeMap(params => this._defaultService.findById(+params['id'])),
   );
 
   avaliacoesRespostas = this._activedRoute.params.pipe(
@@ -22,7 +23,7 @@ export class MyListDetailComponent implements OnInit {
 
   constructor(
     private readonly _activedRoute: ActivatedRoute,
-    private readonly _defaultService: DefaultService,
+    private readonly _defaultService: RespostasService,
   ) {
   }
 
