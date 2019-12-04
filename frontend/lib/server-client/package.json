@@ -13,7 +13,7 @@
     "build:spec": "java -jar openapi-generator-cli.jar generate -i transformed-spec.json -g typescript-angular -o src",
     "build": "npm-run-all build:spec",
     "clean": "rimraf src",
-    "sync-build": "npm-run-all spec clean build",
+    "refresh": "npm-run-all spec clean build",
     "prepack": "npm-run-all clean build"
   },
   "devDependencies": {
