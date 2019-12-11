@@ -17,14 +17,14 @@ import { Sort } from './sort';
 export interface PageResposta { 
     totalPages?: number;
     totalElements?: number;
-    number?: number;
-    size?: number;
-    numberOfElements?: number;
-    content?: Array<Resposta>;
-    sort?: Sort;
     first?: boolean;
+    sort?: Sort;
+    number?: number;
+    numberOfElements?: number;
     last?: boolean;
     pageable?: Pageable;
+    size?: number;
+    content?: Array<Resposta>;
     empty?: boolean;
 }
 

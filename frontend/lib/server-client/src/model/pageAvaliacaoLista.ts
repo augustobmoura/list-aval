@@ -17,14 +17,14 @@ import { Sort } from './sort';
 export interface PageAvaliacaoLista { 
     totalPages?: number;
     totalElements?: number;
-    number?: number;
-    size?: number;
-    numberOfElements?: number;
-    content?: Array<AvaliacaoLista>;
-    sort?: Sort;
     first?: boolean;
+    sort?: Sort;
+    number?: number;
+    numberOfElements?: number;
     last?: boolean;
     pageable?: Pageable;
+    size?: number;
+    content?: Array<AvaliacaoLista>;
     empty?: boolean;
 }
 
