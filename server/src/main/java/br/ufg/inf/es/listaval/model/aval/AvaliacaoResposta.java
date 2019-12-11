@@ -1,7 +1,5 @@
 package br.ufg.inf.es.listaval.model.aval;
 
-import br.ufg.inf.es.listaval.model.Usuario;
-import br.ufg.inf.es.listaval.model.aplic.Resposta;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -12,11 +10,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Entity
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"avaliacaoResolucaoLista", "resposta", "avaliador"})
+@EqualsAndHashCode(of = {"avaliacaoResolucaoLista", "avaliadorId"})
 @EntityListeners(AuditingEntityListener.class)
 public class AvaliacaoResposta {
 
@@ -30,14 +29,10 @@ public class AvaliacaoResposta {
 	private AvaliacaoResolucaoLista avaliacaoResolucaoLista;
 
 	@NotNull
-	@ManyToOne
-	@JoinColumn
-	private Resposta resposta;
+	private UUID respostaId;
 
 	@NotNull
-	@ManyToOne
-	@JoinColumn
-	private Usuario avaliador;
+	private UUID avaliadorId;
 
 	private String comentario;
 

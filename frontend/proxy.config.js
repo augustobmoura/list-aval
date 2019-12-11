@@ -1,6 +1,6 @@
 module.exports = {
   '/api'  : {
-    target: 'http://localhost:8080',
+    target: 'https://evening-harbor-96341.herokuapp.com',
     secure: false,
   },
   logLevel: 'debug',

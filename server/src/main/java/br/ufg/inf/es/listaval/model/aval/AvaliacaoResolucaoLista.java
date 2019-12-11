@@ -1,7 +1,5 @@
 package br.ufg.inf.es.listaval.model.aval;
 
-import br.ufg.inf.es.listaval.model.Usuario;
-import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -28,14 +27,13 @@ public class AvaliacaoResolucaoLista {
 	private Long id;
 
 	@NotNull
-	@ManyToOne
-	@JoinColumn
-	private ResolucaoLista resolucaoLista;
+	private UUID resolucaoListaId;
 
 	@NotNull
-	@ManyToOne
-	@JoinColumn
-	private Usuario avaliador;
+	private UUID discenteId;
+
+	@NotNull
+	private UUID avaliadorId;
 
 	private Boolean publicada;
 
@@ -56,8 +54,8 @@ public class AvaliacaoResolucaoLista {
 	@LastModifiedBy
 	private String usuarioAlteracao;
 
-	public AvaliacaoResolucaoLista(@NotNull ResolucaoLista resolucaoLista, @NotNull Usuario avaliador) {
-		this.resolucaoLista = resolucaoLista;
-		this.avaliador = avaliador;
+	public AvaliacaoResolucaoLista(@NotNull UUID resolucaoListaId, @NotNull UUID avaliadorId) {
+		this.resolucaoListaId = resolucaoListaId;
+		this.avaliadorId = avaliadorId;
 	}
 }

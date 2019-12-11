@@ -7,16 +7,16 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Docente extends Usuario {
 
-	public Docente(@NotNull String nome, @NotNull String email) {
-		super(nome, email);
+	public Docente(@NotNull UUID id, @NotNull String nome, @NotNull String email) {
+		super(id, nome, email);
 	}
 
 }

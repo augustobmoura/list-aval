@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/resolucoes")
 public class ResolucaoListaController {
@@ -26,7 +28,7 @@ public class ResolucaoListaController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ResolucaoLista> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<ResolucaoLista> findById(@PathVariable("id") String id) {
 		return resolucaoListaService.findById(id)
 				.map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());

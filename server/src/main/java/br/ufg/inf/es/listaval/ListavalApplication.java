@@ -1,15 +1,14 @@
 package br.ufg.inf.es.listaval;
 
-import br.ufg.inf.es.listaval.model.Docente;
-import br.ufg.inf.es.listaval.repository.DocenteRepository;
+import br.ufg.inf.es.listaplic.ClassroomControllerApi;
+import br.ufg.inf.es.listaplic.ListControllerApi;
+import br.ufg.inf.es.listelab.ListaApi;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.support.TransactionTemplate;
 
 @SpringBootApplication
 public class ListavalApplication {
@@ -20,29 +19,31 @@ public class ListavalApplication {
 
 	@Bean
 	CommandLineRunner init(
-		DocenteRepository docenteRepository,
-		PlatformTransactionManager platformTransactionManager,
-		Populador populador
 	) {
 		return args -> {
-			TransactionTemplate transactionTemplate = new TransactionTemplate(platformTransactionManager);
 
-			transactionTemplate.execute(status -> {
-				docenteRepository.save(new Docente("Admin", "admin@ufg.br"));
-				status.flush();
-				return null;
-			});
-
-			transactionTemplate.execute(status -> {
-				populador.cadastraEntidades();
-				status.flush();
-				return null;
-			});
 		};
 	}
 
 	@Bean
 	protected Module module() {
 		return new Hibernate5Module();
+	}
+
+	@Bean
+	ListControllerApi listControllerApi() {
+		return new ListControllerApi();
+	}
+
+	@Bean
+	ClassroomControllerApi classroomControllerApi() {
+		return new ClassroomControllerApi();
+	}
+
+	@Bean
+	ListaApi listaApi() {
+		ListaApi listaApi = new ListaApi();
+		listaApi.getApiClient().addDefaultHeader("Referer", "http://api.sifo.tech/swagger/index.html");
+		return listaApi;
 	}
 }

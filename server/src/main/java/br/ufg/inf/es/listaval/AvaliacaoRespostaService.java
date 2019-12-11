@@ -1,13 +1,14 @@
 package br.ufg.inf.es.listaval;
 
-import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoResposta;
 import br.ufg.inf.es.listaval.repository.aval.AvaliacaoRespostaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AvaliacaoRespostaService {
@@ -30,7 +31,7 @@ public class AvaliacaoRespostaService {
 		return avaliacaoRespostaRepository.findById(id);
 	}
 
-	public Optional<AvaliacaoResposta> findByAvaliacaoResolucaoListaIdAndRespostaId(Long resolucaoListaId, Long respostaId) {
+	public Optional<AvaliacaoResposta> findByAvaliacaoResolucaoListaIdAndRespostaId(Long resolucaoListaId, UUID respostaId) {
 		return avaliacaoRespostaRepository.findByAvaliacaoResolucaoListaIdAndRespostaId(resolucaoListaId, respostaId);
 	}
 
@@ -40,9 +41,9 @@ public class AvaliacaoRespostaService {
 
 	public Optional<AvaliacaoResposta> update(Long id, AvaliacaoResposta avaliacaoResposta) {
 		return avaliacaoRespostaRepository.findById(id).map(record -> {
-			Usuario avaliador = avaliacaoResposta.getAvaliador();
+			@NotNull UUID avaliador = avaliacaoResposta.getAvaliadorId();
 			if (avaliador != null) {
-				record.setAvaliador(avaliador);
+				record.setAvaliadorId(avaliador);
 			}
 			record.setPublicada(avaliacaoResposta.getPublicada());
 			record.setNota(avaliacaoResposta.getNota());

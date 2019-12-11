@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -27,8 +28,8 @@ public class AvaliacaoRespostaController {
 	@GetMapping("/avaliacoesResposta/{id}")
 	public ResponseEntity<AvaliacaoResposta> findById(@PathVariable("id") Long id) {
 		return avaliacaoRespostaService.findById(id)
-			.map(record -> ResponseEntity.ok().body(record))
-			.orElse(ResponseEntity.notFound().build());
+				.map(record -> ResponseEntity.ok().body(record))
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping("/avaliacoesResposta")
@@ -39,8 +40,8 @@ public class AvaliacaoRespostaController {
 	@PutMapping("/avaliacoesResposta/{id}")
 	public ResponseEntity<AvaliacaoResposta> update(@PathVariable("id") Long id, @Valid @RequestBody AvaliacaoResposta avaliacaoResposta) {
 		return avaliacaoRespostaService.update(id, avaliacaoResposta)
-			.map(record -> ResponseEntity.ok().body(record))
-			.orElse(ResponseEntity.notFound().build());
+				.map(record -> ResponseEntity.ok().body(record))
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping("/avaliacoesResolucao/{avaliacaoResolucaoListaId}/respostas")
@@ -50,11 +51,11 @@ public class AvaliacaoRespostaController {
 
 	@GetMapping("/avaliacoesResolucao/{avaliacaoResolucaoListaId}/{respostaId}")
 	public ResponseEntity<AvaliacaoResposta> findByAvaliacaoResolucaoListaAndResposta(
-		@PathVariable("avaliacaoResolucaoListaId") Long avaliacaoResolucaoListaId,
-		@PathVariable("respostaId") Long respostaId
+			@PathVariable("avaliacaoResolucaoListaId") Long avaliacaoResolucaoListaId,
+			@PathVariable("respostaId") UUID respostaId
 	) {
 		return avaliacaoRespostaService.findByAvaliacaoResolucaoListaIdAndRespostaId(avaliacaoResolucaoListaId, respostaId)
-			.map(record -> ResponseEntity.ok().body(record))
-			.orElse(ResponseEntity.notFound().build());
+				.map(record -> ResponseEntity.ok().body(record))
+				.orElse(ResponseEntity.notFound().build());
 	}
 }
