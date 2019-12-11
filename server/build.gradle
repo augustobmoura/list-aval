@@ -1,3 +1,6 @@
+import groovy.json.JsonOutput
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+
 plugins {
 	id 'org.springframework.boot' version '2.1.8.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -42,27 +45,58 @@ jar {
 	version = project.version
 }
 
-task generateListAplicClient(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask, group: 'build') {
+String listAplicSpec = "$rootDir/spec/list-aplic.json"
+String listElabSpec = "$rootDir/spec/list-elab.json"
+
+task downloadListAplicSpec(group: 'download') {
+	outputs.file(listAplicSpec)
+
+	doLast {
+		URL specUrl = new URL('https://list-aplic-api.herokuapp.com/api/v2/api-docs')
+		File out = file(listAplicSpec)
+
+		out.text = JsonOutput.prettyPrint(specUrl.text)
+	}
+}
+
+task downloadElabAplicSpec(group: 'download') {
+	outputs.file(listElabSpec)
+
+	doLast {
+		URL specUrl = new URL('http://api.sifo.tech/swagger/v1/swagger.json')
+		File out = file(listElabSpec)
+
+		out.text = JsonOutput.prettyPrint(specUrl.text)
+	}
+}
+
+task generateListAplicClient(type: GenerateTask, group: 'build') {
 	generatorName = 'java'
-	inputSpec = 'https://list-aplic-api.herokuapp.com/api/v2/api-docs'
+	inputSpec = listAplicSpec
 	outputDir = 'generated/listaplic-client'
 	apiPackage = 'br.ufg.inf.es.listaplic'
 	invokerPackage = 'br.ufg.inf.es.listaplic.invoker'
 	modelPackage = 'br.ufg.inf.es.listaplic.model'
 	version = '1.0.0-SNAPSHOT'
 	additionalProperties = [
-			groupId   : 'br.ufg.inf.es',
-			artifactId: 'listaplic-client'
+			groupId                : 'br.ufg.inf.es',
+			artifactId             : 'listaplic-client',
+			hideGenerationTimestamp: 'true',
 	]
 	configOptions = [
 			dateLibrary: 'java8'
 	]
 }
 
-task generateListElabClient(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask, group: 'build') {
+task generateListElabClient(type: GenerateTask, group: 'build') {
+	String out = "$rootDir/generated/listelab-client"
+
+	inputs.file(listElabSpec)
+	outputs.dir(out)
+
 	generatorName = 'java'
-	inputSpec = 'spec/list-elab-spec.json'
-	outputDir = 'generated/listelab-client'
+	inputSpec = listElabSpec
+	outputDir = out
 	apiPackage = 'br.ufg.inf.es.listelab'
 	invokerPackage = 'br.ufg.inf.es.listelab.invoker'
 	modelPackage = 'br.ufg.inf.es.listelab.model'
@@ -70,7 +104,8 @@ task generateListElabClient(type: org.openapitools.generator.gradle.plugin.tasks
 	skipValidateSpec = true
 	additionalProperties = [
 			groupId   : 'br.ufg.inf.es',
-			artifactId: 'listelab-client'
+			artifactId: 'listelab-client',
+			hideGenerationTimestamp: 'true',
 	]
 	configOptions = [
 			dateLibrary: 'java8'
