@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ResolucaoListaService {
@@ -21,8 +22,8 @@ public class ResolucaoListaService {
 		return resolucaoListaRepository.findAll(pageable);
 	}
 
-	public Optional<ResolucaoLista> findById(Long id) {
-		return resolucaoListaRepository.findById(id);
+	public Optional<ResolucaoLista> findById(String id) {
+		return resolucaoListaRepository.findById(UUID.fromString(id));
 	}
 
 }

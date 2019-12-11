@@ -25,7 +25,6 @@ dependencies {
 	implementation 'com.vladmihalcea:hibernate-types-52:2.7.1'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.2.0'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
-//	implementation 'br.ufg.inf.es:listaplic-client:v1'
 	implementation project(':generated:listaplic-client')
 	implementation project(':generated:listelab-client')
 
@@ -112,5 +111,5 @@ task generateListElabClient(type: GenerateTask, group: 'build') {
 	]
 }
 
-compileJava.dependsOn generateListElabClient
-compileJava.dependsOn generateListAplicClient
+//compileJava.dependsOn generateListElabClient
+//compileJava.dependsOn generateListAplicClient

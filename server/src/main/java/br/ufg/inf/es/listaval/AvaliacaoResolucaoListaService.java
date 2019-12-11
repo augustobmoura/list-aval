@@ -1,32 +1,21 @@
 package br.ufg.inf.es.listaval;
 
-import br.ufg.inf.es.listaval.model.Discente;
-import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
-import br.ufg.inf.es.listaval.repository.DiscenteRepository;
-import br.ufg.inf.es.listaval.repository.UsuarioRepository;
 import br.ufg.inf.es.listaval.repository.aval.AvaliacaoResolucaoListaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AvaliacaoResolucaoListaService {
 
 	private final AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository;
-	private final UsuarioRepository usuarioRepository;
-	private final DiscenteRepository discenteRepository;
 
-	public AvaliacaoResolucaoListaService(
-		AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository,
-		UsuarioRepository usuarioRepository,
-		DiscenteRepository discenteRepository
-	) {
+	public AvaliacaoResolucaoListaService(AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository) {
 		this.avaliacaoResolucaoListaRepository = avaliacaoResolucaoListaRepository;
-		this.usuarioRepository = usuarioRepository;
-		this.discenteRepository = discenteRepository;
 	}
 
 	public Page<AvaliacaoResolucaoLista> findAll(Pageable pageable) {
@@ -35,18 +24,16 @@ public class AvaliacaoResolucaoListaService {
 
 	public Page<AvaliacaoResolucaoLista> findAllMinhasListas(Pageable pageable) {
 		// TODO: Filtrar avaliaçoes do usuario logado
-		Optional<Discente> byEmail = discenteRepository.findByEmail("aluno1@discente.ufg.br");
-		Discente discente = byEmail.orElse(null);
+		UUID discenteId = UUID.fromString("585c69cd-c9e1-46f3-9135-cf1939cf5d48");
 
-		return avaliacaoResolucaoListaRepository.findAllByPublicadaAndResolucaoListaDiscente(true, discente, pageable);
+		return avaliacaoResolucaoListaRepository.findAllByPublicadaAndDiscenteId(true, discenteId, pageable);
 	}
 
 	public Page<AvaliacaoResolucaoLista> findAllListasParaAvaliar(Pageable pageable) {
 		// TODO: Filtrar avaliaçoes do usuario logado
-		Optional<Usuario> byEmail = usuarioRepository.findByEmail("aluno1@discente.ufg.br");
-		Usuario usuario = byEmail.orElse(null);
+		UUID avaliadorId = UUID.fromString("585c69cd-c9e1-46f3-9135-cf1939cf5d48");
 
-		return avaliacaoResolucaoListaRepository.findAllByAvaliador(usuario, pageable);
+		return avaliacaoResolucaoListaRepository.findAllByAvaliadorId(avaliadorId, pageable);
 	}
 
 	public Optional<AvaliacaoResolucaoLista> findById(Long id) {
@@ -59,9 +46,9 @@ public class AvaliacaoResolucaoListaService {
 
 	public Optional<AvaliacaoResolucaoLista> update(Long id, AvaliacaoResolucaoLista avaliacaoResolucaoLista) {
 		return avaliacaoResolucaoListaRepository.findById(id).map(record -> {
-			Usuario avaliador = avaliacaoResolucaoLista.getAvaliador();
+			UUID avaliador = avaliacaoResolucaoLista.getAvaliadorId();
 			if (avaliador != null) {
-				record.setAvaliador(avaliador);
+				record.setAvaliadorId(avaliador);
 			}
 			record.setPublicada(avaliacaoResolucaoLista.getPublicada());
 			record.setNota(avaliacaoResolucaoLista.getNota());
