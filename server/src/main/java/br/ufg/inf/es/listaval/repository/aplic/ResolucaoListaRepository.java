@@ -71,6 +71,8 @@ public class ResolucaoListaRepository {
 		List<ResolucaoLista> resolucoes = new ArrayList<>();
 
 		if (lista.isPresent()) {
+			AplicacaoLista aplicacaoLista = new AplicacaoLista(application.getId(), lista.get(), turma);
+
 			Map<UUID, List<Questao>> questoesPorId = lista.get().getQuestoes().stream().collect(Collectors.groupingBy(Questao::getId, Collectors.toList()));
 			List<Student> studentList = application.getStudentList();
 
@@ -86,10 +88,9 @@ public class ResolucaoListaRepository {
 										return new Resposta(null, questao, question.getAnswer());
 									})
 									.collect(Collectors.toList());
-
-							AplicacaoLista aplicacaoLista = new AplicacaoLista(lista.get(), turma);
-
-							ResolucaoLista resolucaoLista = new ResolucaoLista(testList.getId(), aplicacaoLista, discente);
+							// TODO: Nao e possivel consultar uma resolucao especifica. Aqui to fazendo mais uma gambiarra: Salvei o id da aplicaçao como o da resoluçao
+							// ResolucaoLista resolucaoLista = new ResolucaoLista(testList.getId(), aplicacaoLista, discente);
+							ResolucaoLista resolucaoLista = new ResolucaoLista(application.getId(), aplicacaoLista, discente);
 							resolucaoLista.setRespostas(respostas);
 							return resolucaoLista;
 						}).collect(Collectors.toList());

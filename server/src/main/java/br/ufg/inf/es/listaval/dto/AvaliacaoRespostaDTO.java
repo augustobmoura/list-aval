@@ -1,6 +1,8 @@
 package br.ufg.inf.es.listaval.dto;
 
+import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aplic.Resposta;
+import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoResposta;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,5 +18,21 @@ import javax.persistence.EntityListeners;
 public class AvaliacaoRespostaDTO extends AvaliacaoResposta {
 
 	private Resposta resposta;
+	private Usuario avaliador;
+	private AvaliacaoResolucaoListaDTO avaliacaoResolucaoLista;
+
+	public AvaliacaoResposta toAvaliacaoResposta() {
+		AvaliacaoResposta avaliacaoResposta = new AvaliacaoResposta();
+		avaliacaoResposta.setId(this.getId());
+		avaliacaoResposta.setAvaliacaoResolucaoLista(this.avaliacaoResolucaoLista.toAvaliacaoResolucaoLista());
+		avaliacaoResposta.setRespostaId(this.resposta.getId());
+		avaliacaoResposta.setAvaliadorId(this.avaliador.getId());
+		avaliacaoResposta.setComentario(this.getComentario());
+		avaliacaoResposta.setNota(this.getNota());
+		avaliacaoResposta.setPublicada(this.getPublicada());
+		avaliacaoResposta.setDataCadastro(this.getDataCadastro());
+		avaliacaoResposta.setDataAlteracao(this.getDataAlteracao());
+		return avaliacaoResposta;
+	}
 
 }

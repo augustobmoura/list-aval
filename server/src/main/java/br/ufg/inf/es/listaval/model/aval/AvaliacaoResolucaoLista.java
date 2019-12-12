@@ -26,13 +26,10 @@ public class AvaliacaoResolucaoLista {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotNull
 	private UUID resolucaoListaId;
 
-	@NotNull
 	private UUID discenteId;
 
-	@NotNull
 	private UUID avaliadorId;
 
 	private Boolean publicada;
@@ -40,7 +37,7 @@ public class AvaliacaoResolucaoLista {
 	private Float nota;
 
 	@OneToMany(mappedBy = "avaliacaoResolucaoLista", cascade = CascadeType.ALL)
-	private List<AvaliacaoResposta> avaliacoesRespostas;
+	private List<AvaliacaoResposta> avaliacoesRespostasSaved;
 
 	@CreatedDate
 	private LocalDateTime dataCadastro;

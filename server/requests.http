@@ -4,25 +4,31 @@ Content-Type: application/json
 
 {
   "resolucaoLista": {
-    "id": 33
+    "id": "7794a79c-a14a-4435-a4eb-a54c00aa9ef8"
   },
   "avaliador": {
     "dtype": "Discente",
-    "id": 3
+    "id": "585c69cd-c9e1-46f3-9135-cf1939cf5d48"
   }
 }
 
+###
+GET http://localhost:8080/api/avaliacoesResolucao/1
+
+###
+GET http://localhost:8080/api/avaliacoesResolucao/
+
 ### Atribui nota para uma avaliaçao
-PUT http://localhost:8080/api/avaliacoesResolucao/49
+PUT http://localhost:8080/api/avaliacoesResolucao/1
 Content-Type: application/json
 
 {
   "resolucaoLista": {
-    "id": 33
+    "id": "7794a79c-a14a-4435-a4eb-a54c00aa9ef8"
   },
   "avaliador": {
     "dtype": "Discente",
-    "id": 3
+    "id": "585c69cd-c9e1-46f3-9135-cf1939cf5d48"
   },
   "nota": 5.0
 }
