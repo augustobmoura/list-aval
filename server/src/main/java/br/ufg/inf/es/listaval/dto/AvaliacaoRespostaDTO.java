@@ -21,6 +21,12 @@ public class AvaliacaoRespostaDTO extends AvaliacaoResposta {
 	private Usuario avaliador;
 	private AvaliacaoResolucaoListaDTO avaliacaoResolucaoLista;
 
+	public AvaliacaoRespostaDTO(Resposta resposta, Usuario avaliador, AvaliacaoResolucaoListaDTO avaliacaoResolucaoLista) {
+		this.resposta = resposta;
+		this.avaliador = avaliador;
+		this.avaliacaoResolucaoLista = avaliacaoResolucaoLista;
+	}
+
 	public AvaliacaoResposta toAvaliacaoResposta() {
 		AvaliacaoResposta avaliacaoResposta = new AvaliacaoResposta();
 		avaliacaoResposta.setId(this.getId());

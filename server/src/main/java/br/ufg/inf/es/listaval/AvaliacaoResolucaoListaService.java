@@ -88,7 +88,7 @@ public class AvaliacaoResolucaoListaService {
 		return minhasAvaliacoes.map(this::convertAvaliacaoToDTO);
 	}
 
-	private AvaliacaoResolucaoListaDTO convertAvaliacaoToDTO(AvaliacaoResolucaoLista avaliacao) {
+	public AvaliacaoResolucaoListaDTO convertAvaliacaoToDTO(AvaliacaoResolucaoLista avaliacao) {
 		Optional<ResolucaoLista> resolucaoLista = resolucaoListaRepository.findById(avaliacao.getResolucaoListaId());
 		if (!resolucaoLista.isPresent()) {
 			throw new IllegalStateException("Resoluçao lista nao encontrada");
