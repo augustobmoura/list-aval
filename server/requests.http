@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "resolucaoLista": {
-    "id": "7794a79c-a14a-4435-a4eb-a54c00aa9ef8"
+    "id": "ff48f2a4-5ec5-4b02-92da-86d59c380e3d"
   },
   "avaliador": {
     "dtype": "Discente",
@@ -18,13 +18,16 @@ GET http://localhost:8080/api/avaliacoesResolucao/1
 ###
 GET http://localhost:8080/api/avaliacoesResolucao/
 
+###
+GET http://localhost:8080/api/resolucoes
+
 ### Atribui nota para uma avaliaçao
 PUT http://localhost:8080/api/avaliacoesResolucao/1
 Content-Type: application/json
 
 {
   "resolucaoLista": {
-    "id": "7794a79c-a14a-4435-a4eb-a54c00aa9ef8"
+    "id": "ff48f2a4-5ec5-4b02-92da-86d59c380e3d"
   },
   "avaliador": {
     "dtype": "Discente",

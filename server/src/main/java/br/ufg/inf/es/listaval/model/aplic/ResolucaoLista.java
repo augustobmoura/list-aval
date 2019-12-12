@@ -28,6 +28,10 @@ public class ResolucaoLista {
 
 	private LocalDateTime dataAlteracao;
 
+	public ResolucaoLista(UUID id) {
+		this.id = id;
+	}
+
 	public ResolucaoLista(UUID id, AplicacaoLista aplicacaoLista, Discente discente) {
 		this.id = id;
 		this.aplicacaoLista = aplicacaoLista;

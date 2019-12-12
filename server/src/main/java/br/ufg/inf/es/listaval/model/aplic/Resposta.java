@@ -28,7 +28,8 @@ public class Resposta {
 
 	private LocalDateTime dataAlteracao;
 
-	public Resposta(@NotNull ResolucaoLista resolucaoLista, @NotNull Questao questao, @NotNull String conteudo) {
+	public Resposta(@NotNull UUID id, @NotNull ResolucaoLista resolucaoLista, @NotNull Questao questao, @NotNull String conteudo) {
+		this.id = id;
 		this.resolucaoLista = resolucaoLista;
 		this.questao = questao;
 		this.conteudo = conteudo;

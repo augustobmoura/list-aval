@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,20 +14,18 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = {"nome"})
 public class Disciplina {
 
-	private Long id;
+	@NotNull
+	private UUID id;
+
+	@NotNull
+	private String codigo;
 
 	@NotNull
 	private String nome;
 
-	private LocalDateTime dataCadastro;
-
-	private String usuarioCadastro;
-
-	private LocalDateTime dataAlteracao;
-
-	private String usuarioAlteracao;
-
-	public Disciplina(@NotNull String nome) {
+	public Disciplina(@NotNull UUID id, @NotNull String codigo, @NotNull String nome) {
+		this.id = id;
+		this.codigo = codigo;
 		this.nome = nome;
 	}
 }

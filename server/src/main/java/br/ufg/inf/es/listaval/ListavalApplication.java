@@ -2,6 +2,7 @@ package br.ufg.inf.es.listaval;
 
 import br.ufg.inf.es.listaplic.ClassroomControllerApi;
 import br.ufg.inf.es.listaplic.ListControllerApi;
+import br.ufg.inf.es.listelab.DisciplinaApi;
 import br.ufg.inf.es.listelab.ListaApi;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
@@ -45,5 +46,12 @@ public class ListavalApplication {
 		ListaApi listaApi = new ListaApi();
 		listaApi.getApiClient().addDefaultHeader("Referer", "http://api.sifo.tech/swagger/index.html");
 		return listaApi;
+	}
+
+	@Bean
+	DisciplinaApi disciplinaApi() {
+		DisciplinaApi disciplinaApi = new DisciplinaApi();
+		disciplinaApi.getApiClient().addDefaultHeader("Referer", "http://api.sifo.tech/swagger/index.html");
+		return disciplinaApi;
 	}
 }
