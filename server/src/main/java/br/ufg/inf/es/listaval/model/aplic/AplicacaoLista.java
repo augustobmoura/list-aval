@@ -28,10 +28,6 @@ public class AplicacaoLista {
 
 	private List<ResolucaoLista> resolucoes;
 
-	private LocalDateTime dataCadastro;
-
-	private String usuarioCadastro;
-
 	public AplicacaoLista(@NotNull UUID id, @NotNull Lista lista, @NotNull Turma turma) {
 		this.id = id;
 		this.lista = lista;
