@@ -22,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers("/api/login");
+		web.ignoring().antMatchers("/v3/api-docs");
 	}
 
 
