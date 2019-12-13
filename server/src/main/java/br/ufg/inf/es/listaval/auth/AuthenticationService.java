@@ -6,6 +6,7 @@ import br.ufg.inf.es.listaval.model.Docente;
 import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listelab.model.UsuarioLogado;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -48,14 +49,14 @@ public class AuthenticationService {
 		Usuario usuario = externalAuthenticate(email, senha);
 		String token = usuarioJwtService.usuarioToToken(usuario);
 
-		return new JwtTokenDTO(usuario.getAuthorities().get(0).getAuthority(), usuario.getEmail(), token);
+		return new JwtTokenDTO(usuario.getEmail(), token, usuario.getAuthorities().get(0).getAuthority());
 	}
 
 	public Usuario currentUser() {
 		final Object principal = SecurityContextHolder.getContext().getAuthentication();
 
-		if (principal instanceof Usuario) {
-			return (Usuario) principal;
+		if (principal instanceof UsernamePasswordAuthenticationToken && ((UsernamePasswordAuthenticationToken) principal).getPrincipal() instanceof Usuario) {
+			return (Usuario) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
 		}
 
 		if (principal != null) {
