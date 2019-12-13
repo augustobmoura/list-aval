@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap } from 'rxjs/operators';
-import { DefaultService, AvaliacoesResolucaoService, RespostasService, AvaliacaoLista } from '../../../../../lib/server-client/src';
+import { ApiAvaliacoesResolucaoService, ApiAvaliacoesService, AvaliacaoLista } from '../../../../../lib/server-client/src';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,23 +12,23 @@ import { Observable } from 'rxjs';
 export class MyListDetailComponent implements OnInit {
 
   avaliacao: Observable<AvaliacaoLista> = this._activedRoute.params.pipe(
-    mergeMap(params => this._defaultService.findById(+params['id'])),
+    mergeMap(params => this.apiAvaliacoesService.findByIdAvaliacoes(+params.id)),
   );
 
   avaliacoesRespostas = this._activedRoute.params.pipe(
-    mergeMap(params => this._defaultService.findAllByAvaliacaoResolucaoLista(+params['id'], {})),
+    mergeMap(params => this.apiAvaliacoesResolucaoService.findAllByAvaliacaoResolucaoLista(+params['id'])),
   );
 
   isRevision = false;
 
   constructor(
     private readonly _activedRoute: ActivatedRoute,
-    private readonly _defaultService: RespostasService,
+    private readonly apiAvaliacoesService: ApiAvaliacoesService,
+    private readonly apiAvaliacoesResolucaoService: ApiAvaliacoesResolucaoService,
   ) {
   }
 
   ngOnInit() {
-    const param = this._activedRoute.snapshot.params['id'];
   }
 
   toogleRevistion() {

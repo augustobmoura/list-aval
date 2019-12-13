@@ -1,37 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
-import { tap, filter } from 'rxjs/operators'
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
+const TOKEN_KEY = 'token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
 
-  lastUrl: string
+  lastUrl: string;
+
+  token?: string = localStorage.getItem(TOKEN_KEY) || undefined;
+  role?: 'DISCENTE' | 'DOCENTE';
 
   constructor(private route: Router) {
-    this.route.events
-    .pipe(
-      filter(e => e instanceof NavigationEnd)
-    ).subscribe((e : NavigationEnd) => this.lastUrl = e.url)
+    this.route.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+    ).subscribe((e: NavigationEnd) => this.lastUrl = e.url);
   }
 
-  get isLoggein(){
-    const token = localStorage.getItem('userValid')
-    if(!token) {
-      return false;
-    }
-    return true
+  async login(user: string, password: string) {
   }
 
-  handleLogin(path: string = this.lastUrl){
-    this.route.navigate(['/login', btoa(path)])
-  }
-
-  logOut(){
-      localStorage.removeItem("userValid")
-      this.route.navigate(['/login'])
+  logOut() {
+    localStorage.removeItem(TOKEN_KEY);
+    this.token = undefined;
+    this.role = undefined;
+    this.route.navigate(['/login']);
   }
 }

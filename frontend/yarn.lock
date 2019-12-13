@@ -4757,13 +4757,6 @@ lie@~3.3.0:
   dependencies:
     immediate "~3.0.5"
 
-listaval-client@../server-client/listaval-client-v1.0.0.tgz:
-  version "1.0.0"
-  resolved "../server-client/listaval-client-v1.0.0.tgz#fca0ed7e35db68ed7869307a2c177ae8c21e1a15"
-
-"listaval-client@file:../server-client":
-  version "1.0.0"
-
 loader-runner@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"

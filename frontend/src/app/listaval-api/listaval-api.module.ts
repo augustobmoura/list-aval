@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Configuration, DefaultService } from '../../../lib/server-client/src';
+import { Configuration } from '../../../lib/server-client/src';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -19,7 +19,6 @@ export class ListavalApiModule {
       ngModule: ListavalApiModule,
       providers: [
         { provide: Configuration, useValue: apiConfig },
-        DefaultService,
       ],
     };
   }

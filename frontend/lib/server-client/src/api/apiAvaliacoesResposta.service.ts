@@ -55,10 +55,10 @@ export class ApiAvaliacoesRespostaService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public create1(avaliacaoResposta?: AvaliacaoResposta, observe?: 'body', reportProgress?: boolean): Observable<AvaliacaoResposta>;
-    public create1(avaliacaoResposta?: AvaliacaoResposta, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AvaliacaoResposta>>;
-    public create1(avaliacaoResposta?: AvaliacaoResposta, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AvaliacaoResposta>>;
-    public create1(avaliacaoResposta?: AvaliacaoResposta, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createAvaliacoesResposta(avaliacaoResposta?: AvaliacaoResposta, observe?: 'body', reportProgress?: boolean): Observable<AvaliacaoResposta>;
+    public createAvaliacoesResposta(avaliacaoResposta?: AvaliacaoResposta, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AvaliacaoResposta>>;
+    public createAvaliacoesResposta(avaliacaoResposta?: AvaliacaoResposta, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AvaliacaoResposta>>;
+    public createAvaliacoesResposta(avaliacaoResposta?: AvaliacaoResposta, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -96,10 +96,10 @@ export class ApiAvaliacoesRespostaService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public findAll3(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAvaliacaoResposta>;
-    public findAll3(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAvaliacaoResposta>>;
-    public findAll3(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAvaliacaoResposta>>;
-    public findAll3(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public findAllAvaliacoesResposta(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAvaliacaoResposta>;
+    public findAllAvaliacoesResposta(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAvaliacaoResposta>>;
+    public findAllAvaliacoesResposta(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAvaliacaoResposta>>;
+    public findAllAvaliacoesResposta(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (pageable !== undefined && pageable !== null) {
@@ -121,6 +121,86 @@ export class ApiAvaliacoesRespostaService {
         return this.httpClient.get<PageAvaliacaoResposta>(`${this.configuration.basePath}/api/avaliacoesResposta`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * @param id 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public findByIdAvaliacoesResposta(id: number, observe?: 'body', reportProgress?: boolean): Observable<AvaliacaoResposta>;
+    public findByIdAvaliacoesResposta(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AvaliacaoResposta>>;
+    public findByIdAvaliacoesResposta(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AvaliacaoResposta>>;
+    public findByIdAvaliacoesResposta(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling findByIdAvaliacoesResposta.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        return this.httpClient.get<AvaliacaoResposta>(`${this.configuration.basePath}/api/avaliacoesResposta/${encodeURIComponent(String(id))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * @param id 
+     * @param avaliacaoResposta 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateAvaliacoesResposta(id: number, avaliacaoResposta?: AvaliacaoResposta, observe?: 'body', reportProgress?: boolean): Observable<AvaliacaoResposta>;
+    public updateAvaliacoesResposta(id: number, avaliacaoResposta?: AvaliacaoResposta, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<AvaliacaoResposta>>;
+    public updateAvaliacoesResposta(id: number, avaliacaoResposta?: AvaliacaoResposta, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<AvaliacaoResposta>>;
+    public updateAvaliacoesResposta(id: number, avaliacaoResposta?: AvaliacaoResposta, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateAvaliacoesResposta.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.put<AvaliacaoResposta>(`${this.configuration.basePath}/api/avaliacoesResposta/${encodeURIComponent(String(id))}`,
+            avaliacaoResposta,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

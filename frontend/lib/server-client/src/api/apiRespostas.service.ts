@@ -19,6 +19,7 @@ import { Observable }                                        from 'rxjs';
 
 import { PageResposta } from '../model/pageResposta';
 import { Pageable } from '../model/pageable';
+import { Resposta } from '../model/resposta';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -54,10 +55,10 @@ export class ApiRespostasService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public findAll1(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageResposta>;
-    public findAll1(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageResposta>>;
-    public findAll1(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageResposta>>;
-    public findAll1(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public findAllRespostas(pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageResposta>;
+    public findAllRespostas(pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageResposta>>;
+    public findAllRespostas(pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageResposta>>;
+    public findAllRespostas(pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (pageable !== undefined && pageable !== null) {
@@ -79,6 +80,41 @@ export class ApiRespostasService {
         return this.httpClient.get<PageResposta>(`${this.configuration.basePath}/api/respostas`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * @param id 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public findByIdRespostas(id: number, observe?: 'body', reportProgress?: boolean): Observable<Resposta>;
+    public findByIdRespostas(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Resposta>>;
+    public findByIdRespostas(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Resposta>>;
+    public findByIdRespostas(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling findByIdRespostas.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        return this.httpClient.get<Resposta>(`${this.configuration.basePath}/api/respostas/${encodeURIComponent(String(id))}`,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

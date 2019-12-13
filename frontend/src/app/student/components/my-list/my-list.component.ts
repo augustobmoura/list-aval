@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { DefaultService, AvaliacaoResolucaoLista, Turma } from '../../../../../lib/server-client/src';
+import { ApiAvaliacoesResolucaoService, AvaliacaoResolucaoLista, Turma } from '../../../../../lib/server-client/src';
 
 export interface listModel {
   title: string;
@@ -17,12 +17,12 @@ export interface listModel {
 })
 export class MyListComponent {
 
-  minhasAvaliacoes: Promise<AvaliacaoResolucaoLista[]> = this._defaultService.findAll1({}).pipe(
+  minhasAvaliacoes: Promise<AvaliacaoResolucaoLista[]> = this._defaultService.findAll().pipe(
     map(it => it.content),
   ).toPromise();
 
   constructor(
-    private readonly _defaultService: DefaultService,
+    private readonly _defaultService: ApiAvaliacoesResolucaoService,
   ) {
   }
 
