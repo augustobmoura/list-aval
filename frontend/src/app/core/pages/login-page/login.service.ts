@@ -31,6 +31,7 @@ export class LoginService {
     }).toPromise();
 
     this.token = res.token;
+    localStorage.setItem('userValid', this.token === 'DOCENTE' ? 'batata' : 'alunoVALID');
     this.role = res.role as any;
   }
 

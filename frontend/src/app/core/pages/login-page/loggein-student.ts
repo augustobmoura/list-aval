@@ -1,34 +1,36 @@
-import { CanLoad, Route, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router} from "@angular/router";
-import { Injectable } from "@angular/core";
-import { LoginService } from "./login.service";
+import { CanLoad, Route, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { LoginService } from './login.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
-export class LoggedinStudentService implements CanLoad, CanActivate{
+export class LoggedinStudentService implements CanLoad, CanActivate {
 
-  constructor(private loginService: LoginService,
-              private router: Router){}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+  ) {}
 
-  checkAthentication(path: string){
-    const token = localStorage.getItem('userValid')
-    if(!token) {
-      this.router.navigateByUrl('/login')
+  checkAthentication(path: string) {
+    const token = localStorage.getItem('userValid');
+    if (!token) {
+      this.router.navigateByUrl('/login');
       return false;
     }
-    if(token !== 'alunoVALID'){
-      this.router.navigateByUrl('/professor')
+    if (token !== 'alunoVALID') {
+      this.router.navigateByUrl('/professor');
       return false;
     }
-    return true
+    return true;
   }
 
-  canLoad(route: Route) : boolean{
-    return this.checkAthentication(route.path)
+  canLoad(route: Route): boolean {
+    return this.checkAthentication(route.path);
   }
 
-  canActivate(activatedRoute: ActivatedRouteSnapshot, routerState: RouterStateSnapshot): boolean{
-    return this.checkAthentication(routerState.url)
+  canActivate(activatedRoute: ActivatedRouteSnapshot, routerState: RouterStateSnapshot): boolean {
+    return this.checkAthentication(routerState.url);
   }
 }
