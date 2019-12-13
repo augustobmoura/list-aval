@@ -25,7 +25,7 @@ public class ListaRepository {
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public Optional<Lista> findById(UUID id) {
 		try {
-			Map resultado = (Map) listaApi.consulteListaPorId(id.toString()).getResultado();
+			Map resultado = (Map) listaApi.consultePorId(id.toString()).getResultado();
 
 			if (resultado != null) {
 				String listaId = (String) resultado.get("id");

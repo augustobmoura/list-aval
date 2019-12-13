@@ -1,22 +1,34 @@
 package br.ufg.inf.es.listaval.model;
 
+import br.ufg.inf.es.listelab.model.UsuarioLogado;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Docente extends Usuario {
 
-	public Docente(@NotNull UUID id, @NotNull String nome, @NotNull String email) {
+	public static final String DOCENTE_ROLE = "ROLE_DOCENTE";
+
+	public Docente() {
+		this.setAuthorities(new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority(DOCENTE_ROLE))));
+	}
+
+	public Docente(UsuarioLogado elabUser) {
+		super(elabUser);
+		this.setAuthorities(new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority(DOCENTE_ROLE))));
+	}
+
+	public Docente(@NotNull String id, @NotNull String nome, @NotNull String email) {
 		super(id, nome, email);
+		this.setAuthorities(new ArrayList<>(Arrays.asList(new SimpleGrantedAuthority(DOCENTE_ROLE))));
 	}
 
 }

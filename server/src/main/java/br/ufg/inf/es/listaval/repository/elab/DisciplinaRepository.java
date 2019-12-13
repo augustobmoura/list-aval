@@ -25,7 +25,7 @@ public class DisciplinaRepository {
 	private void loadDisciplinas() {
 		disciplinaByCode.clear();
 		try {
-			DtoResultadoDisciplina dtoResultadoDisciplina = this.disciplinaApi.consulteListaDisciplina();
+			DtoResultadoDisciplina dtoResultadoDisciplina = this.disciplinaApi.consulteLista();
 			List<Map> resultado = (List<Map>) dtoResultadoDisciplina.getResultado();
 
 			if (resultado != null) {

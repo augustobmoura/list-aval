@@ -1,6 +1,5 @@
 package br.ufg.inf.es.listaval.distribuidor;
 
-import br.ufg.inf.es.listaval.AvaliacaoResolucaoListaService;
 import br.ufg.inf.es.listaval.model.aplic.AplicacaoLista;
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoLista;
@@ -37,8 +36,8 @@ public class DistribuidorAvaliacoesAleatorio implements DistribuidorAvaliacoes {
 			}
 
 			AvaliacaoResolucaoLista avaliacaoResolucaoLista = new AvaliacaoResolucaoLista(
-					resolucaoLista.getId(),
-					iterator.next()
+				resolucaoLista.getId(),
+				iterator.next().toString()
 			);
 			avaliacaoResolucaoListaRepository.save(avaliacaoResolucaoLista);
 			avaliacoes.add(avaliacaoResolucaoLista);

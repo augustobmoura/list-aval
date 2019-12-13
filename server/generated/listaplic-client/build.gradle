@@ -1,9 +1,4 @@
-apply plugin: 'idea'
-apply plugin: 'eclipse'
-apply plugin: 'java'
-
-group = 'br.ufg.inf.es'
-version = '1.0.0-SNAPSHOT'
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 
 buildscript {
 	repositories {
@@ -15,6 +10,17 @@ buildscript {
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 	}
 }
+
+plugins {
+	id 'org.openapi.generator' version '4.2.1'
+}
+
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+
+group = 'br.ufg.inf.es'
+version = '1.0.0-SNAPSHOT'
 
 repositories {
 	jcenter()
@@ -40,7 +46,6 @@ task execute(type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 }
 
-
 dependencies {
 	compile 'io.swagger:swagger-annotations:1.5.22'
 	compile "com.google.code.findbugs:jsr305:3.0.2"
@@ -49,9 +54,35 @@ dependencies {
 	compile 'com.google.code.gson:gson:2.8.5'
 	compile 'io.gsonfire:gson-fire:1.8.3'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+	compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
 	testCompile 'junit:junit:4.12'
 }
 
 javadoc {
 	options.tags = ["http.response.details:a:Http Response Details"]
 }
+
+task generateClient(type: GenerateTask, group: 'build') {
+	String specFile = "$projectDir/list-aplic.json"
+
+	inputs.file(specFile)
+	outputs.dir("$projectDir/src")
+
+	generatorName = 'java'
+	inputSpec = specFile
+	outputDir = "$projectDir"
+	apiPackage = 'br.ufg.inf.es.listaplic'
+	invokerPackage = 'br.ufg.inf.es.listaplic.invoker'
+	modelPackage = 'br.ufg.inf.es.listaplic.model'
+	version = '1.0.0-SNAPSHOT'
+	additionalProperties = [
+			groupId                : 'br.ufg.inf.es',
+			artifactId             : 'listaplic-client',
+			hideGenerationTimestamp: 'true',
+	]
+	configOptions = [
+			dateLibrary: 'java8'
+	]
+}
+
+compileJava.dependsOn generateClient

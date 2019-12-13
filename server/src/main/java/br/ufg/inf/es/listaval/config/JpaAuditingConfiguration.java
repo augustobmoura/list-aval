@@ -1,5 +1,7 @@
 package br.ufg.inf.es.listaval.config;
 
+import br.ufg.inf.es.listaval.auth.AuthenticationService;
+import br.ufg.inf.es.listaval.model.Usuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -15,10 +17,12 @@ public class JpaAuditingConfiguration {
 	}
 
 	@Bean
-	public AuditorAware<String> auditorProvider() {
-        /*
-          TODO: Mudar para SecurityContextHolder.getContext().getAuthentication().getName()
-         */
-		return () -> Optional.of("admin@ufg.br");
+	public AuditorAware<String> auditorProvider(final AuthenticationService authenticationService) {
+		//noinspection SimplifyOptionalCallChains
+		return () -> Optional.ofNullable(authenticationService.currentUser())
+			.map(Usuario::getNome)
+			.map(Optional::of)
+			.orElse(Optional.of("anonymous"));
 	}
+
 }

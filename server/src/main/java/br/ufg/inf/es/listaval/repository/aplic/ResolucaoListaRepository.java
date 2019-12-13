@@ -62,17 +62,17 @@ public class ResolucaoListaRepository {
 		Set<Discente> discentes = aplicacaoLista.getTurma().getDiscentes();
 
 		discentes.forEach(discente -> {
-			List<ResolucaoLista> resolucaoListas = getPendingListsByStudentUsingGET(aplicacaoLista.getTurma().getId(), discente.getId())
-					.stream()
-					.filter(testList -> Objects.equals(testList.getListApplicationId(), aplicacaoLista.getId()))
-					.map(testList -> {
-						ResolucaoLista resolucaoLista = new ResolucaoLista(UUID.randomUUID(), aplicacaoLista, discente);
+			List<ResolucaoLista> resolucaoListas = getPendingListsByStudentUsingGET(aplicacaoLista.getTurma().getId(), UUID.fromString(discente.getId()))
+				.stream()
+				.filter(testList -> Objects.equals(testList.getListApplicationId(), aplicacaoLista.getId()))
+				.map(testList -> {
+					ResolucaoLista resolucaoLista = new ResolucaoLista(UUID.randomUUID(), aplicacaoLista, discente);
 
-						List<Resposta> respostas = testList.getQuestions().stream()
-								.filter(question -> question.getType() == Question.TypeEnum.DISCURSIVE)
-								.map(question -> {
-									Questao questao = questoesPorId.get(question.getId());
-									return new Resposta(questao.getId(), new ResolucaoLista(resolucaoLista.getId()), questao, question.getAnswer());
+					List<Resposta> respostas = testList.getQuestions().stream()
+						.filter(question -> question.getType() == Question.TypeEnum.DISCURSIVE)
+						.map(question -> {
+							Questao questao = questoesPorId.get(question.getId());
+							return new Resposta(questao.getId(), new ResolucaoLista(resolucaoLista.getId()), questao, question.getAnswer());
 								}).collect(Collectors.toList());
 
 						resolucaoLista.setRespostas(respostas);
