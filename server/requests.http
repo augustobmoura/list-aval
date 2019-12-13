@@ -1,5 +1,15 @@
 ###
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+{
+  "email": "professor@ufg.br",
+  "senha": "123456"
+}
+
+###
 GET http://localhost:8080/api/resolucoes
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyRGV0YWlscyI6IntcImR0eXBlXCI6XCJEb2NlbnRlXCIsXCJpZFwiOlwiNWQ5ZjYzMDk2NzQxZTYzOTFjMzM2YWZhXCIsXCJub21lXCI6XCJwcm9mZXNzb3JAdWZnLmJyXCIsXCJlbWFpbFwiOlwicHJvZmVzc29yQHVmZy5iclwiLFwic2VuaGFcIjpudWxsLFwiYXV0aG9yaXRpZXNcIjpbe1wiYXV0aG9yaXR5XCI6XCJST0xFX0RPQ0VOVEVcIn1dLFwidXNlcm5hbWVcIjpcInByb2Zlc3NvckB1ZmcuYnJcIixcInBhc3N3b3JkXCI6bnVsbCxcImVuYWJsZWRcIjp0cnVlLFwiYWNjb3VudE5vbkV4cGlyZWRcIjp0cnVlLFwiY3JlZGVudGlhbHNOb25FeHBpcmVkXCI6dHJ1ZSxcImFjY291bnROb25Mb2NrZWRcIjp0cnVlfSJ9.sht8LjWm1h0VzWZmd2xUfDT9pgrN49dTvCFCIXVy38E
 
 ### Cria avaliaçao para uma resoluçao
 POST http://localhost:8080/api/avaliacoesResolucao

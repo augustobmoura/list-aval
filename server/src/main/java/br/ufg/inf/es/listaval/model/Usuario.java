@@ -13,11 +13,11 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(of = { "nome", "email" })
+@EqualsAndHashCode(of = {"nome", "email"})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "dtype")
 @JsonSubTypes({
-	@JsonSubTypes.Type(value = Discente.class, name = "Discente"),
-	@JsonSubTypes.Type(value = Docente.class, name = "Docente")
+		@JsonSubTypes.Type(value = Discente.class, name = "Discente"),
+		@JsonSubTypes.Type(value = Docente.class, name = "Docente")
 })
 public abstract class Usuario implements UserDetails {
 

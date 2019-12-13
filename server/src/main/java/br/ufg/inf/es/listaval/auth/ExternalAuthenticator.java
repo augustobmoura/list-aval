@@ -5,6 +5,7 @@ import br.ufg.inf.es.listelab.invoker.ApiException;
 import br.ufg.inf.es.listelab.model.DtoResultadoUsuario;
 import br.ufg.inf.es.listelab.model.Login;
 import br.ufg.inf.es.listelab.model.UsuarioLogado;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -22,22 +23,22 @@ public class ExternalAuthenticator implements Authenticator<UsuarioLogado> {
 	public Optional<UsuarioLogado> authenticate(String login, String password) {
 		try {
 			final DtoResultadoUsuario resultadoUsuario = usuarioApi.cadastre(
-				new Login()
-					.email(login)
-					.password(password)
+					new Login()
+							.email(login)
+							.password(password)
 			);
 
 			final Boolean sucesso = resultadoUsuario.getSucesso();
 
 			return sucesso != null && sucesso
-				? Optional.ofNullable(resultadoUsuario.getResultado())
-				: Optional.empty();
+					? Optional.ofNullable(resultadoUsuario.getResultado())
+					: Optional.empty();
 		} catch (final ApiException e) {
 			if (e.getCode() == 400) {
 				return Optional.empty();
 			}
 
-			throw new RuntimeException("Erro ao logar", e);
+			throw new AuthenticationServiceException("Erro ao logar", e);
 		}
 	}
 

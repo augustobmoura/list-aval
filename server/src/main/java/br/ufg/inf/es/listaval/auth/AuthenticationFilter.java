@@ -20,14 +20,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class AuthenitcationFilter extends OncePerRequestFilter {
+public class AuthenticationFilter extends OncePerRequestFilter {
 
 	private static final String AUTHORIZATION_HEADER_NAME = "Auhtorization";
 	private static final Pattern BEARER_PATTERN = Pattern.compile("Bearer\\s+(.*)$");
 
 	private final UsuarioJwtService jwtService;
 
-	public AuthenitcationFilter(final UsuarioJwtService jwtService) {
+	public AuthenticationFilter(final UsuarioJwtService jwtService) {
 		this.jwtService = jwtService;
 	}
 

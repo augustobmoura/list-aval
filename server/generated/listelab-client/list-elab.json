@@ -1733,6 +1733,10 @@
                 },
                 "token": {
                     "type": "string"
+                },
+                "role": {
+                    "type": "number",
+                    "format": "int32"
                 }
             }
         },
