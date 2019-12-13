@@ -1,5 +1,6 @@
 package br.ufg.inf.es.listaval;
 
+import br.ufg.inf.es.listaval.auth.AuthenticationService;
 import br.ufg.inf.es.listaval.dto.AvaliacaoResolucaoListaDTO;
 import br.ufg.inf.es.listaval.model.Docente;
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
@@ -11,20 +12,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AvaliacaoResolucaoListaService {
 
 	private final AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository;
 	private final ResolucaoListaRepository resolucaoListaRepository;
+	private final AuthenticationService authenticationService;
 
 	public AvaliacaoResolucaoListaService(
-			AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository,
-			ResolucaoListaRepository resolucaoListaRepository
+		AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository,
+		ResolucaoListaRepository resolucaoListaRepository,
+		AuthenticationService authenticationService
 	) {
 		this.avaliacaoResolucaoListaRepository = avaliacaoResolucaoListaRepository;
 		this.resolucaoListaRepository = resolucaoListaRepository;
+		this.authenticationService = authenticationService;
 	}
 
 	public Page<AvaliacaoResolucaoListaDTO> findAll(Pageable pageable) {
@@ -33,25 +36,19 @@ public class AvaliacaoResolucaoListaService {
 	}
 
 	public Page<AvaliacaoResolucaoListaDTO> findAllMinhasListas(Pageable pageable) {
-		// TODO: Filtrar avaliaçoes do usuario logado
-		UUID discenteId = UUID.fromString("585c69cd-c9e1-46f3-9135-cf1939cf5d48");
-
-		Page<AvaliacaoResolucaoLista> minhasAvaliacoes = avaliacaoResolucaoListaRepository.findAllByPublicadaAndDiscenteId(true, discenteId, pageable);
+		Page<AvaliacaoResolucaoLista> minhasAvaliacoes = avaliacaoResolucaoListaRepository.findAllByPublicadaAndDiscenteId(true, authenticationService.currentUser().getId(), pageable);
 
 		return convertPageToDTO(minhasAvaliacoes);
 	}
 
 	public Page<AvaliacaoResolucaoListaDTO> findAllListasParaAvaliar(Pageable pageable) {
-		// TODO: Filtrar avaliaçoes do usuario logado
-		UUID avaliadorId = UUID.fromString("585c69cd-c9e1-46f3-9135-cf1939cf5d48");
-
-		Page<AvaliacaoResolucaoLista> paraAvaliar = avaliacaoResolucaoListaRepository.findAllByAvaliadorId(avaliadorId, pageable);
+		Page<AvaliacaoResolucaoLista> paraAvaliar = avaliacaoResolucaoListaRepository.findAllByAvaliadorId(authenticationService.currentUser().getId(), pageable);
 		return convertPageToDTO(paraAvaliar);
 	}
 
 	public Optional<AvaliacaoResolucaoListaDTO> findById(Long id) {
 		return avaliacaoResolucaoListaRepository.findById(id)
-				.map(this::convertAvaliacaoToDTO);
+			.map(this::convertAvaliacaoToDTO);
 	}
 
 	public AvaliacaoResolucaoListaDTO save(AvaliacaoResolucaoListaDTO dto) {
@@ -102,9 +99,9 @@ public class AvaliacaoResolucaoListaService {
 		Docente docente = new Docente(avaliacao.getAvaliadorId(), "", "");
 
 		return new AvaliacaoResolucaoListaDTO(
-				resolucaoLista,
-				docente,
-				avaliacao
+			resolucaoLista,
+			docente,
+			avaliacao
 		);
 	}
 }
