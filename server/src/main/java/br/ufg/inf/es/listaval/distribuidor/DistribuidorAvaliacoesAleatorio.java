@@ -6,6 +6,7 @@ import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoLista;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
 import br.ufg.inf.es.listaval.model.aval.CriterioAvaliacao;
+import br.ufg.inf.es.listaval.repository.aval.AvaliacaoResolucaoListaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -13,10 +14,10 @@ import java.util.*;
 @Component
 public class DistribuidorAvaliacoesAleatorio implements DistribuidorAvaliacoes {
 
-	private AvaliacaoResolucaoListaService avaliacaoResolucaoListaService;
+	private AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository;
 
-	public DistribuidorAvaliacoesAleatorio(AvaliacaoResolucaoListaService avaliacaoResolucaoListaService) {
-		this.avaliacaoResolucaoListaService = avaliacaoResolucaoListaService;
+	public DistribuidorAvaliacoesAleatorio(AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository) {
+		this.avaliacaoResolucaoListaRepository = avaliacaoResolucaoListaRepository;
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class DistribuidorAvaliacoesAleatorio implements DistribuidorAvaliacoes {
 					resolucaoLista.getId(),
 					iterator.next()
 			);
-			avaliacaoResolucaoListaService.save(avaliacaoResolucaoLista);
+			avaliacaoResolucaoListaRepository.save(avaliacaoResolucaoLista);
 			avaliacoes.add(avaliacaoResolucaoLista);
 		}
 

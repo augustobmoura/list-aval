@@ -24,9 +24,9 @@ public class ResolucaoLista {
 
 	private List<Resposta> respostas;
 
-	private LocalDateTime dataCadastro;
-
-	private LocalDateTime dataAlteracao;
+	public ResolucaoLista(UUID id) {
+		this.id = id;
+	}
 
 	public ResolucaoLista(UUID id, AplicacaoLista aplicacaoLista, Discente discente) {
 		this.id = id;

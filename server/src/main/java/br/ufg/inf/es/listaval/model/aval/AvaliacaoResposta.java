@@ -23,23 +23,19 @@ public class AvaliacaoResposta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotNull
 	@ManyToOne
 	@JoinColumn
 	private AvaliacaoResolucaoLista avaliacaoResolucaoLista;
 
-	@NotNull
 	private UUID respostaId;
 
-	@NotNull
 	private UUID avaliadorId;
 
 	private String comentario;
 
 	private Float nota;
 
-	@NotNull
-	private Boolean publicada;
+	private Boolean publicada = false;
 
 	@CreatedDate
 	private LocalDateTime dataCadastro;

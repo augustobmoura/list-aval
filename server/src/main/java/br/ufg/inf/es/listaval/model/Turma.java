@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Turma {
 
-	private Long id;
+	private UUID id;
 
 	@NotNull
 	private Disciplina disciplina;
@@ -27,7 +28,8 @@ public class Turma {
 
 	private Set<Discente> discentes;
 
-	public Turma(@NotNull Disciplina disciplina, @NotNull String semestre, @NotNull Docente docente) {
+	public Turma(@NotNull UUID id, @NotNull Disciplina disciplina, @NotNull String semestre, @NotNull Docente docente) {
+		this.id = id;
 		this.disciplina = disciplina;
 		this.semestre = semestre;
 		this.docente = docente;

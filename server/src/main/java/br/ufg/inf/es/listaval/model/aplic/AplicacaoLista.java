@@ -7,11 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(of = {"lista", "turma"})
 public class AplicacaoLista {
 
-	private Long id;
+	private UUID id;
 
 	@NotNull
 	private Lista lista;
@@ -29,11 +28,8 @@ public class AplicacaoLista {
 
 	private List<ResolucaoLista> resolucoes;
 
-	private LocalDateTime dataCadastro;
-
-	private String usuarioCadastro;
-
-	public AplicacaoLista(@NotNull Lista lista, @NotNull Turma turma) {
+	public AplicacaoLista(@NotNull UUID id, @NotNull Lista lista, @NotNull Turma turma) {
+		this.id = id;
 		this.lista = lista;
 		this.turma = turma;
 	}

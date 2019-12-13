@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -22,14 +21,6 @@ public class Questao {
 	private AreaConhecimento areaConhecimento;
 
 	private String[] palavrasChave;
-
-	private LocalDateTime dataCadastro;
-
-	private String usuarioCadastro;
-
-	private LocalDateTime dataAlteracao;
-
-	private String usuarioAlteracao;
 
 	public Questao(UUID id, @NotNull String enunciado, @NotNull AreaConhecimento areaConhecimento) {
 		this.id = id;

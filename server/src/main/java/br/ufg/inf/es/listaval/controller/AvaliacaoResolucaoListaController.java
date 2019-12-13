@@ -1,7 +1,7 @@
 package br.ufg.inf.es.listaval.controller;
 
 import br.ufg.inf.es.listaval.AvaliacaoResolucaoListaService;
-import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
+import br.ufg.inf.es.listaval.dto.AvaliacaoResolucaoListaDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -20,36 +20,36 @@ public class AvaliacaoResolucaoListaController {
 	}
 
 	@GetMapping
-	public Page<AvaliacaoResolucaoLista> findAll(Pageable pageable) {
+	public Page<AvaliacaoResolucaoListaDTO> findAll(Pageable pageable) {
 		return avaliacaoResolucaoListaService.findAll(pageable);
 	}
 
 	@GetMapping("/minhas")
-	public Page<AvaliacaoResolucaoLista> listMinhasListas(Pageable pageable) {
+	public Page<AvaliacaoResolucaoListaDTO> listMinhasListas(Pageable pageable) {
 		return avaliacaoResolucaoListaService.findAllMinhasListas(pageable);
 	}
 
 	@GetMapping("/paraAvaliar")
-	public Page<AvaliacaoResolucaoLista> listListasParaAvaliar(Pageable pageable) {
+	public Page<AvaliacaoResolucaoListaDTO> listListasParaAvaliar(Pageable pageable) {
 		return avaliacaoResolucaoListaService.findAllListasParaAvaliar(pageable);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<AvaliacaoResolucaoLista> findById(@PathVariable("id") Long id) {
+	public ResponseEntity<AvaliacaoResolucaoListaDTO> findById(@PathVariable("id") Long id) {
 		return avaliacaoResolucaoListaService.findById(id)
-			.map(record -> ResponseEntity.ok().body(record))
-			.orElse(ResponseEntity.notFound().build());
+				.map(record -> ResponseEntity.ok().body(record))
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping
-	public AvaliacaoResolucaoLista create(@Valid @RequestBody AvaliacaoResolucaoLista avaliacaoResolucaoLista) {
+	public AvaliacaoResolucaoListaDTO create(@Valid @RequestBody AvaliacaoResolucaoListaDTO avaliacaoResolucaoLista) {
 		return avaliacaoResolucaoListaService.save(avaliacaoResolucaoLista);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<AvaliacaoResolucaoLista> update(@PathVariable("id") Long id, @Valid @RequestBody AvaliacaoResolucaoLista avaliacaoResolucaoLista) {
+	public ResponseEntity<AvaliacaoResolucaoListaDTO> update(@PathVariable("id") Long id, @Valid @RequestBody AvaliacaoResolucaoListaDTO avaliacaoResolucaoLista) {
 		return avaliacaoResolucaoListaService.update(id, avaliacaoResolucaoLista)
-			.map(record -> ResponseEntity.ok().body(record))
-			.orElse(ResponseEntity.notFound().build());
+				.map(record -> ResponseEntity.ok().body(record))
+				.orElse(ResponseEntity.notFound().build());
 	}
 }

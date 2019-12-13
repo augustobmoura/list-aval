@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -24,11 +23,8 @@ public class Resposta {
 
 	private String conteudo;
 
-	private LocalDateTime dataCadastro;
-
-	private LocalDateTime dataAlteracao;
-
-	public Resposta(@NotNull ResolucaoLista resolucaoLista, @NotNull Questao questao, @NotNull String conteudo) {
+	public Resposta(@NotNull UUID id, @NotNull ResolucaoLista resolucaoLista, @NotNull Questao questao, @NotNull String conteudo) {
+		this.id = id;
 		this.resolucaoLista = resolucaoLista;
 		this.questao = questao;
 		this.conteudo = conteudo;
