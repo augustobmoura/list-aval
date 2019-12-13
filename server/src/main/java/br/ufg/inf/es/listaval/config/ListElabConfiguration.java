@@ -12,6 +12,9 @@ public class ListElabConfiguration {
 	ApiClient listElabApiClient() {
 		ApiClient apiClient = new ApiClient();
 		apiClient.setBasePath("http://api.sifo.tech");
+
+		br.ufg.inf.es.listelab.invoker.Configuration.setDefaultApiClient(apiClient);
+
 		return apiClient;
 	}
 

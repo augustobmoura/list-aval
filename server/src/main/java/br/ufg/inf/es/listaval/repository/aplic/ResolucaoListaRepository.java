@@ -11,7 +11,6 @@ import br.ufg.inf.es.listaval.model.Turma;
 import br.ufg.inf.es.listaval.model.aplic.AplicacaoLista;
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import br.ufg.inf.es.listaval.model.aplic.Resposta;
-import br.ufg.inf.es.listaval.model.elab.AreaConhecimento;
 import br.ufg.inf.es.listaval.model.elab.Lista;
 import br.ufg.inf.es.listaval.model.elab.Questao;
 import br.ufg.inf.es.listaval.repository.elab.ListaRepository;
@@ -46,7 +45,7 @@ public class ResolucaoListaRepository {
 		try {
 			UUID classroomId = CLASSROOM_ID;
 			Classroom classroom = this.classroomControllerApi.findByIdUsingGET(classroomId);
-			Docente docente = new Docente(classroomId, "Professor Pasquale", "pasquale@ufg.br");
+			Docente docente = new Docente(classroomId.toString(), "Professor Pasquale", "pasquale@ufg.br");
 			Disciplina disciplina = new Disciplina(classroom.getName());
 			Turma turma = new Turma(disciplina, "2019/2", docente);
 
@@ -75,17 +74,17 @@ public class ResolucaoListaRepository {
 			List<Student> studentList = application.getStudentList();
 
 			studentList.forEach(student -> {
-				Discente discente = new Discente(student.getId(), student.getName(), student.getEmail());
+				Discente discente = new Discente(student.getId().toString(), student.getName(), student.getEmail());
 
 				List<ResolucaoLista> resolucaoListas = getPendingListsByStudentUsingGET(classroomId, student).stream().filter(testList -> Objects.equals(testList.getListApplicationId(), application.getId()))
-						.map(testList -> {
-							List<Resposta> respostas = testList.getQuestions().stream()
-									.filter(question -> question.getType() == Question.TypeEnum.DISCURSIVE)
-									.map(question -> {
-										Questao questao = questoesPorId.get(question.getId()).get(0);
-										return new Resposta(null, questao, question.getAnswer());
-									})
-									.collect(Collectors.toList());
+					.map(testList -> {
+						List<Resposta> respostas = testList.getQuestions().stream()
+							.filter(question -> question.getType() == Question.TypeEnum.DISCURSIVE)
+							.map(question -> {
+								Questao questao = questoesPorId.get(question.getId()).get(0);
+								return new Resposta(null, questao, question.getAnswer());
+							})
+							.collect(Collectors.toList());
 
 							AplicacaoLista aplicacaoLista = new AplicacaoLista(lista.get(), turma);
 
@@ -113,7 +112,7 @@ public class ResolucaoListaRepository {
 		try {
 			UUID classroomId = CLASSROOM_ID;
 			Classroom classroom = this.classroomControllerApi.findByIdUsingGET(classroomId);
-			Docente docente = new Docente(classroomId, "Professor Pasquale", "pasquale@ufg.br");
+			Docente docente = new Docente(classroomId.toString(), "Professor Pasquale", "pasquale@ufg.br");
 			Disciplina disciplina = new Disciplina(classroom.getName());
 			Turma turma = new Turma(disciplina, "2019/2", docente);
 

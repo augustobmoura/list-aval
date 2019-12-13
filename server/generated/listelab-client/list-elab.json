@@ -1062,7 +1062,7 @@
                     "Usuario"
                 ],
                 "summary": "Realiza login.",
-                "operationId": "login",
+                "operationId": "Cadastre",
                 "consumes": [
                     "application/json-patch+json",
                     "application/json",
@@ -1081,7 +1081,7 @@
                         "description": "O usu\u00e1rio buscando autentica\u00e7\u00e3o.",
                         "required": false,
                         "schema": {
-                            "$ref": "#/definitions/Usuario"
+                            "$ref": "#/definitions/Login"
                         }
                     }
                 ],
@@ -1711,13 +1711,27 @@
                 }
             }
         },
-        "Usuario": {
+        "Login": {
             "type": "object",
             "properties": {
                 "email": {
                     "type": "string"
                 },
                 "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "UsuarioLogado": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "token": {
                     "type": "string"
                 }
             }
@@ -1739,7 +1753,7 @@
                     "type": "boolean"
                 },
                 "resultado": {
-                    "$ref": "#/definitions/Usuario"
+                    "$ref": "#/definitions/UsuarioLogado"
                 }
             }
         }

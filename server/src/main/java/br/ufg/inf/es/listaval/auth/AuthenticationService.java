@@ -1,14 +1,22 @@
 package br.ufg.inf.es.listaval.auth;
 
+import br.ufg.inf.es.listaval.model.Usuario;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AuthenticationService {
 
-	private final SecretProvider secretProvider;
+	public Usuario currentUser() {
+		final Object principal = SecurityContextHolder.getContext().getAuthentication();
 
-	public AuthenticationService(final SecretProvider secretProvider) {
-		this.secretProvider = secretProvider;
+		if (principal instanceof Usuario) { return (Usuario) principal; }
+
+		if (principal != null) {
+			throw new IllegalStateException("Objeto autenticado não implementa a classe Usuário");
+		}
+
+		return null;
 	}
 
 }

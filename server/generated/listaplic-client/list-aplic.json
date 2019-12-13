@@ -347,7 +347,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/List"
+                                "$ref": "#/definitions/TestList"
                             }
                         }
                     }
@@ -375,7 +375,7 @@
                         "description": "listDTO",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/List"
+                            "$ref": "#/definitions/TestList"
                         }
                     },
                     {
@@ -581,7 +581,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/List"
+                                "$ref": "#/definitions/TestList"
                             }
                         }
                     }
@@ -1191,7 +1191,7 @@
             "title": "Enrollment",
             "description": "Model of a Enrollment."
         },
-        "List": {
+        "TestList": {
             "type": "object",
             "properties": {
                 "answerTime": {
@@ -1575,6 +1575,9 @@
                 }
             },
             "title": "Timestamp"
+        },
+        "Login": {
+            "type": "object"
         },
         "User": {
             "type": "object",

@@ -1,4 +1,8 @@
 gradle/**/*
 gradlew
 gradlew.bat
+src/test
 build.gradle
+gradle.properties
+.gitignore
+settings.gradle
