@@ -219,7 +219,7 @@ public class JSON {
 					if (date.endsWith("+0000")) {
 						date = date.substring(0, date.length() - 5) + "Z";
 					}
-					return OffsetDateTime.parse(date, formatter);
+					return OffsetDateTime.parse(date + ".000-03:00", formatter);
 			}
 		}
 	}
