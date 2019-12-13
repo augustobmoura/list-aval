@@ -10,9 +10,11 @@ import lombok.Setter;
 public class JwtTokenDTO {
 	private String email;
 	private String token;
+	private String role;
 
-	public JwtTokenDTO(String email, String token) {
+	public JwtTokenDTO(String email, String token, String role) {
 		this.email = email;
 		this.token = token;
+		this.role = role;
 	}
 }

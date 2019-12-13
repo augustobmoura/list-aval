@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 @Component
 public class AuthenticationFilter extends OncePerRequestFilter {
 
-	private static final String AUTHORIZATION_HEADER_NAME = "Auhtorization";
+	private static final String AUTHORIZATION_HEADER_NAME = "Authorization";
 	private static final Pattern BEARER_PATTERN = Pattern.compile("Bearer\\s+(.*)$");
 
 	private final UsuarioJwtService jwtService;
@@ -33,17 +33,17 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(
-		final HttpServletRequest request,
-		final HttpServletResponse response,
-		final FilterChain filterChain
+			final HttpServletRequest request,
+			final HttpServletResponse response,
+			final FilterChain filterChain
 	) throws ServletException, IOException {
 		final SecurityContext securityContext = SecurityContextHolder.getContext();
 
 		extractAuthorizationHeader(request)
-			.flatMap(this::extractBearerTokenFromAuthorization)
-			.flatMap(this::extractUsuarioFromJwtToken)
-			.map(usuarioToAuthentication(request))
-			.ifPresent(securityContext::setAuthentication);
+				.flatMap(this::extractBearerTokenFromAuthorization)
+				.flatMap(this::extractUsuarioFromJwtToken)
+				.map(usuarioToAuthentication(request))
+				.ifPresent(securityContext::setAuthentication);
 
 		filterChain.doFilter(request, response);
 	}
@@ -57,8 +57,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 		final Matcher bearerMatcher = BEARER_PATTERN.matcher(normalizedAuth);
 
 		return bearerMatcher.matches()
-			? Optional.of(bearerMatcher.group(1))
-			: Optional.empty();
+				? Optional.of(bearerMatcher.group(1))
+				: Optional.empty();
 	}
 
 	private Optional<Usuario> extractUsuarioFromJwtToken(final String token) {
@@ -68,11 +68,11 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 	private Function<Usuario, Authentication> usuarioToAuthentication(final HttpServletRequest request) {
 		return (final Usuario usuario) -> {
 			final UsernamePasswordAuthenticationToken auth =
-				new UsernamePasswordAuthenticationToken(
-					usuario,
-					null,
-					usuario.getAuthorities()
-				);
+					new UsernamePasswordAuthenticationToken(
+							usuario,
+							null,
+							usuario.getAuthorities()
+					);
 
 			auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 

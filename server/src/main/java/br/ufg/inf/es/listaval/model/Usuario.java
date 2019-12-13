@@ -6,9 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +33,17 @@ public abstract class Usuario implements UserDetails {
 
 	private String senha;
 
+	private List<SimpleGrantedAuthority> authorities;
+
+	private String password;
+
+	private String username;
+
+	private boolean accountNonExpired = true;
+	private boolean accountNonLocked = true;
+	private boolean credentialsNonExpired = true;
+	private boolean enabled = true;
+
 	public Usuario(br.ufg.inf.es.listelab.model.UsuarioLogado elabUser) {
 		this(elabUser.getId(), elabUser.getEmail(), elabUser.getEmail());
 	}
@@ -49,26 +62,6 @@ public abstract class Usuario implements UserDetails {
 	@Override
 	public String getUsername() {
 		return getEmail();
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
 	}
 
 }

@@ -48,7 +48,7 @@ public class AuthenticationService {
 		Usuario usuario = externalAuthenticate(email, senha);
 		String token = usuarioJwtService.usuarioToToken(usuario);
 
-		return new JwtTokenDTO(usuario.getEmail(), token);
+		return new JwtTokenDTO(usuario.getAuthorities().get(0).getAuthority(), usuario.getEmail(), token);
 	}
 
 	public Usuario currentUser() {
