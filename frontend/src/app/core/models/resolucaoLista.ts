@@ -15,9 +15,11 @@ import { AplicacaoLista } from './aplicacaoLista';
 
 
 export interface ResolucaoLista {
-  id?: string;
-  aplicacaoLista?: AplicacaoLista;
-  discente?: Discente;
+  id?: number;
+  aplicacaoLista: AplicacaoLista;
+  discente: Discente;
   respostas?: Array<Resposta>;
+  dataCadastro?: Date;
+  dataAlteracao?: Date;
 }
 

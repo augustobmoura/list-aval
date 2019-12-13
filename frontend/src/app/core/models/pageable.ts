@@ -9,15 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Resposta } from './resposta';
-import { Discente } from './discente';
-import { AplicacaoLista } from './aplicacaoLista';
+import { Sort } from './sort';
 
 
-export interface ResolucaoLista {
-  id?: string;
-  aplicacaoLista?: AplicacaoLista;
-  discente?: Discente;
-  respostas?: Array<Resposta>;
+export interface Pageable {
+  paged?: boolean;
+  unpaged?: boolean;
+  pageNumber?: number;
+  pageSize?: number;
+  offset?: number;
+  sort?: Sort;
 }
 

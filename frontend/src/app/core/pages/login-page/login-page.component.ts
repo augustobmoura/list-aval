@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { AlertService } from 'ngx-alerts';
 
@@ -17,6 +17,7 @@ export class LoginPageComponent implements OnInit {
     private fb: FormBuilder,
     private route: Router,
     private loginService: LoginService,
+    private alertService: AlertService,
   ) {
     this.loginForm = fb.group({
       email: ['', Validators.required],
@@ -32,7 +33,15 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
+    const { email, password } = this.loginForm.value;
+
+    try {
+      await this.loginService.login(email, password);
+    } catch (e) {
+      console.log(e);
+      this.alertService.danger(`Erro ao logar: ${e}`);
+    }
   }
 
 }

@@ -6,8 +6,10 @@ import { AlertModule } from 'ngx-alerts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { ListavalApiModule } from './listaval-api/listaval-api.module';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { ApiModule, Configuration } from '../../lib/server-client/src';
+
+export const apiConfig: Configuration = new Configuration({ basePath: '' });
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     BrowserAnimationsModule,
     CoreModule,
     AlertModule.forRoot({ maxMessages: 5, timeout: 5000, position: 'right' }),
-    ListavalApiModule.forRoot(),
+    ApiModule.forRoot(() => apiConfig),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -9,15 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Resposta } from './resposta';
-import { Discente } from './discente';
-import { AplicacaoLista } from './aplicacaoLista';
 
 
-export interface ResolucaoLista {
-  id?: string;
-  aplicacaoLista?: AplicacaoLista;
-  discente?: Discente;
-  respostas?: Array<Resposta>;
+export interface Usuario {
+  id?: number;
+  nome: string;
+  email: string;
+  senha?: string;
+  dtype: string;
 }
 

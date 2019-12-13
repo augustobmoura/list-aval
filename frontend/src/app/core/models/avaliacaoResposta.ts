@@ -10,14 +10,19 @@
  * Do not edit the class manually.
  */
 import { Resposta } from './resposta';
-import { Discente } from './discente';
-import { AplicacaoLista } from './aplicacaoLista';
+import { Usuario } from './usuario';
+import { AvaliacaoResolucaoLista } from './avaliacaoResolucaoLista';
 
 
-export interface ResolucaoLista {
-  id?: string;
-  aplicacaoLista?: AplicacaoLista;
-  discente?: Discente;
-  respostas?: Array<Resposta>;
+export interface AvaliacaoResposta {
+  id?: number;
+  avaliacaoResolucaoLista: AvaliacaoResolucaoLista;
+  resposta: Resposta;
+  avaliador: Usuario;
+  comentario?: string;
+  nota?: number;
+  publicada: boolean;
+  dataCadastro?: Date;
+  dataAlteracao?: Date;
 }
 

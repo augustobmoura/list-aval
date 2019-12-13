@@ -9,15 +9,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Usuario } from './usuario';
+import { ResolucaoLista } from './resolucaoLista';
+import { AvaliacaoResposta } from './avaliacaoResposta';
 
 
 export interface AvaliacaoResolucaoLista {
   id?: number;
-  resolucaoListaId?: string;
-  discenteId?: string;
-  avaliadorId?: string;
+  resolucaoLista: ResolucaoLista;
+  avaliador: Usuario;
   publicada?: boolean;
   nota?: number;
+  avaliacoesRespostas?: Array<AvaliacaoResposta>;
   dataCadastro?: Date;
   usuarioCadastro?: string;
   dataAlteracao?: Date;

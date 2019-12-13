@@ -9,26 +9,28 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Usuario } from './usuario';
+import { AplicacaoLista } from './aplicacaoLista';
 
 
 export interface AvaliacaoLista {
   id?: number;
-  aplicacaoListaId: string;
-  avaliadores?: Array<string>;
+  aplicacaoLista: AplicacaoLista;
+  avaliadores?: Array<Usuario>;
   criterioAvaliacao: AvaliacaoLista.CriterioAvaliacaoEnum;
-  distribuida: boolean;
   dataCadastro?: Date;
   usuarioCadastro?: string;
   dataAlteracao?: Date;
   usuarioAlteracao?: string;
 }
+
 export namespace AvaliacaoLista {
-    export type CriterioAvaliacaoEnum = 'MESA_REDONDA' | 'FIFO' | 'RANDOMICO';
-    export const CriterioAvaliacaoEnum = {
-        MESAREDONDA: 'MESA_REDONDA' as CriterioAvaliacaoEnum,
-        FIFO: 'FIFO' as CriterioAvaliacaoEnum,
-        RANDOMICO: 'RANDOMICO' as CriterioAvaliacaoEnum
-    };
+  export type CriterioAvaliacaoEnum = 'MESA_REDONDA' | 'FIFO' | 'RANDOMICO';
+  export const CriterioAvaliacaoEnum = {
+    MESAREDONDA: 'MESA_REDONDA' as CriterioAvaliacaoEnum,
+    FIFO: 'FIFO' as CriterioAvaliacaoEnum,
+    RANDOMICO: 'RANDOMICO' as CriterioAvaliacaoEnum,
+  };
 }
 
 

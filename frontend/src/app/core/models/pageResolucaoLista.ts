@@ -9,15 +9,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Pageable } from './pageable';
 import { Sort } from './sort';
+import { ResolucaoLista } from './resolucaoLista';
 
 
-export interface Pageable {
+export interface PageResolucaoLista {
+  totalPages?: number;
+  totalElements?: number;
+  number?: number;
+  size?: number;
+  numberOfElements?: number;
+  content?: Array<ResolucaoLista>;
   sort?: Sort;
-  pageSize?: number;
-  pageNumber?: number;
-  paged?: boolean;
-  unpaged?: boolean;
-  offset?: number;
+  first?: boolean;
+  last?: boolean;
+  pageable?: Pageable;
+  empty?: boolean;
 }
 

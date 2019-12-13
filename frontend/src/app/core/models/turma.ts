@@ -9,15 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Resposta } from './resposta';
 import { Discente } from './discente';
-import { AplicacaoLista } from './aplicacaoLista';
+import { Disciplina } from './disciplina';
+import { Docente } from './docente';
 
 
-export interface ResolucaoLista {
-  id?: string;
-  aplicacaoLista?: AplicacaoLista;
-  discente?: Discente;
-  respostas?: Array<Resposta>;
+export interface Turma {
+  id?: number;
+  disciplina: Disciplina;
+  semestre: string;
+  docente: Docente;
+  discentes?: Array<Discente>;
 }
 

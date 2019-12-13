@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginPageComponent],
@@ -12,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
   ],
   exports: [LoginPageComponent]
 })

@@ -10,14 +10,21 @@
  * Do not edit the class manually.
  */
 import { Resposta } from './resposta';
-import { Discente } from './discente';
-import { AplicacaoLista } from './aplicacaoLista';
+import { Pageable } from './pageable';
+import { Sort } from './sort';
 
 
-export interface ResolucaoLista {
-  id?: string;
-  aplicacaoLista?: AplicacaoLista;
-  discente?: Discente;
-  respostas?: Array<Resposta>;
+export interface PageResposta {
+  totalPages?: number;
+  totalElements?: number;
+  number?: number;
+  size?: number;
+  numberOfElements?: number;
+  content?: Array<Resposta>;
+  sort?: Sort;
+  first?: boolean;
+  last?: boolean;
+  pageable?: Pageable;
+  empty?: boolean;
 }
 
