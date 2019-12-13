@@ -26,6 +26,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.redirect();
+  }
+
+  redirect() {
     if (this.loginService.role === 'DISCENTE') {
       this.route.navigate(['/aluno/minhas-listas']);
     } else {
@@ -38,9 +42,10 @@ export class LoginPageComponent implements OnInit {
 
     try {
       await this.loginService.login(email, password);
+      this.redirect();
     } catch (e) {
       console.log(e);
-      this.alertService.danger(`Erro ao logar: ${e}`);
+      this.alertService.danger(`Erro ao logar`);
     }
   }
 

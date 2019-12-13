@@ -9,13 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Discente } from './discente';
-import { AplicacaoLista } from './aplicacaoLista';
 
 
-export interface ResolucaoLista { 
-    id?: string;
-    aplicacaoLista?: AplicacaoLista;
-    discente?: Discente;
+export interface JwtTokenDTO { 
+    email?: string;
+    token?: string;
+    role?: string;
 }
 

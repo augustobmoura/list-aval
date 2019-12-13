@@ -9,15 +9,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AvaliacaoRespostaDTO } from './avaliacaoRespostaDTO';
+import { Pageable } from './pageable';
 import { Sort } from './sort';
 
 
-export interface Pageable { 
+export interface PageAvaliacaoRespostaDTO { 
+    totalPages?: number;
+    totalElements?: number;
+    first?: boolean;
     sort?: Sort;
-    pageSize?: number;
-    pageNumber?: number;
-    paged?: boolean;
-    unpaged?: boolean;
-    offset?: number;
+    number?: number;
+    numberOfElements?: number;
+    last?: boolean;
+    pageable?: Pageable;
+    size?: number;
+    content?: Array<AvaliacaoRespostaDTO>;
+    empty?: boolean;
 }
 

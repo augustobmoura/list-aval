@@ -12,14 +12,17 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { Inject, Injectable, Optional } from '@angular/core';
-import { HttpClient, HttpEvent, HttpHeaders, HttpParameterCodec, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient, HttpHeaders, HttpParams,
+  HttpResponse, HttpEvent, HttpParameterCodec,
+} from '@angular/common/http';
 import { CustomHttpParameterCodec } from '../encoder';
 import { Observable } from 'rxjs';
 
 import { Credencial } from '../model/credencial';
 import { JwtTokenDTO } from '../model/jwtTokenDTO';
 
-import { BASE_PATH } from '../variables';
+import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
 
 

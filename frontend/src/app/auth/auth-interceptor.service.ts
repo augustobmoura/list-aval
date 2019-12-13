@@ -14,10 +14,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this._isInternal(new URL(req.url, location.href)) && this.loginService.token) {
-      req.headers.set('Authorization', `Bearer ${this.loginService.token}`);
+      req = req.clone({
+        setHeaders: {
+          'Authorization': `Bearer ${this.loginService.token}`,
+        },
+      });
     }
 
-    return undefined;
+    return next.handle(req);
   }
 
   private _isInternal(url: URL) {
