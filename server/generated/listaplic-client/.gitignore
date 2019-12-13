@@ -25,5 +25,6 @@ git_push.sh
 pom.xml
 README.md
 settings.gradle
+!src/main/java/br/ufg/inf/es/listaplic/invoker/JSON.java
 src
 docs
