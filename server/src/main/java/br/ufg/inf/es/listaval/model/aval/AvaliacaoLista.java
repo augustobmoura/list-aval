@@ -1,10 +1,12 @@
 package br.ufg.inf.es.listaval.model.aval;
 
-import br.ufg.inf.es.listaval.model.Usuario;
-import br.ufg.inf.es.listaval.model.aplic.AplicacaoLista;
+import com.vladmihalcea.hibernate.type.array.UUIDArrayType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,8 +16,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.UUID;
 
+@TypeDefs({
+		@TypeDef(
+				name = "uuid-array",
+				typeClass = UUIDArrayType.class
+		)
+})
 @Getter
 @Setter
 @Entity
@@ -28,13 +36,11 @@ public class AvaliacaoLista {
 	private Long id;
 
 	@NotNull
-	@ManyToOne
-	@JoinColumn
-	private AplicacaoLista aplicacaoLista;
+	private UUID aplicacaoListaId;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable()
-	private List<Usuario> avaliadores;
+	@Type(type = "uuid-array")
+	@Column(columnDefinition = "text[]")
+	private UUID[] avaliadores;
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -55,8 +61,8 @@ public class AvaliacaoLista {
 	@LastModifiedBy
 	private String usuarioAlteracao;
 
-	public AvaliacaoLista(@NotNull AplicacaoLista aplicacaoLista, @NotNull CriterioAvaliacao criterioAvaliacao) {
-		this.aplicacaoLista = aplicacaoLista;
+	public AvaliacaoLista(@NotNull UUID aplicacaoListaId, @NotNull CriterioAvaliacao criterioAvaliacao) {
+		this.aplicacaoListaId = aplicacaoListaId;
 		this.criterioAvaliacao = criterioAvaliacao;
 	}
 }

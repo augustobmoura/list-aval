@@ -17,10 +17,6 @@ public class RespostaService {
 		this.respostaRepository = respostaRepository;
 	}
 
-	public Page<Resposta> findAll(Pageable pageable) {
-		return respostaRepository.findAll(pageable);
-	}
-
 	public Page<Resposta> findAllByResolucaoListaId(Long resolucaoId, Pageable pageable) {
 		return respostaRepository.findAllByResolucaoListaId(resolucaoId, pageable);
 	}

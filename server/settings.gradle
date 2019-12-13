@@ -1,2 +1,3 @@
 rootProject.name = 'listaval'
-include('list-elab-client')
+include('generated:listelab-client')
+include('generated:listaplic-client')

@@ -247,3 +247,9 @@ gradle-app.setting
 **/build/
 
 # End of https://www.gitignore.io/api/linux,macos,gradle,windows,eclipse,netbeans,intellij+iml
+
+!generated/listaplic-client/.openapi-generator-ignore
+!generated/listaplic-client/build.gradle
+!generated/listelab-client/.openapi-generator-ignore
+!generated/listelab-client/build.gradle
+generated/*

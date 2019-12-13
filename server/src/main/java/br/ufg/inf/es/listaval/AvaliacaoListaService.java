@@ -1,18 +1,16 @@
 package br.ufg.inf.es.listaval;
 
 import br.ufg.inf.es.listaval.distribuidor.DistribuidorAvaliacoesDecorator;
-import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoLista;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
-import br.ufg.inf.es.listaval.model.aval.CriterioAvaliacao;
 import br.ufg.inf.es.listaval.repository.aval.AvaliacaoListaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AvaliacaoListaService {
@@ -21,8 +19,8 @@ public class AvaliacaoListaService {
 	private final DistribuidorAvaliacoesDecorator distribuidorAvaliacoesDecorator;
 
 	public AvaliacaoListaService(
-		AvaliacaoListaRepository avaliacaoListaRepository,
-		DistribuidorAvaliacoesDecorator distribuidorAvaliacoesDecorator
+			AvaliacaoListaRepository avaliacaoListaRepository,
+			DistribuidorAvaliacoesDecorator distribuidorAvaliacoesDecorator
 	) {
 		this.avaliacaoListaRepository = avaliacaoListaRepository;
 		this.distribuidorAvaliacoesDecorator = distribuidorAvaliacoesDecorator;
@@ -43,7 +41,7 @@ public class AvaliacaoListaService {
 
 	public Optional<AvaliacaoLista> update(Long id, AvaliacaoLista avaliacaoLista) {
 		return avaliacaoListaRepository.findById(id).map(record -> {
-			List<Usuario> avaliadores = avaliacaoLista.getAvaliadores();
+			UUID[] avaliadores = avaliacaoLista.getAvaliadores();
 			if (avaliadores != null) {
 				record.setAvaliadores(avaliadores);
 			}

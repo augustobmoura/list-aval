@@ -20,11 +20,6 @@ public class RespostaController {
 		this.respostaService = respostaService;
 	}
 
-	@GetMapping("/respostas")
-	public Page<Resposta> findAll(Pageable pageable) {
-		return respostaService.findAll(pageable);
-	}
-
 	@GetMapping("/resolucoes/{resolucaoId}/respostas")
 	public Page<Resposta> findAllByResolucaoLista(@PathVariable("resolucaoId") Long resolucaoId, Pageable pageable) {
 		return respostaService.findAllByResolucaoListaId(resolucaoId, pageable);

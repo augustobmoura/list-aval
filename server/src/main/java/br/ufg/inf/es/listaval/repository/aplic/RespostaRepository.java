@@ -3,10 +3,18 @@ package br.ufg.inf.es.listaval.repository.aplic;
 import br.ufg.inf.es.listaval.model.aplic.Resposta;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RespostaRepository extends PagingAndSortingRepository<Resposta, Long> {
+import java.util.Optional;
 
-	Page<Resposta> findAllByResolucaoListaId(Long resolucaoId, Pageable pageable);
+@Repository
+public class RespostaRepository {
 
+	public Page<Resposta> findAllByResolucaoListaId(Long resolucaoId, Pageable pageable) {
+		return null;
+	}
+
+	public Optional<Resposta> findById(Long id) {
+		return null;
+	}
 }

@@ -1,0 +1,1722 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "ListElab API"
+  },
+  "host": "api.sifo.tech",
+  "paths": {
+    "/api/AreaDeConhecimento": {
+      "get": {
+        "tags": [
+          "AreaDeConhecimento"
+        ],
+        "summary": "Lista todas os registros cadastrados.",
+        "operationId": "ConsulteListaAreaDeConhecimento",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[AreaDeConhecimento]"
+            }
+          }
+        }
+      }
+    },
+    "/api/Disciplina": {
+      "get": {
+        "tags": [
+          "Disciplina"
+        ],
+        "summary": "Lista todas os registros cadastrados.",
+        "operationId": "ConsulteListaDisciplina",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[Disciplina]"
+            }
+          }
+        }
+      }
+    },
+    "/api/Lista/filtro": {
+      "get": {
+        "tags": [
+          "Lista"
+        ],
+        "summary": "Filtro de lista. Funciona de forma cumulativa. Se eu escolher nivel de dificuldade 'Fácil' e Tempo Máximo de Resposta 10 minutos, então \r\no a api só retornar as listas que atendem aos dois filtros. Não é preciso preencher todos os filtros, somente àqueles que se deseja usar.",
+        "operationId": "ConsulteListaComFiltro",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "nivelDificuldade",
+            "in": "query",
+            "description": "1 - 'Muito Fácil'; 2 - 'Fácil', 3 - 'Médio', 4 - 'Difícil', 5 - 'Muito Difícil'",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": -1
+          },
+          {
+            "name": "disciplina",
+            "in": "query",
+            "description": "Deve-se passar o código da disciplina desejada. O filtro busca por listas que possuem questões dessa disciplina.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "areaDeConhecimento",
+            "in": "query",
+            "description": "Deve-se passar o código da área de conhecimento desejada. O filtro busca por listas que possuem questões dessa área de conhecimento.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tempoEsperadoResposta",
+            "in": "query",
+            "description": "Tempo máximo de resposta da lista expresso em minutos.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "usuario",
+            "in": "query",
+            "description": "Autor da lista.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "O id da lista, caso precise só de uma.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Busca as tags das questões e traz as listas que possuem questões com as tags passada.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "uniqueItems": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoListaQuestoes]"
+            }
+          }
+        }
+      }
+    },
+    "/api/Lista": {
+      "get": {
+        "tags": [
+          "Lista"
+        ],
+        "summary": "Lista todas os registros cadastrados.",
+        "operationId": "ConsulteListaLista",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoListaQuestoes]"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Lista"
+        ],
+        "summary": "Atualiza um registro existente no banco.",
+        "operationId": "AtualizeLista",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro com seus novos dados e o id para identificação.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoListaQuestoes"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoListaQuestoes]"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Lista"
+        ],
+        "summary": "Cadastra um registro novo no banco.",
+        "operationId": "CadastreLista",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro a ser cadastrado..",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoListaQuestoes"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoListaQuestoes]"
+            }
+          }
+        }
+      }
+    },
+    "/api/Lista/{id}": {
+      "get": {
+        "tags": [
+          "Lista"
+        ],
+        "summary": "Consulta um registro passando o identificador único.",
+        "operationId": "ConsulteListaPorId",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoListaQuestoes]"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Lista"
+        ],
+        "summary": "Exclue um registro no banco.",
+        "operationId": "DeleteLista",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do registro que será excluído.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoListaQuestoes]"
+            }
+          }
+        }
+      }
+    },
+    "/api/Questao/filtro": {
+      "get": {
+        "tags": [
+          "Questao"
+        ],
+        "summary": "Filtro de questões. Funciona de forma cumulativa. Se eu escolher nivel de dificuldade 'Fácil' e Tempo Máximo de Resposta 10 minutos, então \r\no a api só retornar questões que atendem aos dois filtros. Não é preciso preencher todos os filtros, somente àqueles que se deseja usar.",
+        "operationId": "ConsulteQuestaoComFiltro",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "enunciado",
+            "in": "query",
+            "description": "Adicione palavras que podem conter no enunciado.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "nivelDificuldade",
+            "in": "query",
+            "description": "1 - 'Muito Fácil'; 2 - 'Fácil', 3 - 'Médio', 4 - 'Difícil', 5 - 'Muito Difícil'",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": -1
+          },
+          {
+            "name": "tipo",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": -1
+          },
+          {
+            "name": "disciplina",
+            "in": "query",
+            "description": "Deve-se passar o código da disciplina desejada.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "areaDeConhecimento",
+            "in": "query",
+            "description": "Deve-se passar o código da área de conhecimento desejada.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tempoEsperadoResposta",
+            "in": "query",
+            "description": "Tempo máximo de resposta expresso em minutos.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          },
+          {
+            "name": "usuario",
+            "in": "query",
+            "description": "Autor da questão.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "O id da questão, caso precise só de uma.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Uma lista de tags que o professor pode colocar para identificar uma questão ao cadastrá-la.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "uniqueItems": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[JObject]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoAssociacaoDeColunas": {
+      "get": {
+        "tags": [
+          "QuestaoAssociacaoDeColunas"
+        ],
+        "summary": "Lista todas os registros cadastrados.",
+        "operationId": "ConsulteLista",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoAssociacaoDeColunas]"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "QuestaoAssociacaoDeColunas"
+        ],
+        "summary": "Atualiza um registro existente no banco.",
+        "operationId": "AtualizeQuestaoAssociacaoDeColunas",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro com seus novos dados e o id para identificação.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoAssociacaoDeColunas"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoAssociacaoDeColunas]"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "QuestaoAssociacaoDeColunas"
+        ],
+        "summary": "Cadastra um registro novo no banco.",
+        "operationId": "CadastreQuestaoAssociacaoDeColunas",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro a ser cadastrado..",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoAssociacaoDeColunas"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoAssociacaoDeColunas]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoAssociacaoDeColunas/{id}": {
+      "get": {
+        "tags": [
+          "QuestaoAssociacaoDeColunas"
+        ],
+        "summary": "Consulta um registro passando o identificador único.",
+        "operationId": "ConsulteQuestaoAssociacaoDeColunasPorId",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoAssociacaoDeColunas]"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "QuestaoAssociacaoDeColunas"
+        ],
+        "summary": "Exclue um registro no banco.",
+        "operationId": "DeleteQuestaoAssociacaoDeColunas",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do registro que será excluído.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoAssociacaoDeColunas]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoDiscursiva": {
+      "get": {
+        "tags": [
+          "QuestaoDiscursiva"
+        ],
+        "summary": "Lista todas os registros cadastrados.",
+        "operationId": "ConsulteListaQuestaoDiscursiva",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoDiscursiva]"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "QuestaoDiscursiva"
+        ],
+        "summary": "Atualiza um registro existente no banco.",
+        "operationId": "AtualizeQuestaoDiscursiva",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro com seus novos dados e o id para identificação.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoDiscursiva"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoDiscursiva]"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "QuestaoDiscursiva"
+        ],
+        "summary": "Cadastra um registro novo no banco.",
+        "operationId": "CadastreQuestaoDiscursiva",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro a ser cadastrado..",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoDiscursiva"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoDiscursiva]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoDiscursiva/{id}": {
+      "get": {
+        "tags": [
+          "QuestaoDiscursiva"
+        ],
+        "summary": "Consulta um registro passando o identificador único.",
+        "operationId": "ConsulteQuestaoDiscursivaPorId",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoDiscursiva]"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "QuestaoDiscursiva"
+        ],
+        "summary": "Exclue um registro no banco.",
+        "operationId": "DeleteQuestaoDiscursiva",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do registro que será excluído.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoDiscursiva]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoMultiplaEscolha": {
+      "get": {
+        "tags": [
+          "QuestaoMultiplaEscolha"
+        ],
+        "summary": "Lista todas os registros cadastrados.",
+        "operationId": "ConsulteListaQuestaoMultiplaEscolha",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoMultiplaEscolha]"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "QuestaoMultiplaEscolha"
+        ],
+        "summary": "Atualiza um registro existente no banco.",
+        "operationId": "AtualizeQuestaoMultiplaEscolha",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro com seus novos dados e o id para identificação.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoMultiplaEscolha"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoMultiplaEscolha]"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "QuestaoMultiplaEscolha"
+        ],
+        "summary": "Cadastra um registro novo no banco.",
+        "operationId": "CadastreQuestaoMultiplaEscolha",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro a ser cadastrado..",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoMultiplaEscolha"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoMultiplaEscolha]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoMultiplaEscolha/{id}": {
+      "get": {
+        "tags": [
+          "QuestaoMultiplaEscolha"
+        ],
+        "summary": "Consulta um registro passando o identificador único.",
+        "operationId": "ConsulteQuestaoMultiplaEscolhaPorId",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoMultiplaEscolha]"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "QuestaoMultiplaEscolha"
+        ],
+        "summary": "Exclue um registro no banco.",
+        "operationId": "DeleteQuestaoMultiplaEscolha",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do registro que será excluído.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoMultiplaEscolha]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoVerdadeiroOuFalso": {
+      "get": {
+        "tags": [
+          "QuestaoVerdadeiroOuFalso"
+        ],
+        "summary": "Lista todas os registros cadastrados.",
+        "operationId": "ConsulteListaQuestaoVerdadeiroOuFalso",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoVerdadeiroOuFalso]"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "QuestaoVerdadeiroOuFalso"
+        ],
+        "summary": "Atualiza um registro existente no banco.",
+        "operationId": "AtualizeQuestaoVerdadeiroOuFalso",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro com seus novos dados e o id para identificação.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoVerdadeiroOuFalso"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoVerdadeiroOuFalso]"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "QuestaoVerdadeiroOuFalso"
+        ],
+        "summary": "Cadastra um registro novo no banco.",
+        "operationId": "CadastreQuestaoVerdadeiroOuFalso",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "objeto",
+            "in": "body",
+            "description": "O registro a ser cadastrado..",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DtoQuestaoVerdadeiroOuFalso"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoVerdadeiroOuFalso]"
+            }
+          }
+        }
+      }
+    },
+    "/api/QuestaoVerdadeiroOuFalso/{id}": {
+      "get": {
+        "tags": [
+          "QuestaoVerdadeiroOuFalso"
+        ],
+        "summary": "Consulta um registro passando o identificador único.",
+        "operationId": "ConsulteQuestaoVerdadeiroOuFalsoPorId",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoVerdadeiroOuFalso]"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "QuestaoVerdadeiroOuFalso"
+        ],
+        "summary": "Exclue um registro no banco.",
+        "operationId": "DeleteQuestaoVerdadeiroOuFalso",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do registro que será excluído.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[DtoQuestaoVerdadeiroOuFalso]"
+            }
+          }
+        }
+      }
+    },
+    "/api/Usuario/login": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Realiza login.",
+        "operationId": "Login",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "body",
+            "description": "O usuário buscando autenticação.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DtoResultado[Usuario]"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DtoResultado[AreaDeConhecimento]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "DtoErro": {
+      "type": "object",
+      "properties": {
+        "mensagem": {
+          "type": "string"
+        },
+        "campo": {
+          "type": "string"
+        }
+      }
+    },
+    "DtoResultado[Disciplina]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "DtoResultado[DtoListaQuestoes]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "DtoListaQuestoes": {
+      "type": "object",
+      "properties": {
+        "titulo": {
+          "type": "string"
+        },
+        "prontaParaAplicacao": {
+          "type": "boolean"
+        },
+        "usuario": {
+          "type": "string"
+        },
+        "nivelDeDificuldade": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tiposDeQuestao": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "enum": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "type": "integer"
+          }
+        },
+        "questoesDiscursiva": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoQuestaoDaLista[DtoQuestaoDiscursiva]"
+          }
+        },
+        "questoesMultiplaEscolha": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoQuestaoDaLista[DtoQuestaoMultiplaEscolha]"
+          }
+        },
+        "questoesAssociacaoDeColunas": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoQuestaoDaLista[DtoQuestaoAssociacaoDeColunas]"
+          }
+        },
+        "questoesVerdadeiroOuFalso": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoQuestaoDaLista[DtoQuestaoVerdadeiroOuFalso]"
+          }
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "DtoQuestaoDaLista[DtoQuestaoDiscursiva]": {
+      "type": "object",
+      "properties": {
+        "numero": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "peso": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "questao": {
+          "$ref": "#/definitions/DtoQuestaoDiscursiva"
+        }
+      }
+    },
+    "DtoQuestaoDaLista[DtoQuestaoMultiplaEscolha]": {
+      "type": "object",
+      "properties": {
+        "numero": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "peso": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "questao": {
+          "$ref": "#/definitions/DtoQuestaoMultiplaEscolha"
+        }
+      }
+    },
+    "DtoQuestaoDaLista[DtoQuestaoAssociacaoDeColunas]": {
+      "type": "object",
+      "properties": {
+        "numero": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "peso": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "questao": {
+          "$ref": "#/definitions/DtoQuestaoAssociacaoDeColunas"
+        }
+      }
+    },
+    "DtoQuestaoDaLista[DtoQuestaoVerdadeiroOuFalso]": {
+      "type": "object",
+      "properties": {
+        "numero": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "peso": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "questao": {
+          "$ref": "#/definitions/DtoQuestaoVerdadeiroOuFalso"
+        }
+      }
+    },
+    "DtoQuestaoDiscursiva": {
+      "type": "object",
+      "properties": {
+        "respostaEsperada": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoPalavraChave"
+          }
+        },
+        "enunciado": {
+          "type": "string"
+        },
+        "usuario": {
+          "type": "string"
+        },
+        "areaDeConhecimento": {
+          "$ref": "#/definitions/DtoAreaDoConhecimento"
+        },
+        "nivelDificuldade": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "type": "integer"
+        },
+        "disciplina": {
+          "$ref": "#/definitions/DtoDisciplina"
+        },
+        "tags": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tipo": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "tempoMaximoDeResposta": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "DtoQuestaoMultiplaEscolha": {
+      "type": "object",
+      "properties": {
+        "respostaEsperada": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoEscolha"
+          }
+        },
+        "enunciado": {
+          "type": "string"
+        },
+        "usuario": {
+          "type": "string"
+        },
+        "areaDeConhecimento": {
+          "$ref": "#/definitions/DtoAreaDoConhecimento"
+        },
+        "nivelDificuldade": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "type": "integer"
+        },
+        "disciplina": {
+          "$ref": "#/definitions/DtoDisciplina"
+        },
+        "tags": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tipo": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "tempoMaximoDeResposta": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "DtoQuestaoAssociacaoDeColunas": {
+      "type": "object",
+      "properties": {
+        "respostaEsperada": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoColunas"
+          }
+        },
+        "enunciado": {
+          "type": "string"
+        },
+        "usuario": {
+          "type": "string"
+        },
+        "areaDeConhecimento": {
+          "$ref": "#/definitions/DtoAreaDoConhecimento"
+        },
+        "nivelDificuldade": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "type": "integer"
+        },
+        "disciplina": {
+          "$ref": "#/definitions/DtoDisciplina"
+        },
+        "tags": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tipo": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "tempoMaximoDeResposta": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "DtoQuestaoVerdadeiroOuFalso": {
+      "type": "object",
+      "properties": {
+        "respostaEsperada": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoEscolha"
+          }
+        },
+        "enunciado": {
+          "type": "string"
+        },
+        "usuario": {
+          "type": "string"
+        },
+        "areaDeConhecimento": {
+          "$ref": "#/definitions/DtoAreaDoConhecimento"
+        },
+        "nivelDificuldade": {
+          "format": "int32",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "type": "integer"
+        },
+        "disciplina": {
+          "$ref": "#/definitions/DtoDisciplina"
+        },
+        "tags": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tipo": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        "tempoMaximoDeResposta": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "DtoPalavraChave": {
+      "type": "object",
+      "properties": {
+        "descricao": {
+          "type": "string"
+        },
+        "peso": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "DtoAreaDoConhecimento": {
+      "type": "object",
+      "properties": {
+        "codigo": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        }
+      }
+    },
+    "DtoDisciplina": {
+      "type": "object",
+      "properties": {
+        "codigo": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        }
+      }
+    },
+    "DtoEscolha": {
+      "type": "object",
+      "properties": {
+        "descricao": {
+          "type": "string"
+        },
+        "correta": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DtoColunas": {
+      "type": "object",
+      "properties": {
+        "colunaPrincipal": {
+          "$ref": "#/definitions/DtoColuna"
+        },
+        "colunaAssociada": {
+          "$ref": "#/definitions/DtoColuna"
+        }
+      }
+    },
+    "DtoColuna": {
+      "type": "object",
+      "properties": {
+        "letra": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        }
+      }
+    },
+    "DtoResultado[JObject]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "DtoResultado[DtoQuestaoAssociacaoDeColunas]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "DtoResultado[DtoQuestaoDiscursiva]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "DtoResultado[DtoQuestaoMultiplaEscolha]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "DtoResultado[DtoQuestaoVerdadeiroOuFalso]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "DtoResultado[Usuario]": {
+      "type": "object",
+      "properties": {
+        "erros": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DtoErro"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "sucesso": {
+          "type": "boolean"
+        },
+        "resultado": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

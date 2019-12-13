@@ -1,30 +1,53 @@
+###
+GET http://localhost:8080/api/resolucoes
+
 ### Cria avaliaçao para uma resoluçao
 POST http://localhost:8080/api/avaliacoesResolucao
 Content-Type: application/json
 
 {
   "resolucaoLista": {
-    "id": 33
+    "id": "b256f986-14a5-4f90-a6b7-a0b96d87ab52"
   },
   "avaliador": {
     "dtype": "Discente",
-    "id": 3
+    "id": "585c69cd-c9e1-46f3-9135-cf1939cf5d48"
   }
 }
 
+###
+GET http://localhost:8080/api/avaliacoesResolucao/1
+
 ### Atribui nota para uma avaliaçao
-PUT http://localhost:8080/api/avaliacoesResolucao/49
+PUT http://localhost:8080/api/avaliacoesResolucao/1
 Content-Type: application/json
 
 {
   "resolucaoLista": {
-    "id": 33
+    "id": "eda11d18-ba3f-44c2-a375-0ed475a5957b"
   },
   "avaliador": {
     "dtype": "Discente",
-    "id": 3
+    "id": "585c69cd-c9e1-46f3-9135-cf1939cf5d48"
   },
   "nota": 5.0
+}
+
+### Cria avaliaçao para uma resoluçao
+POST http://localhost:8080/api/avaliacoesResposta
+Content-Type: application/json
+
+{
+  "resposta": {
+    "id": "bed12160-bc58-4501-a93c-4ce258f779c8"
+  },
+  "avaliador": {
+    "dtype": "Discente",
+    "id": "585c69cd-c9e1-46f3-9135-cf1939cf5d48"
+  },
+  "avaliacaoResolucaoLista": {
+    "id": 1
+  }
 }
 
 ###

@@ -1,34 +1,33 @@
 package br.ufg.inf.es.listaval.distribuidor;
 
 import br.ufg.inf.es.listaval.AvaliacaoResolucaoListaService;
-import br.ufg.inf.es.listaval.model.Usuario;
 import br.ufg.inf.es.listaval.model.aplic.AplicacaoLista;
 import br.ufg.inf.es.listaval.model.aplic.ResolucaoLista;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoLista;
 import br.ufg.inf.es.listaval.model.aval.AvaliacaoResolucaoLista;
 import br.ufg.inf.es.listaval.model.aval.CriterioAvaliacao;
+import br.ufg.inf.es.listaval.repository.aval.AvaliacaoResolucaoListaRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class DistribuidorAvaliacoesAleatorio implements DistribuidorAvaliacoes {
 
-	private AvaliacaoResolucaoListaService avaliacaoResolucaoListaService;
+	private AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository;
 
-	public DistribuidorAvaliacoesAleatorio(AvaliacaoResolucaoListaService avaliacaoResolucaoListaService) {
-		this.avaliacaoResolucaoListaService = avaliacaoResolucaoListaService;
+	public DistribuidorAvaliacoesAleatorio(AvaliacaoResolucaoListaRepository avaliacaoResolucaoListaRepository) {
+		this.avaliacaoResolucaoListaRepository = avaliacaoResolucaoListaRepository;
 	}
 
 	@Override
 	public List<AvaliacaoResolucaoLista> distribua(AvaliacaoLista avaliacaoLista) {
-		List<Usuario> avaliadores = avaliacaoLista.getAvaliadores();
+		List<UUID> avaliadores = Arrays.asList(avaliacaoLista.getAvaliadores());
 		Collections.shuffle(avaliadores);
-		Iterator<Usuario> iterator = avaliadores.iterator();
-		AplicacaoLista aplicacaoLista = avaliacaoLista.getAplicacaoLista();
+		Iterator<UUID> iterator = avaliadores.iterator();
+		//TODO: Obter aplicaçao de lista
+//		AplicacaoLista aplicacaoLista = avaliacaoLista.getAplicacaoLista();
+		AplicacaoLista aplicacaoLista = null;
 		List<ResolucaoLista> resolucoes = aplicacaoLista.getResolucoes();
 
 		List<AvaliacaoResolucaoLista> avaliacoes = new ArrayList<>();
@@ -38,10 +37,10 @@ public class DistribuidorAvaliacoesAleatorio implements DistribuidorAvaliacoes {
 			}
 
 			AvaliacaoResolucaoLista avaliacaoResolucaoLista = new AvaliacaoResolucaoLista(
-				resolucaoLista,
-				iterator.next()
+					resolucaoLista.getId(),
+					iterator.next()
 			);
-			avaliacaoResolucaoListaService.save(avaliacaoResolucaoLista);
+			avaliacaoResolucaoListaRepository.save(avaliacaoResolucaoLista);
 			avaliacoes.add(avaliacaoResolucaoLista);
 		}
 
