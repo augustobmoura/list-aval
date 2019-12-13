@@ -74,9 +74,10 @@ public class AvaliacaoResolucaoListaService {
 
 	public Optional<AvaliacaoResolucaoListaDTO> update(Long id, AvaliacaoResolucaoListaDTO dto) {
 		return avaliacaoResolucaoListaRepository.findById(id).map(record -> {
-			UUID avaliador = dto.getAvaliador().getId();
-			if (avaliador != null) {
-				record.setAvaliadorId(avaliador);
+			String idStr = dto.getAvaliador().getId();
+
+			if (idStr != null) {
+				record.setAvaliadorId(idStr);
 			}
 			record.setPublicada(dto.getPublicada());
 			record.setNota(dto.getNota());

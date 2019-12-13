@@ -53,7 +53,7 @@ public class AvaliacaoRespostaService {
 
 	public Optional<AvaliacaoRespostaDTO> update(Long id, AvaliacaoRespostaDTO avaliacaoResposta) {
 		return avaliacaoRespostaRepository.findById(id).map(record -> {
-			@NotNull UUID avaliador = avaliacaoResposta.getAvaliadorId();
+			@NotNull String avaliador = avaliacaoResposta.getAvaliadorId();
 			if (avaliador != null) {
 				record.setAvaliadorId(avaliador);
 			}

@@ -28,9 +28,9 @@ public class AvaliacaoResolucaoLista {
 
 	private UUID resolucaoListaId;
 
-	private UUID discenteId;
+	private String discenteId;
 
-	private UUID avaliadorId;
+	private String avaliadorId;
 
 	private Boolean publicada;
 
@@ -51,7 +51,7 @@ public class AvaliacaoResolucaoLista {
 	@LastModifiedBy
 	private String usuarioAlteracao;
 
-	public AvaliacaoResolucaoLista(@NotNull UUID resolucaoListaId, @NotNull UUID avaliadorId) {
+	public AvaliacaoResolucaoLista(@NotNull UUID resolucaoListaId, @NotNull String avaliadorId) {
 		this.resolucaoListaId = resolucaoListaId;
 		this.avaliadorId = avaliadorId;
 	}

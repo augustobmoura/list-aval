@@ -57,7 +57,7 @@ public class AplicacaoListaRepository {
 			throw new IllegalStateException("Lista nao encontrada");
 		}
 		Set<Discente> discentes = application.getStudentList().stream()
-				.map(student -> new Discente(student.getId(), student.getName(), student.getEmail()))
+			.map(student -> new Discente(student.getId().toString(), student.getName(), student.getEmail()))
 				.collect(Collectors.toSet());
 
 		turma.setDiscentes(discentes);
